@@ -95,7 +95,7 @@ class Map extends Component {
       const coordinate = [this.state.mouseLng, this.state.mouseLat];
       var nbh = mapService.mapCoordinateNeighbourhood(coordinate);
 
-      if (nbh[0] !== "" && nbh[0] !== this.state.lastHoveredNbh) {
+      if (nbh[0] !== "" || nbh[0] !== this.state.lastHoveredNbh) {
         if (this.state.lastHoveredNbh !== "") {
           map.setLayoutProperty(this.state.lastHoveredNbh, 'visibility', 'none');
         }
