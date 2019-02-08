@@ -191,11 +191,11 @@ class Map extends Component {
 
 
   render() {
-    const { mouseLng, mouseLat, lng, lat, zoom } = this.state;
+    // const { mouseLng, mouseLat, lng, lat, zoom } = this.state;
 
     return (
       <div>
-        <div className="inline-block absolute left mt12 ml12 z1 py6 px12 txt-s txt-bold">
+        <div className="inline-block absolute left mt10 ml10 z1 py6 px12 txt-s txt-bold">
           
           <div className='map-overlay-container' style={styleMapOverlayContainer}>
             <div className='map-overlay' style={styleMapOverlay}>
