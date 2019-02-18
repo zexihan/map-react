@@ -19,8 +19,23 @@ class MapService {
     
   }
 
+  rgb2hex (rgb) {
+    rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+    return (rgb && rgb.length === 4) ? "#" +
+      ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+      ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+      ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2) : '';
+}
+
   async plotChoropleth (pillName) {
-    let list = await d3.csv("data/restaurant_count.csv");
+    let list = await d3.csv("data/restaurant.csv");
+    const min = d3.min(list, function(d) { return Number(d.restaurant_count)})
+    const max = d3.max(list, function (d) { return Number(d.restaurant_count) })
+    console.log(min, max);
+    for (var i = 0; i < list.length; i++) {
+      var interpolateColor = await d3.interpolateOrRd((Number(list[i].restaurant_count) - min) / (max - min));
+      list[i].color = this.rgb2hex(interpolateColor);
+    }
     return list;
   }
 

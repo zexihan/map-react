@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
-import turf from 'turf';
+import * as turf from '@turf/turf';
 import $ from 'jquery';
 
 import Header from './Header';
@@ -159,6 +159,44 @@ class Map extends Component {
         "data": "/data/neighbourhoods.geojson"
       });
 
+      for (var i = 0; i < this.state.nbhPolygons.length; i++) {
+        var nbhId = this.state.nbhPolygons[i].properties.neighbourhood + "-" + i.toString();
+        this.state.nbhList.push(nbhId);
+
+        map.addSource(nbhId, {
+          type: "geojson",
+          data: {
+            "type": "FeatureCollection",
+            "features": [this.state.nbhPolygons[i]]
+          }
+        });
+
+        // for hover
+        map.addLayer({
+          id: nbhId,
+          type: "fill",
+          source: nbhId,
+          paint: {
+            "fill-color": "#088",
+            "fill-opacity": 0.8
+          }
+        });
+
+        // for click
+        map.addLayer({
+          id: nbhId + "-click",
+          type: "fill",
+          source: nbhId,
+          paint: {
+            "fill-color": "#D0104C",
+            "fill-opacity": 0.8
+          }
+        });
+
+        map.setLayoutProperty(nbhId, 'visibility', 'none');
+        map.setLayoutProperty(nbhId + "-click", 'visibility', 'none');
+      }
+
       map.addLayer({
         "id": "neighbourhood-fills",
         "type": "fill",
@@ -181,42 +219,7 @@ class Map extends Component {
         }
       });
 
-      for (var i = 0; i < this.state.nbhPolygons.length; i++) {
-        var nbhId = this.state.nbhPolygons[i].properties.neighbourhood + "-" + i.toString();
-        this.state.nbhList.push(nbhId);
-        map.addSource(nbhId, {
-          type: "geojson",
-          data: {
-            "type": "FeatureCollection",
-            "features": [this.state.nbhPolygons[i]]
-          }
-        });
-        
-        // for hover
-        map.addLayer({
-          id: nbhId,
-          type: "fill",
-          source: nbhId,
-          paint: {
-            "fill-color": "#088",
-            "fill-opacity": 0.8
-          }
-        });
-        
-        // for click
-        map.addLayer({
-          id: nbhId + "-click",
-          type: "fill",
-          source: nbhId,
-          paint: {
-            "fill-color": "#D0104C",
-            "fill-opacity": 0.8
-          }
-        });
-
-        map.setLayoutProperty(nbhId, 'visibility', 'none');
-        map.setLayoutProperty(nbhId + "-click", 'visibility', 'none');
-      }
+      
 
     });
     
@@ -231,6 +234,7 @@ class Map extends Component {
         var nbh = this.state.nbhList[i];
         var nbhGrp = this.state.nbhPolygons[i].properties.neighbourhood_group;
         var center = turf.centroid(this.state.nbhPolygons[i]).geometry.coordinates;
+        console.log(center);
         center[0] = center[0] - 0.015;
         this.state.map.flyTo({
           center: center,
@@ -248,10 +252,33 @@ class Map extends Component {
   }
 
   selectPill = async (pillName) => {
+    if (pillName === "Home") {
+      this.state.map.setLayoutProperty("neighbourhood-fills", 'visibility', 'visible');
+      this.state.map.setPaintProperty("neighbourhood-borders", 'line-color', '#088');
+
+      for (var i = 0; i < this.state.nbhList.length; i++) {
+        this.state.map.setLayoutProperty(this.state.nbhList[i], 'visibility', 'none');
+        this.state.map.setPaintProperty(this.state.nbhList[i], 'fill-color', "#088");        
+      }
+
+      return;
+    }
     console.log(pillName);
     let data = await mapService.plotChoropleth(pillName);
     console.log(data);
+    console.log(this.state.nbhList);
+    this.state.map.setLayoutProperty("neighbourhood-fills", 'visibility', 'none');
     
+    
+    for (var i = 0; i < this.state.nbhList.length; i++) {
+      if (typeof data[i] === 'undefined') {
+        console.log(data[i])
+        return;
+      }
+      this.state.map.setPaintProperty(this.state.nbhList[i], 'fill-color', data[i].color);
+      this.state.map.setLayoutProperty(this.state.nbhList[i], 'visibility', 'visible');
+    }
+    this.state.map.setPaintProperty("neighbourhood-borders", 'line-color', '#900000');
   }
 
   selectTab = (tabName) => {

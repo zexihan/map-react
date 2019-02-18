@@ -1,224 +1,234 @@
-neighborhood,restaurant_count
-Midtown,1305
-Flushing,850
-Upper East Side,842
-Williamsburg,637
-Upper West Side,611
-East Village,598
-Harlem,565
-Astoria,511
-Sunset Park,473
-Bedford-Stuyvesant,447
-West Village,444
-East Harlem,428
-Bushwick,400
-Crown Heights,381
-East Flatbush,374
-Jamaica,356
-Sheepshead Bay,347
-Hell's Kitchen,347
-Lower East Side,333
-Borough Park,328
-Financial District,326
-Chelsea,312
-Jackson Heights,310
-Elmhurst,305
-Chinatown,299
-Long Island City,291
-Greenwich Village,282
-Washington Heights,272
-Ridgewood,270
-Flatbush,267
-Tribeca,251
-Richmond Hill,244
-Bay Ridge,233
-Forest Hills,215
-Bayside,193
-Sunnyside,190
-SoHo,190
-Park Slope,182
-Fordham,177
-Woodside,161
-Inwood,159
-Ditmars Steinway,155
-Gravesend,154
-East New York,151
-Bensonhurst,150
-Midwood,147
-Longwood,145
-Canarsie,145
-Maspeth,144
-Brownsville,140
-Ozone Park,139
-Kingsbridge,138
-Prospect-Lefferts Gardens,137
-Mott Haven,135
-Kensington,134
-Kips Bay,130
-Theater District,128
-Greenpoint,126
-Murray Hill,126
-Fort Greene,121
-East Elmhurst,119
-Parkchester,113
-Fort Hamilton,112
-Cypress Hills,110
-Norwood,108
-Belmont,106
-Gramercy,105
-Corona,103
-Wakefield,102
-Flatlands,100
-Morningside Heights,99
-Woodhaven,99
-Clinton Hill,98
-Downtown Brooklyn,97
-Rego Park,97
-Bath Beach,97
-Prospect Heights,93
-Flatiron District,93
-Queens Village,91
-Boerum Hill,88
-Nolita,83
-Middle Village,82
-Allerton,79
-Glendale,78
-Concourse Village,76
-Concourse,76
-Soundview,73
-South Ozone Park,71
-Throgs Neck,71
-Brooklyn Heights,70
-College Point,68
-Battery Park City,67
-West Brighton,66
-Morris Park,66
-South Slope,64
-Little Italy,63
-Williamsbridge,63
-St. Albans,63
-Westchester Square,62
-Castleton Corners,62
-Carroll Gardens,60
-Fresh Meadows,60
-Gowanus,59
-Unionport,59
-Port Richmond,59
-Brighton Beach,58
-Whitestone,57
-Melrose,56
-Springfield Gardens,56
-St. George,53
-Dyker Heights,53
-Bellerose,52
-Far Rockaway,51
-Kew Gardens Hills,50
-Kew Gardens,48
-Windsor Terrace,46
-Briarwood,46
-Bull's Head,46
-Jamaica Estates,46
-Tremont,46
-University Heights,46
-Little Neck,46
-Pelham Bay,45
-Morris Heights,45
-Stapleton,45
-NoHo,44
-Claremont Village,44
-New Springville,44
-Hollis,43
-Mount Hope,43
-Mount Eden,43
-Rosedale,41
-Howard Beach,40
-City Island,39
-DUMBO,39
-Co-op City,39
-Morrisania,39
-Laurelton,38
-Cobble Hill,38
-Hunts Point,35
-Eltingville,34
-Fieldston,34
-Great Kills,34
-Van Nest,34
-New Dorp,34
-Jamaica Hills,32
-Graniteville,32
-Randall Manor,32
-Tottenville,32
-Highbridge,31
-North Riverdale,31
-Arrochar,30
-Rockaway Beach,29
-Bronxdale,29
-Dongan Hills,28
-Cambria Heights,27
-Mill Basin,26
-South Beach,26
-Riverdale,25
-Eastchester,24
-Baychester,24
-East Morrisania,23
-Woodlawn,23
-Douglaston,22
-West Farms,22
-Pleasant Plains,21
-Red Hook,20
-Bay Terrace,19
-Tompkinsville,19
-Concord,19
-Rossville,19
-Port Morris,19
-Schuylerville,18
-Pelham Gardens,18
-Westerleigh,18
-Grant City,17
-New Dorp Beach,17
-Clason Point,16
-Rosebank,16
-Midland Beach,16
-Two Bridges,16
-Emerson Hill,15
-Mariners Harbor,15
-Columbia St,15
-Huguenot,15
-Olinville,15
-"Chelsea, Staten Island",14
-Bergen Beach,14
-Arverne,14
-Shore Acres,14
-Arden Heights,14
-Gerritsen Beach,14
-Civic Center,12
-Coney Island,12
-Prince's Bay,12
-Roosevelt Island,11
-Charleston,11
-Marble Hill,11
-Clifton,11
-Glen Oaks,10
-Edenwald,9
-Castle Hill,9
-New Brighton,9
-Hollis Hills,9
-Woodrow,9
-Manhattan Beach,9
-Todt Hill,8
-Spuyten Duyvil,7
-Oakwood,7
-Holliswood,6
-"Bay Terrace, Staten Island",6
-Stuyvesant Town,6
-Richmondtown,5
-Country Club,5
-Bayswater,5
-Howland Hook,4
-Vinegar Hill,4
-Lighthouse Hill,3
-Belle Harbor,3
-Edgemere,3
-Navy Yard,2
-Grymes Hill,2
-Silver Lake,2
+index,nbhId,restaurant_count
+0,Bayswater,5
+1,Allerton,79
+2,City Island,39
+3,Ditmars Steinway,155
+4,Ozone Park,139
+5,Fordham,177
+6,Whitestone,57
+7,Arden Heights,14
+8,Arrochar,30
+9,Arverne,14
+10,Bay Ridge,233
+11,Belmont,106
+12,Gerritsen Beach,14
+13,Port Ivory,0
+14,Soundview,73
+15,Astoria,511
+16,Bath Beach,97
+17,Bayside,193
+18,Battery Park City,67
+19,Bay Terrace,19
+20,"Bay Terrace, Staten Island",6
+21,Baychester,24
+22,Bayswater,5
+23,Bedford-Stuyvesant,447
+24,Belle Harbor,3
+25,Bellerose,52
+26,Bensonhurst,150
+27,Bergen Beach,14
+28,Bloomfield,
+29,Boerum Hill,88
+30,Borough Park,328
+31,Brighton Beach,58
+32,Prospect-Lefferts Gardens,137
+33,Mott Haven,135
+34,Bronxdale,29
+35,Breezy Point,
+36,Briarwood,46
+37,Brooklyn Heights,70
+38,Brownsville,140
+39,Bull's Head,46
+40,Bushwick,400
+41,Cambria Heights,27
+42,"Chelsea, Staten Island",14
+43,Chinatown,299
+44,City Island,39
+45,Cypress Hills,110
+46,Canarsie,145
+47,Carroll Gardens,60
+48,Castle Hill,9
+49,Castleton Corners,62
+50,Grant City,17
+51,Charleston,11
+52,Chelsea,312
+53,Civic Center,12
+54,Claremont Village,44
+55,Clason Point,16
+56,Clifton,11
+57,Clinton Hill,98
+58,Co-op City,39
+59,Cobble Hill,38
+60,College Point,68
+61,Crown Heights,381
+62,Columbia St,15
+63,Concord,19
+64,Concourse,76
+65,Concourse Village,76
+66,Coney Island,12
+67,Corona,103
+68,Mount Eden,43
+69,Jamaica Hills,32
+70,Country Club,5
+71,Mount Hope,43
+72,DUMBO,39
+73,Dongan Hills,28
+74,Douglaston,22
+75,Downtown Brooklyn,97
+76,Dyker Heights,53
+77,Glen Oaks,10
+78,East Elmhurst,119
+79,East Flatbush,374
+80,East Harlem,428
+81,East Morrisania,23
+82,Eltingville,34
+83,Emerson Hill,15
+84,Elmhurst,305
+85,Fieldston,34
+86,East New York,151
+87,East Village,598
+88,Eastchester,24
+89,Edenwald,9
+90,Edgemere,3
+91,Glendale,78
+92,Far Rockaway,51
+93,Jamaica Estates,46
+94,Financial District,326
+95,Flatbush,267
+96,Flatiron District,93
+97,Flatlands,100
+98,Laurelton,38
+99,Shore Acres,14
+100,Flushing,850
+101,Gowanus,59
+102,Forest Hills,215
+103,Fort Greene,121
+104,Fort Hamilton,112
+105,Fort Wadsworth,
+106,Fresh Meadows,60
+107,Gramercy,105
+108,Graniteville,32
+109,Gravesend,154
+110,Kensington,134
+111,Kew Gardens,48
+112,Parkchester,113
+113,Pelham Bay,45
+114,Great Kills,34
+115,Huguenot,15
+116,Greenpoint,126
+117,Greenwich Village,282
+118,Grymes Hill,2
+119,Harlem,565
+120,Queens Village,91
+121,Hell's Kitchen,347
+122,Highbridge,31
+123,Hollis,43
+124,Hollis Hills,9
+125,Holliswood,6
+126,Howard Beach,40
+127,Howard Beach,40
+128,Howland Hook,4
+129,Pelham Gardens,18
+130,Hunts Point,35
+131,Inwood,159
+132,Jackson Heights,310
+133,Jamaica,356
+134,Morris Park,66
+135,Kew Gardens Hills,50
+136,Kingsbridge,138
+137,Kips Bay,130
+138,Lighthouse Hill,3
+139,Little Italy,63
+140,Little Neck,46
+141,Morrisania,39
+142,Murray Hill,126
+143,Long Island City,291
+144,Longwood,145
+145,Lower East Side,333
+146,Manhattan Beach,9
+147,Marble Hill,11
+148,Midtown,1305
+149,Midwood,147
+150,Norwood,108
+151,Oakwood,7
+152,Morris Heights,45
+153,Pleasant Plains,21
+154,Mariners Harbor,15
+155,Maspeth,144
+156,Melrose,56
+157,Middle Village,82
+158,Midland Beach,16
+159,Mill Basin,26
+160,Morningside Heights,99
+161,Olinville,15
+162,Navy Yard,2
+163,Neponsit,0
+164,New Brighton,9
+165,New Dorp,34
+166,New Dorp Beach,17
+167,New Springville,44
+168,NoHo,44
+169,Nolita,83
+170,North Riverdale,31
+171,Park Slope,182
+172,Port Morris,19
+173,Port Richmond,59
+174,Prince's Bay,12
+175,Prospect Heights,93
+176,Randall Manor,32
+177,Riverdale,25
+178,Silver Lake,2
+179,SoHo,190
+180,Woodrow,9
+181,Red Hook,20
+182,Rego Park,97
+183,Richmond Hill,244
+184,Richmondtown,5
+185,Ridgewood,270
+186,Sea Gate,0
+187,Rockaway Beach,29
+188,Roosevelt Island,11
+189,Rosebank,16
+190,Rosedale,41
+191,Rossville,19
+192,Schuylerville,18
+193,Sheepshead Bay,347
+194,South Beach,26
+195,South Ozone Park,71
+196,South Slope,64
+197,Springfield Gardens,56
+198,Spuyten Duyvil,7
+199,St. Albans,63
+200,Tompkinsville,19
+201,St. George,53
+202,Stapleton,45
+203,Stuyvesant Town,6
+204,Sunnyside,190
+205,Van Nest,34
+206,Sunset Park,473
+207,Theater District,128
+208,Throgs Neck,71
+209,Todt Hill,8
+210,Tottenville,32
+211,Tremont,46
+212,Tribeca,251
+213,Two Bridges,16
+214,Vinegar Hill,4
+215,Woodside,161
+216,Unionport,59
+217,University Heights,46
+218,Upper East Side,842
+219,Upper West Side,611
+220,Windsor Terrace,46
+221,Wakefield,102
+222,Washington Heights,272
+223,West Brighton,66
+224,West Farms,22
+225,Woodhaven,99
+226,Woodlawn,23
+227,West Village,444
+228,Westchester Square,62
+229,Westerleigh,18
+230,Williamsbridge,63
+231,Williamsburg,637
+232,Willowbrook,0

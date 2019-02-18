@@ -71,7 +71,7 @@ class MapOverlay extends Component {
             </div>
             <hr />
             <div>
-              <h3>Overview</h3>
+              <h3>Choropleth overview</h3>
               <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li className="nav-item">
                   <a className="nav-link active" onClick={this.selectPill} data-toggle="pill" href="#pills-home" role="tab" aria-selected="true">Home</a>
