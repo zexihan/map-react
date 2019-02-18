@@ -4,7 +4,7 @@ import * as d3 from "d3";
 class MapService {
   static myInstance = null;
   neighbourhoods = [];
-
+  legendColorList = [];
 
   static getInstance() {
     
@@ -28,7 +28,7 @@ class MapService {
 }
 
   async plotChoropleth (pillName) {
-    let list = await d3.csv("data/restaurant.csv");
+    let list = await d3.csv("data/restaurant_count.csv");
     const min = d3.min(list, function(d) { return Number(d.restaurant_count)})
     const max = d3.max(list, function (d) { return Number(d.restaurant_count) })
     console.log(min, max);
@@ -36,7 +36,13 @@ class MapService {
       var interpolateColor = await d3.interpolateOrRd((Number(list[i].restaurant_count) - min) / (max - min));
       list[i].color = this.rgb2hex(interpolateColor);
     }
-    return list;
+    this.legendColorList = d3.schemeOrRd[9];
+    console.log(this.legendColorList);
+    // const legendNumberList =; 
+    const data = {
+      list
+    };
+    return data;
   }
 
   // mapCoordinateNeighbourhood(coordinate) {

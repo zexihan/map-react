@@ -265,20 +265,17 @@ class Map extends Component {
     }
     console.log(pillName);
     let data = await mapService.plotChoropleth(pillName);
-    console.log(data);
-    console.log(this.state.nbhList);
     this.state.map.setLayoutProperty("neighbourhood-fills", 'visibility', 'none');
     
-    
     for (var i = 0; i < this.state.nbhList.length; i++) {
-      if (typeof data[i] === 'undefined') {
-        console.log(data[i])
+      if (typeof data.list[i] === 'undefined') {
         return;
       }
-      this.state.map.setPaintProperty(this.state.nbhList[i], 'fill-color', data[i].color);
+      this.state.map.setPaintProperty(this.state.nbhList[i], 'fill-color', data.list[i].color);
       this.state.map.setLayoutProperty(this.state.nbhList[i], 'visibility', 'visible');
     }
     this.state.map.setPaintProperty("neighbourhood-borders", 'line-color', '#900000');
+
   }
 
   selectTab = (tabName) => {
