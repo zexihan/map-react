@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
+import turf from 'turf';
+import $ from 'jquery';
 
 import Header from './Header';
 import MapOverlay from './MapOverlay';
@@ -18,16 +20,17 @@ class Map extends Component {
     this.state = {
       mouseLng: -74,
       mouseLat: 40.7,
-      lng: -74,
+      lng: -74.1,
       lat: 40.7,
-      zoom: 10.5,
+      zoom: 10,
       nbhPolygons: [],
       lastClickedNbh: "",
+      lastClickedNbhGrp: "",
       lastHoveredNbh: "",
       lastHoveredNbhGrp: "",
-      nbhList: []
+      nbhList: [],
+      map: null
     };
-
   }
 
   componentWillMount() {
@@ -50,8 +53,8 @@ class Map extends Component {
       container: this.mapContainer,
       style: "mapbox://styles/mapbox/basic-v8",
       center: [lng, lat],
-      zoom,
-      maxBounds: [[-74.27160450206186,40.489033265229864],[-73.69383878630428,40.919685407078134]]
+      zoom
+      //maxBounds: [[-74.27160450206186,40.489033265229864],[-73.69383878630428,40.919685407078134]]
     });
 
     map.addControl(new mapboxgl.NavigationControl());
@@ -106,7 +109,7 @@ class Map extends Component {
 
     map.on('click', "neighbourhood-fills", (e) => {
       console.log("clicked");
-      const coordinate = [this.state.mouseLng, this.state.mouseLat];
+      const coordinate = [this.state.mouseLng - 0.015, this.state.mouseLat];
       
       map.flyTo({
         center: coordinate,
@@ -124,26 +127,28 @@ class Map extends Component {
         }
       }
       
-      
       console.log(nbh.split("-")[0] + ", " + nbh[1]);
       if (this.state.lastClickedNbh !== "") {
         map.setLayoutProperty(this.state.lastClickedNbh + "-click", 'visibility', 'none');
       } 
       if (nbh === this.state.lastClickedNbh) {
         this.setState({
-          lastClickedNbh: ""
+          lastClickedNbh: "",
+          lastClickedNbhGrp: ""
         });
         map.flyTo({
-          center: [lng, lat],
-          zoom: 10.5,
+          center: [lng + 0.05, lat],
+          zoom: 10.8,
           bearing: 0,
           pitch: 0
         });
+        $("#search").val("");
         return;
       }
       map.setLayoutProperty(nbh + "-click", 'visibility', 'visible');
       this.setState({
-        lastClickedNbh: nbh
+        lastClickedNbh: nbh, 
+        lastClickedNbhGrp: nbhGrp
       })
 
     });
@@ -214,16 +219,59 @@ class Map extends Component {
       }
 
     });
+    
+    this.setState({
+      map: map
+    })
+  }
 
+  search = (searchInput) => {
+    for (var i = 0; i < this.state.nbhList.length; i++) {
+      if (this.state.nbhList[i].includes(searchInput + "-")) {
+        var nbh = this.state.nbhList[i];
+        var nbhGrp = this.state.nbhPolygons[i].properties.neighbourhood_group;
+        var center = turf.centroid(this.state.nbhPolygons[i]).geometry.coordinates;
+        center[0] = center[0] - 0.015;
+        this.state.map.flyTo({
+          center: center,
+          zoom: 12.5,
+          bearing: 0,
+          pitch: 0
+        });
+        this.state.map.setLayoutProperty(nbh + "-click", 'visibility', 'visible');
+        this.setState({
+          lastClickedNbh: nbh,
+          lastClickedNbhGrp: nbhGrp
+        })
+      }
+    }
+  }
+
+  selectPill = async (pillName) => {
+    console.log(pillName);
+    let data = await mapService.plotChoropleth(pillName);
+    console.log(data);
+    
+  }
+
+  selectTab = (tabName) => {
+    console.log(tabName);
   }
 
 
   render() {
     // const { mouseLng, mouseLat, lng, lat, zoom } = this.state;
-
     return (
       <div>
-        <MapOverlay nbh={this.state.lastHoveredNbh.split("-")[0] } nbhGrp={this.state.lastHoveredNbhGrp} />
+        <MapOverlay 
+          hoveredNbh={this.state.lastHoveredNbh.split("-")[0]} 
+          hoveredNbhGrp={this.state.lastHoveredNbhGrp}
+          clickedNbh={this.state.lastClickedNbh.split("-")[0]}
+          clickedNbhGrp={this.state.lastClickedNbhGrp} 
+          search={this.search}
+          selectPill={this.selectPill}
+          selectTab={this.selectTab}
+        />
         <div
           ref={el => (this.mapContainer = el)}
           className="absolute top right left bottom"

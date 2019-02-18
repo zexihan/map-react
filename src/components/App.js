@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import $ from "jquery";
 
 import Landing from './Landing';
 import Map from './Map';

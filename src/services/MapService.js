@@ -1,4 +1,5 @@
 // import inside from 'point-in-polygon';
+import * as d3 from "d3";
 
 class MapService {
   static myInstance = null;
@@ -15,8 +16,12 @@ class MapService {
 
   loadNeighbourhoods (neighbourhoods) {
     this.neighbourhoods = neighbourhoods;
-    console.log(this.neighbourhoods[0].geometry.coordinates[0][0]);
     
+  }
+
+  async plotChoropleth (pillName) {
+    let list = await d3.csv("data/restaurant_count.csv");
+    return list;
   }
 
   // mapCoordinateNeighbourhood(coordinate) {
