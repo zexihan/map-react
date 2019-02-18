@@ -4,34 +4,13 @@ import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 
 import Header from './Header';
+import MapOverlay from './MapOverlay';
 
 import MapService from "../services/MapService";
 let mapService = MapService.getInstance();
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
-
-
-const styleMapOverlayContainer = {
-  "position": "absolute",
-  "width": "300px",
-  "top": "0px",
-  "left": "0px",
-  "padding": "10px",
-  "zIndex": "1"
-}
-
-const styleMapOverlay = {
-  "font": "12px / 20px 'Helvetica Neue', Arial, Helvetica, sans - serif",
-  "backgroundColor": "#fff",
-  "borderRadius": "3px",
-  "padding": "10px",
-  "boxShadow": "0 1px 2px rgba(0, 0, 0, 0.20)"
-}
- 
-const styleMapOverlayH2P = {
-  "margin": "0 0 10px"
-}
 
 class Map extends Component {
   constructor(props) {
@@ -96,7 +75,7 @@ class Map extends Component {
       const coordinate = [this.state.mouseLng, this.state.mouseLat];
 
       var nbh = e.features[0].properties.neighbourhood;
-      var nbh_group = e.features[0].properties.neighbourhood_group;
+      var nbhGrp = e.features[0].properties.neighbourhood_group;
       for (var i = 0; i < this.state.nbhList.length; i++) {
         if (this.state.nbhList[i].includes(nbh + "-")) {
           nbh = this.state.nbhList[i];
@@ -112,7 +91,7 @@ class Map extends Component {
         map.setLayoutProperty(nbh, 'visibility', 'visible');
         this.setState({
           lastHoveredNbh: nbh,
-          lastHoveredNbhGrp: nbh_group
+          lastHoveredNbhGrp: nbhGrp
         })
       }
     });
@@ -137,7 +116,7 @@ class Map extends Component {
       });
 
       var nbh = e.features[0].properties.neighbourhood;
-      var nbh_group = e.features[0].properties.neighbourhood_group;
+      var nbhGrp = e.features[0].properties.neighbourhood_group;
       for (var i = 0; i < this.state.nbhList.length; i++) {
         if (this.state.nbhList[i].includes(nbh + "-")) {
           nbh = this.state.nbhList[i];
@@ -244,20 +223,7 @@ class Map extends Component {
 
     return (
       <div>
-        <div className="inline-block absolute left mt10 ml10 z1 py6 px12 txt-s txt-bold">
-          <div className='map-overlay-container' style={styleMapOverlayContainer}>
-            <div className='map-overlay' style={styleMapOverlay}>
-              <h2 id='location-title' style={styleMapOverlayH2P}>{this.state.lastHoveredNbh.split("-")[0]}</h2>
-              <p id='location-description' style={styleMapOverlayH2P}>{this.state.lastHoveredNbhGrp}</p>
-            </div>
-            <Link to={`/`}>
-              <button type="button" className="btn btn-dark btn-block">Home</button>
-            </Link>
-          </div>
-        </div>
-        {/* <div className="inline-block absolute left mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
-          <div>{`MouseLng: ${mouseLng} MouseLat: ${mouseLat} Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
-        </div> */}
+        <MapOverlay nbh={this.state.lastHoveredNbh.split("-")[0] } nbhGrp={this.state.lastHoveredNbhGrp} />
         <div
           ref={el => (this.mapContainer = el)}
           className="absolute top right left bottom"
