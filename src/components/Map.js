@@ -41,11 +41,12 @@ class Map extends Component {
       mouseLat: 40.7,
       lng: -74,
       lat: 40.7,
-      zoom: 10,
+      zoom: 10.5,
       nbhPolygons: [],
       lastClickedNbh: "",
       lastHoveredNbh: "",
-      lastHoveredNbhGrp: ""
+      lastHoveredNbhGrp: "",
+      nbhList: []
     };
 
   }
@@ -87,27 +88,45 @@ class Map extends Component {
       });
     });
 
-    map.on('mousemove', (e) => {
+    map.on('mousemove', "neighbourhood-fills", (e) => {
       this.setState({
         mouseLng: e.lngLat.lng,
         mouseLat: e.lngLat.lat
       });
       const coordinate = [this.state.mouseLng, this.state.mouseLat];
-      var nbh = mapService.mapCoordinateNeighbourhood(coordinate);
 
-      if (nbh[0] !== "" || nbh[0] !== this.state.lastHoveredNbh) {
+      var nbh = e.features[0].properties.neighbourhood;
+      var nbh_group = e.features[0].properties.neighbourhood_group;
+      for (var i = 0; i < this.state.nbhList.length; i++) {
+        if (this.state.nbhList[i].includes(nbh + "-")) {
+          nbh = this.state.nbhList[i];
+          break;
+        }
+      }
+
+      if (nbh !== this.state.lastHoveredNbh) {
         if (this.state.lastHoveredNbh !== "") {
           map.setLayoutProperty(this.state.lastHoveredNbh, 'visibility', 'none');
         }
-        map.setLayoutProperty(nbh[0], 'visibility', 'visible');
+        
+        map.setLayoutProperty(nbh, 'visibility', 'visible');
         this.setState({
-          lastHoveredNbh: nbh[0],
-          lastHoveredNbhGrp: nbh[1]
+          lastHoveredNbh: nbh,
+          lastHoveredNbhGrp: nbh_group
         })
       }
     });
 
-    map.on('click', (e) => {
+    map.on('mouseleave', "neighbourhood-fills", (e) => {
+      map.setLayoutProperty(this.state.lastHoveredNbh, 'visibility', 'none');
+      this.setState({
+        lastHoveredNbh: "",
+        lastHoveredNbhGrp: ""
+      });
+    });
+
+    map.on('click', "neighbourhood-fills", (e) => {
+      console.log("clicked");
       const coordinate = [this.state.mouseLng, this.state.mouseLat];
       
       map.flyTo({
@@ -117,23 +136,70 @@ class Map extends Component {
         pitch: 0
       });
 
-      var nbh = mapService.mapCoordinateNeighbourhood(coordinate);
-      
-      if (nbh[0] !== "") {
-        console.log(nbh[0].split("-")[0] + ", " + nbh[1]);
-        if (this.state.lastClickedNbh !== "") {
-          map.setLayoutProperty(this.state.lastClickedNbh + "-click", 'visibility', 'none');
-        } 
-        map.setLayoutProperty(nbh[0] + "-click", 'visibility', 'visible');
-        this.setState({
-          lastClickedNbh: nbh[0]
-        })
+      var nbh = e.features[0].properties.neighbourhood;
+      var nbh_group = e.features[0].properties.neighbourhood_group;
+      for (var i = 0; i < this.state.nbhList.length; i++) {
+        if (this.state.nbhList[i].includes(nbh + "-")) {
+          nbh = this.state.nbhList[i];
+          break;
+        }
       }
+      
+      
+      console.log(nbh.split("-")[0] + ", " + nbh[1]);
+      if (this.state.lastClickedNbh !== "") {
+        map.setLayoutProperty(this.state.lastClickedNbh + "-click", 'visibility', 'none');
+      } 
+      if (nbh === this.state.lastClickedNbh) {
+        this.setState({
+          lastClickedNbh: ""
+        });
+        map.flyTo({
+          center: [lng, lat],
+          zoom: 10.5,
+          bearing: 0,
+          pitch: 0
+        });
+        return;
+      }
+      map.setLayoutProperty(nbh + "-click", 'visibility', 'visible');
+      this.setState({
+        lastClickedNbh: nbh
+      })
+
     });
 
     map.on('load', () => {
+      map.addSource("neighbourhoods", {
+        "type": "geojson",
+        "data": "/data/neighbourhoods.geojson"
+      });
+
+      map.addLayer({
+        "id": "neighbourhood-fills",
+        "type": "fill",
+        "source": "neighbourhoods",
+        "layout": {},
+        "paint": {
+          "fill-color": "#088",
+          "fill-opacity": 0.15
+        }
+      });
+
+      map.addLayer({
+        "id": "neighbourhood-borders",
+        "type": "line",
+        "source": "neighbourhoods",
+        "layout": {},
+        "paint": {
+          "line-color": "#088",
+          "line-width": 2
+        }
+      });
+
       for (var i = 0; i < this.state.nbhPolygons.length; i++) {
         var nbhId = this.state.nbhPolygons[i].properties.neighbourhood + "-" + i.toString();
+        this.state.nbhList.push(nbhId);
         map.addSource(nbhId, {
           type: "geojson",
           data: {
@@ -168,23 +234,6 @@ class Map extends Component {
         map.setLayoutProperty(nbhId + "-click", 'visibility', 'none');
       }
 
-      map.addSource("neighbourhoods", {
-          type: "geojson",
-          data: {
-            "type": "FeatureCollection",
-            "features": this.state.nbhPolygons
-          }
-        });
-
-        map.addLayer({
-          id: "neighbourhoods",
-          type: "fill",
-          source: "neighbourhoods",
-          paint: {
-            "fill-color": "#088",
-            "fill-opacity": 0.15
-          }
-        });
     });
 
   }
@@ -196,7 +245,6 @@ class Map extends Component {
     return (
       <div>
         <div className="inline-block absolute left mt10 ml10 z1 py6 px12 txt-s txt-bold">
-          
           <div className='map-overlay-container' style={styleMapOverlayContainer}>
             <div className='map-overlay' style={styleMapOverlay}>
               <h2 id='location-title' style={styleMapOverlayH2P}>{this.state.lastHoveredNbh.split("-")[0]}</h2>
@@ -206,7 +254,6 @@ class Map extends Component {
               <button type="button" className="btn btn-dark btn-block">Home</button>
             </Link>
           </div>
-          
         </div>
         {/* <div className="inline-block absolute left mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
           <div>{`MouseLng: ${mouseLng} MouseLat: ${mouseLat} Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
