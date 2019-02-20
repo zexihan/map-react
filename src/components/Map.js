@@ -80,7 +80,7 @@ class Map extends Component {
       var nbh = e.features[0].properties.neighbourhood;
       var nbhGrp = e.features[0].properties.neighbourhood_group;
       for (var i = 0; i < this.state.nbhList.length; i++) {
-        if (this.state.nbhList[i].includes(nbh + "-")) {
+        if (this.state.nbhList[i].startsWith(nbh + "-")) {
           nbh = this.state.nbhList[i];
           break;
         }
@@ -121,7 +121,7 @@ class Map extends Component {
       var nbh = e.features[0].properties.neighbourhood;
       var nbhGrp = e.features[0].properties.neighbourhood_group;
       for (var i = 0; i < this.state.nbhList.length; i++) {
-        if (this.state.nbhList[i].includes(nbh + "-")) {
+        if (this.state.nbhList[i].startsWith(nbh + "-")) {
           nbh = this.state.nbhList[i];
           break;
         }
