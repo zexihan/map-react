@@ -1,0 +1,47 @@
+.nav-pills > li > a.active {
+  background-color: rgb(85, 85, 92) !important;
+  color: #ffffff !important;
+}
+
+.nav-pills > li > a.active:hover {
+  background-color: rgb(85, 85, 92) !important;
+  color: #ffffff !important;
+}
+
+.nav-pills > li > a:hover {
+  background-color: rgb(240, 240, 240) !important;
+  color: black !important;
+}
+
+.nav-pills > li > a {
+  color: rgb(90, 90, 90) !important;
+  font-size: 14px;
+}
+
+.nav-tabs > li > a.active {
+  background-color: rgb(250, 250, 250) !important;
+  color: black !important;
+}
+
+.nav-tabs > li > a.active:hover {
+  background-color: rgb(250, 250, 250) !important;
+  color: black !important;
+}
+
+.nav-tabs > li > a:hover {
+  background-color: rgb(240, 240, 240) !important;
+  color: black !important;
+}
+
+.nav-tabs > li > a {
+  color: rgb(90, 90, 90) !important;
+  font-size: 14px;
+}
+
+.tab-pane {
+    border-top: 0; 
+    width:100%;
+    height:100%;
+    background-color:rgb(250, 250, 250);
+    padding:5px;
+}
