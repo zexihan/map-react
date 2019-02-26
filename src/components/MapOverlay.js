@@ -60,7 +60,15 @@ class MapOverlay extends Component {
 
   componentDidMount() {
     let nbhNmList = this.props.nbhNmList;
-    $("#search").autocomplete({ source : nbhNmList });
+    let _ = this;
+    $("#search").autocomplete({
+      source: nbhNmList,
+      select: function(e, ui) {
+        _.setState({
+          searchInput: ui.item.value
+        });
+      }
+    });
   }
 
   searchInputChanged = (e) => {
