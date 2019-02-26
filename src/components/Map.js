@@ -29,6 +29,7 @@ class Map extends Component {
       lastHoveredNbh: "",
       lastHoveredNbhGrp: "",
       nbhList: [],
+      nbhNmList: [],
       map: null
     };
   }
@@ -90,7 +91,7 @@ class Map extends Component {
         if (this.state.lastHoveredNbh !== "") {
           map.setLayoutProperty(this.state.lastHoveredNbh, 'visibility', 'none');
         }
-        
+
         map.setLayoutProperty(nbh, 'visibility', 'visible');
         this.setState({
           lastHoveredNbh: nbh,
@@ -110,7 +111,7 @@ class Map extends Component {
     map.on('click', "neighbourhood-fills", (e) => {
       console.log("clicked");
       const coordinate = [this.state.mouseLng - 0.015, this.state.mouseLat];
-      
+
       map.flyTo({
         center: coordinate,
         zoom: 12.5,
@@ -126,11 +127,11 @@ class Map extends Component {
           break;
         }
       }
-      
+
       console.log(nbh.split("-")[0] + ", " + nbh[1]);
       if (this.state.lastClickedNbh !== "") {
         map.setLayoutProperty(this.state.lastClickedNbh + "-click", 'visibility', 'none');
-      } 
+      }
       if (nbh === this.state.lastClickedNbh) {
         this.setState({
           lastClickedNbh: "",
@@ -147,7 +148,7 @@ class Map extends Component {
       }
       map.setLayoutProperty(nbh + "-click", 'visibility', 'visible');
       this.setState({
-        lastClickedNbh: nbh, 
+        lastClickedNbh: nbh,
         lastClickedNbhGrp: nbhGrp
       })
 
@@ -162,6 +163,7 @@ class Map extends Component {
       for (var i = 0; i < this.state.nbhPolygons.length; i++) {
         var nbhId = this.state.nbhPolygons[i].properties.neighbourhood + "-" + i.toString();
         this.state.nbhList.push(nbhId);
+        this.state.nbhNmList.push(nbhId.split("-")[0]);
 
         map.addSource(nbhId, {
           type: "geojson",
@@ -219,10 +221,10 @@ class Map extends Component {
         }
       });
 
-      
+
 
     });
-    
+
     this.setState({
       map: map
     })
@@ -258,7 +260,7 @@ class Map extends Component {
 
       for (var i = 0; i < this.state.nbhList.length; i++) {
         this.state.map.setLayoutProperty(this.state.nbhList[i], 'visibility', 'none');
-        this.state.map.setPaintProperty(this.state.nbhList[i], 'fill-color', "#088");        
+        this.state.map.setPaintProperty(this.state.nbhList[i], 'fill-color', "#088");
       }
 
       return;
@@ -266,7 +268,7 @@ class Map extends Component {
     console.log(pillName);
     let data = await mapService.plotChoropleth(pillName);
     this.state.map.setLayoutProperty("neighbourhood-fills", 'visibility', 'none');
-    
+
     for (var i = 0; i < this.state.nbhList.length; i++) {
       if (typeof data.list[i] === 'undefined') {
         return;
@@ -287,14 +289,15 @@ class Map extends Component {
     // const { mouseLng, mouseLat, lng, lat, zoom } = this.state;
     return (
       <div>
-        <MapOverlay 
-          hoveredNbh={this.state.lastHoveredNbh.split("-")[0]} 
+        <MapOverlay
+          hoveredNbh={this.state.lastHoveredNbh.split("-")[0]}
           hoveredNbhGrp={this.state.lastHoveredNbhGrp}
           clickedNbh={this.state.lastClickedNbh.split("-")[0]}
-          clickedNbhGrp={this.state.lastClickedNbhGrp} 
+          clickedNbhGrp={this.state.lastClickedNbhGrp}
           search={this.search}
           selectPill={this.selectPill}
           selectTab={this.selectTab}
+          nbhNmList={this.state.nbhNmList}
         />
         <div
           ref={el => (this.mapContainer = el)}

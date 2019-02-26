@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as d3 from 'd3';
+import $ from 'jquery';
+import 'jquery-ui-bundle';
+import 'jquery-ui-bundle/jquery-ui.css';
 
 import '../css/MapOverlay.css';
 
@@ -52,9 +55,14 @@ class MapOverlay extends Component {
       legendColorList: d3.schemeOrRd[9].reverse(),
       legendTextList: [1305,1144,979,816,653,489,326,163,0],
       legendTitle: "Restaurant\ncount"
-    }
+    };
   }
-  
+
+  componentDidMount() {
+    let nbhNmList = this.props.nbhNmList;
+    $("#search").autocomplete({ source : nbhNmList });
+  }
+
   searchInputChanged = (e) => {
     console.log(e.target.value);
     this.setState({
@@ -82,9 +90,9 @@ class MapOverlay extends Component {
   selectTab = (e) => {
     this.props.selectTab(e.target.text);
   }
-  
+
   assignLegendColor = (legendColor) => {
-    
+
     var styleLegendDivSpan = {
       borderRadius: "50 %",
       display: "inline-block",
@@ -97,7 +105,7 @@ class MapOverlay extends Component {
   }
 
   render() {
-    
+
     return (
       <div>
         <div className="inline-block absolute left z1 txt-s txt-bold">
