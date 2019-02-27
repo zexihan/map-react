@@ -231,7 +231,10 @@ class Map extends Component {
   }
 
   search = (searchInput) => {
-    this.state.map.setLayoutProperty(this.state.lastClickedNbh + "-click", 'visibility', 'none');
+    if (this.state.lastClickedNbh) {
+      this.state.map.setLayoutProperty(this.state.lastClickedNbh + "-click", 'visibility', 'none');
+    }
+    
     for (var i = 0; i < this.state.nbhList.length; i++) {
       if (this.state.nbhList[i].includes(searchInput + "-")) {
         var nbh = this.state.nbhList[i];
