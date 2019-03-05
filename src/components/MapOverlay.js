@@ -1,50 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as d3 from 'd3';
 import $ from 'jquery';
 import 'jquery-ui-bundle';
 import 'jquery-ui-bundle/jquery-ui.css';
 
-import '../css/MapOverlay.css';
+import '../static/MapOverlay.css';
 
-const styleMapOverlayContainer = {
-  position: "absolute",
-  width: "25vw",
-  marginTop: "10px",
-  marginLeft: "10px",
-  marginBottom: "10px",
-  zIndex: "1",
-  overflowY: "auto",
-  overflowX: "auto"
-}
-
-const styleMapOverlay = {
-  font: "12px / 20px 'Helvetica Neue', Arial, Helvetica, sansSerif",
-  backgroundColor: "#fff",
-  borderRadius: "3px",
-  padding: "10px",
-  width: "25vw",
-  height: "95vh",
-  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.20)"
-}
-
-const styleLegend = {
-  backgroundColor: "#fff",
-  borderRadius: "3px",
-  bottom: "30px",
-  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.10)",
-  font: "12px / 20px 'Helvetica Neue', Arial, Helvetica, sansSerif",
-  padding: "10px",
-  position: "absolute",
-  right: "10px",
-  zIndex: "1"
-}
-
-const styleLegendTitle = {
-  margin: "0 0 10px"
-}
-
-
+import MapService from "../services/MapService";
+let mapService = MapService.getInstance();
 
 class MapOverlay extends Component {
   constructor(props) {
@@ -52,9 +15,24 @@ class MapOverlay extends Component {
     this.state = {
       searchInput: "",
       isChoroplethMode: false,
-      legendColorList: d3.schemeOrRd[9].reverse(),
-      legendTextList: [1305,1144,979,816,653,489,326,163,0],
-      legendTitle: "Restaurant\ncount"
+      choroplethType: null,
+      subType: null,
+      subTypeDefault: {
+        Entertainment: "Restaurant",
+        Noise: "Noise Complaint",
+        Safety: "Offense Report"
+      },
+      subTypeList: {
+        Entertainment: ["Restaurant", "--Delis", "--Pizza", "--Chinese", "--Sandwiches", "--Italian",
+                        "Shopping", "--Women's Clothing", "--Jewelry", "--Accessories", "--Drugstores", "--Shoe Stores",
+                        "Nightlife", "--Bars", "--Lounges", "--American (New)", "--American (Traditional)", "--Pubs"],
+        Noise: ["Noise Complaint", "--Collection Truck Noise", "--Noise", "--Noise - Commercial", "--Noise - Helicopter",
+                "--Noise - House of Worship", "--Noise - Park", "--Noise - Residential", "--Noise - Street/Sidewalk", "--Noise - Vehicle"],
+        Safety: ["Offense Report", "--FELONY", "--MISDEMEANOR", "--VIOLATION"]
+      },
+      legendColorList: [],
+      legendTextList: [],
+      legendTitle: ""
     };
   }
 
@@ -83,16 +61,42 @@ class MapOverlay extends Component {
   }
 
   selectPill = (e) => {
-    this.props.selectPill(e.target.text);
+    this.props.selectPill(e.target.text + "," + this.state.subTypeDefault[e.target.text]);
     if (e.target.text !== "Home") {
       this.setState({
-        isChoroplethMode: true
-      })
+        isChoroplethMode: true,
+        choroplethType: e.target.text
+      });
+      console.log(this.state.choroplethType);
     } else {
       this.setState({
-        isChoroplethMode: false
+        isChoroplethMode: false,
+        choroplethType: null
       })
     }
+    var legend = mapService.pickLegend(e.target.text, this.state.subTypeDefault[e.target.text]);
+    this.setState({
+      legendColorList: legend[0],
+      legendTextList: legend[1],
+      legendTitle: legend[2]
+    });
+  }
+
+  selectSubType = (e) => {
+    var subType = e.target.value;
+    if (subType.startsWith("--")) {
+      subType = subType.slice(2);
+    }
+    this.props.selectPill(this.state.choroplethType + "," + subType);
+    this.setState({
+      subType
+    });
+    let legend = mapService.pickLegend(this.state.choroplethType, subType);
+    this.setState({
+      legendColorList: legend[0],
+      legendTextList: legend[1],
+      legendTitle: legend[2]
+    });
   }
 
   selectTab = (e) => {
@@ -100,7 +104,6 @@ class MapOverlay extends Component {
   }
 
   assignLegendColor = (legendColor) => {
-
     var styleLegendDivSpan = {
       borderRadius: "50 %",
       display: "inline-block",
@@ -113,12 +116,11 @@ class MapOverlay extends Component {
   }
 
   render() {
-
     return (
       <div>
         <div className="inline-block absolute left z1 txt-s txt-bold">
-          <div className='map-overlay-container' style={styleMapOverlayContainer}>
-            <div className='map-overlay' style={styleMapOverlay}>
+          <div className='map-overlay-container'>
+            <div className='map-overlay'>
               <h2 className="text-center my-2">New York City</h2>
               <p className="text-center" style={{ "fontStyle": "italic" }}>Such a beautiful disease</p>
               <Link to={`/`}>
@@ -133,29 +135,70 @@ class MapOverlay extends Component {
               <hr />
               <div>
                 <h4>Choropleth overview</h4>
-                <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <ul className="nav nav-pills" id="pills-tab" role="tablist">
                   <li className="nav-item">
-                    <a className="nav-link active" onClick={this.selectPill} data-toggle="pill" href="#pills-home" role="tab" aria-selected="true">Home</a>
+                    <a className="nav-link active" onClick={this.selectPill} id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} data-toggle="pill" href="#pills-home" role="tab" aria-selected="false">Entertainment</a>
+                    <a className="nav-link" onClick={this.selectPill} id="pills-entertainment-tab" data-toggle="pill" href="#pills-entertainment" role="tab" aria-controls="pills-entertainment" aria-selected="false">Entertainment</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} data-toggle="pill" href="#pills-profile" role="tab" aria-selected="false">Expense</a>
+                    <a className="nav-link" onClick={this.selectPill} id="pills-expense-tab" data-toggle="pill" href="#pills-expense" role="tab" aria-controls="pills-expense" aria-selected="false">Expense</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} data-toggle="pill" href="#pills-contact" role="tab" aria-selected="false">Host</a>
+                    <a className="nav-link" onClick={this.selectPill} id="pills-host-tab" data-toggle="pill" href="#pills-host" role="tab" aria-controls="pills-host" aria-selected="false">Host</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} data-toggle="pill" href="#pills-contact" role="tab" aria-selected="false">Noise</a>
+                    <a className="nav-link" onClick={this.selectPill} id="pills-noise-tab" data-toggle="pill" href="#pills-noise" role="tab" aria-controls="pills-noise" aria-selected="false">Noise</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} data-toggle="pill" href="#pills-contact" role="tab" aria-selected="false">Safety</a>
+                    <a className="nav-link" onClick={this.selectPill} id="pills-safety-tab" data-toggle="pill" href="#pills-safety" role="tab" aria-controls="pills-safety" aria-selected="false">Safety</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} data-toggle="pill" href="#pills-contact" role="tab" aria-selected="false">Transit</a>
+                    <a className="nav-link" onClick={this.selectPill} id="pills-transit-tab" data-toggle="pill" href="#pills-transit" role="tab" aria-controls="pills-transit" aria-selected="false">Transit</a>
                   </li>
                 </ul>
+                <div className="tab-content" id="pills-tabContent">
+                  <div className="tab-pane fade show active" id="pills-home" role="tabpanel"
+                       aria-labelledby="pills-home-tab">
+                  </div>
+                  <div className="tab-pane fade" id="pills-entertainment" role="tabpanel"
+                       aria-labelledby="pills-entertainment-tab">
+                    <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">Type</label>
+                    <select className="custom-select my-1 mr-sm-2" onChange={this.selectSubType} id="inlineFormCustomSelectPref">
+                      {this.state.subTypeList["Entertainment"].map(subType => {
+                        return (<option value={subType} key={subType}>{subType}</option>);
+                      })}
+                    </select>
+                  </div>
+                  <div className="tab-pane fade" id="pills-expense" role="tabpanel"
+                       aria-labelledby="pills-expense-tab">Expense
+                  </div>
+                  <div className="tab-pane fade" id="pills-host" role="tabpanel"
+                       aria-labelledby="pills-host-tab">Host
+                  </div>
+                  <div className="tab-pane fade" id="pills-noise" role="tabpanel"
+                       aria-labelledby="pills-noise-tab">
+                    <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">Type</label>
+                    <select className="custom-select my-1 mr-sm-2" onChange={this.selectSubType} id="inlineFormCustomSelectPref">
+                      {this.state.subTypeList["Noise"].map(subType => {
+                        return (<option value={subType} key={subType}>{subType}</option>);
+                      })}
+                    </select>
+                  </div>
+                  <div className="tab-pane fade" id="pills-safety" role="tabpanel"
+                       aria-labelledby="pills-safety-tab">
+                    <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">Type</label>
+                    <select className="custom-select my-1 mr-sm-2" onChange={this.selectSubType} id="inlineFormCustomSelectPref">
+                      {this.state.subTypeList["Safety"].map(subType => {
+                        return (<option value={subType} key={subType}>{subType}</option>);
+                      })}
+                    </select>
+                  </div>
+                  <div className="tab-pane fade" id="pills-transit" role="tabpanel"
+                       aria-labelledby="pills-transit-tab">Transit
+                  </div>
+                </div>
               </div>
               <hr />
               <div>
@@ -185,7 +228,7 @@ class MapOverlay extends Component {
                     <a className="nav-link" onClick={this.selectTab} id="transit-tab" data-toggle="tab" href="#transit-panel" role="tab" aria-controls="transit" aria-selected="false">Transit</a>
                   </li>
                 </ul>
-                <div className="tab-content" id="myTabContent">
+                <div className="tab-content" id="tabs-tabContent">
                   <div className="tab-pane fade show active" id="home-panel" role="tabpanel" aria-labelledby="home-tab">Neighborhood overview.</div>
                   <div className="tab-pane fade" id="entertainment-panel" role="tabpanel" aria-labelledby="entertainment-tab">Entertainment details.</div>
                   <div className="tab-pane fade" id="expense-panel" role="tabpanel" aria-labelledby="expense-tab">Expense details.</div>
@@ -200,12 +243,12 @@ class MapOverlay extends Component {
         </div>
         {
           this.state.isChoroplethMode ? (
-            <div className='map-overlay' id='legend' style={styleLegend}>
-              <h5 style={styleLegendTitle}>{this.state.legendTitle.split("\n").map((val, key) => { return <div key={key}>{val}</div> })}</h5>
+            <div className='legend'>
+              <h5 className="legend-title">{this.state.legendTitle.split("\n").map((val, key) => { return <div key={key}>{val}</div> })}</h5>
               {this.state.legendColorList.map((legendColor, i) => {
                 var legendStyle = this.assignLegendColor(legendColor);
                 return (
-                  <div key={i}><span style={legendStyle}></span>{this.state.legendTextList[i]}</div>
+                  <div key={i}><span style={legendStyle} />{this.state.legendTextList[i]}</div>
                 );})}
             </div>
           ) : (

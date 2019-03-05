@@ -5,8 +5,8 @@ import axios from 'axios';
 import * as turf from '@turf/turf';
 import $ from 'jquery';
 
-import Header from './Header';
-import MapOverlay from './MapOverlay';
+import Header from '../components/Header';
+import MapOverlay from '../components/MapOverlay';
 
 import MapService from "../services/MapService";
 let mapService = MapService.getInstance();
@@ -30,7 +30,12 @@ class Map extends Component {
       lastHoveredNbhGrp: "",
       nbhList: [],
       nbhNmList: [],
-      map: null
+      map: null,
+      lineColor: {
+        Entertainment: "#900000",
+        Noise: "#4A225D",
+        Safety: "#f4f8c7"
+      }
     };
   }
 
@@ -234,7 +239,7 @@ class Map extends Component {
     if (this.state.lastClickedNbh) {
       this.state.map.setLayoutProperty(this.state.lastClickedNbh + "-click", 'visibility', 'none');
     }
-    
+
     for (var i = 0; i < this.state.nbhList.length; i++) {
       if (this.state.nbhList[i].includes(searchInput + "-")) {
         var nbh = this.state.nbhList[i];
@@ -258,30 +263,30 @@ class Map extends Component {
   }
 
   selectPill = async (pillName) => {
-    if (pillName === "Home") {
+    console.log(pillName);
+    var choroplethType = pillName.split(",")[0];
+    var subType = pillName.split(",")[1];
+    if (choroplethType === "Home") {
       this.state.map.setLayoutProperty("neighbourhood-fills", 'visibility', 'visible');
       this.state.map.setPaintProperty("neighbourhood-borders", 'line-color', '#088');
-
       for (var i = 0; i < this.state.nbhList.length; i++) {
         this.state.map.setLayoutProperty(this.state.nbhList[i], 'visibility', 'none');
         this.state.map.setPaintProperty(this.state.nbhList[i], 'fill-color', "#088");
       }
-
       return;
-    }
-    console.log(pillName);
-    let data = await mapService.plotChoropleth(pillName);
-    this.state.map.setLayoutProperty("neighbourhood-fills", 'visibility', 'none');
-
-    for (var i = 0; i < this.state.nbhList.length; i++) {
-      if (typeof data.list[i] === 'undefined') {
-        return;
+    } else {
+      let data = await mapService.plotChoropleth(choroplethType, subType);
+      this.state.map.setLayoutProperty("neighbourhood-fills", 'visibility', 'none');
+      this.state.map.setPaintProperty("neighbourhood-borders", 'line-color', this.state.lineColor[choroplethType]);
+      for (var i = 0; i < this.state.nbhList.length; i++) {
+        if (typeof data.list[i] === 'undefined') {
+          return;
+        }
+        this.state.map.setPaintProperty(this.state.nbhList[i], 'fill-color', data.list[i].color);
+        this.state.map.setLayoutProperty(this.state.nbhList[i], 'visibility', 'visible');
       }
-      this.state.map.setPaintProperty(this.state.nbhList[i], 'fill-color', data.list[i].color);
-      this.state.map.setLayoutProperty(this.state.nbhList[i], 'visibility', 'visible');
-    }
-    this.state.map.setPaintProperty("neighbourhood-borders", 'line-color', '#900000');
 
+    }
   }
 
   selectTab = (tabName) => {
