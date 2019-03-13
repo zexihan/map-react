@@ -60,6 +60,12 @@ class MapOverlay extends Component {
     this.props.search(this.state.searchInput);
   }
 
+  keyPress = (e) => {
+    if (e.keyCode == 13) {
+      this.search();
+    }
+  }
+
   selectPill = (e) => {
     this.props.selectPill(e.target.text + "," + this.state.subTypeDefault[e.target.text]);
     if (e.target.text !== "Home") {
@@ -119,144 +125,285 @@ class MapOverlay extends Component {
     return (
       <div>
         <div className="inline-block absolute left z1 txt-s txt-bold">
-          <div className='map-overlay-container'>
-            <div className='map-overlay'>
-              <h2 className="text-center my-2">New York City</h2>
-              <p className="text-center" style={{ "fontStyle": "italic" }}>Such a beautiful disease</p>
-              <Link to={`/`}>
-                <button type="button" className="btn btn-dark btn-block mb-2">Home</button>
-              </Link>
+          <div className="map-overlay-container">
+            <div className="map-overlay">
+              <div className="row">
+                <div className="col-auto align-self-center">
+                  <Link to={`/`}>
+                    <span style={{ fontSize: "24px", color: "black" }}>
+                      <i class="fas fa-angle-left" />
+                    </span>
+                  </Link>
+                </div>
+                <div className="col">
+                  <h2 className="my-2">New York City</h2>
+                </div>
+              </div>
+
               <div className="input-group my-2">
-                <input type="text" id="search" className="form-control" placeholder="Search neighborhood..." onChange={this.searchInputChanged} />
+                <input
+                  type="text"
+                  id="search"
+                  className="form-control"
+                  placeholder="Search neighborhood..."
+                  onChange={this.searchInputChanged}
+                  onKeyDown={this.keyPress}
+                />
                 <div className="input-group-append">
-                  <button className="btn btn-outline-secondary" type="button" onClick={this.search}><i className="fas fa-search"></i></button>
+                  <button
+                    className="btn btn-outline-secondary"
+                    type="button"
+                    onClick={this.search}
+                  >
+                    <i className="fas fa-search" />
+                  </button>
                 </div>
               </div>
               <hr />
               <div>
-                <h4>Choropleth overview</h4>
+                <h4>Choropleth map</h4>
                 <ul className="nav nav-pills" id="pills-tab" role="tablist">
                   <li className="nav-item">
-                    <a className="nav-link active" onClick={this.selectPill} id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+                    <a
+                      className="nav-link active"
+                      onClick={this.selectPill}
+                      id="pills-home-tab"
+                      data-toggle="pill"
+                      href="#pills-home"
+                      role="tab"
+                      aria-controls="pills-home"
+                      aria-selected="true"
+                    >
+                      Home
+                    </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} id="pills-entertainment-tab" data-toggle="pill" href="#pills-entertainment" role="tab" aria-controls="pills-entertainment" aria-selected="false">Entertainment</a>
+                    <a
+                      className="nav-link"
+                      onClick={this.selectPill}
+                      id="pills-entertainment-tab"
+                      data-toggle="pill"
+                      href="#pills-entertainment"
+                      role="tab"
+                      aria-controls="pills-entertainment"
+                      aria-selected="false"
+                    >
+                      Entertainment
+                    </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} id="pills-expense-tab" data-toggle="pill" href="#pills-expense" role="tab" aria-controls="pills-expense" aria-selected="false">Expense</a>
+                    <a
+                      className="nav-link"
+                      onClick={this.selectPill}
+                      id="pills-expense-tab"
+                      data-toggle="pill"
+                      href="#pills-expense"
+                      role="tab"
+                      aria-controls="pills-expense"
+                      aria-selected="false"
+                    >
+                      Expense
+                    </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} id="pills-host-tab" data-toggle="pill" href="#pills-host" role="tab" aria-controls="pills-host" aria-selected="false">Host</a>
+                    <a
+                      className="nav-link"
+                      onClick={this.selectPill}
+                      id="pills-host-tab"
+                      data-toggle="pill"
+                      href="#pills-host"
+                      role="tab"
+                      aria-controls="pills-host"
+                      aria-selected="false"
+                    >
+                      Host
+                    </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} id="pills-noise-tab" data-toggle="pill" href="#pills-noise" role="tab" aria-controls="pills-noise" aria-selected="false">Noise</a>
+                    <a
+                      className="nav-link"
+                      onClick={this.selectPill}
+                      id="pills-noise-tab"
+                      data-toggle="pill"
+                      href="#pills-noise"
+                      role="tab"
+                      aria-controls="pills-noise"
+                      aria-selected="false"
+                    >
+                      Noise
+                    </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} id="pills-safety-tab" data-toggle="pill" href="#pills-safety" role="tab" aria-controls="pills-safety" aria-selected="false">Safety</a>
+                    <a
+                      className="nav-link"
+                      onClick={this.selectPill}
+                      id="pills-safety-tab"
+                      data-toggle="pill"
+                      href="#pills-safety"
+                      role="tab"
+                      aria-controls="pills-safety"
+                      aria-selected="false"
+                    >
+                      Safety
+                    </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectPill} id="pills-transit-tab" data-toggle="pill" href="#pills-transit" role="tab" aria-controls="pills-transit" aria-selected="false">Transit</a>
+                    <a
+                      className="nav-link"
+                      onClick={this.selectPill}
+                      id="pills-transit-tab"
+                      data-toggle="pill"
+                      href="#pills-transit"
+                      role="tab"
+                      aria-controls="pills-transit"
+                      aria-selected="false"
+                    >
+                      Transit
+                    </a>
                   </li>
                 </ul>
                 <div className="tab-content" id="pills-tabContent">
-                  <div className="tab-pane fade show active" id="pills-home" role="tabpanel"
-                       aria-labelledby="pills-home-tab">
-                  </div>
-                  <div className="tab-pane fade" id="pills-entertainment" role="tabpanel"
-                       aria-labelledby="pills-entertainment-tab">
-                    <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">Type</label>
-                    <select className="custom-select my-1 mr-sm-2" onChange={this.selectSubType} id="inlineFormCustomSelectPref">
-                      {this.state.subTypeList["Entertainment"].map(subType => {
-                        return (<option value={subType} key={subType}>{subType}</option>);
-                      })}
+                  <div
+                    className="tab-pane fade show active"
+                    id="pills-home"
+                    role="tabpanel"
+                    aria-labelledby="pills-home-tab"
+                  />
+                  <div
+                    className="tab-pane fade"
+                    id="pills-entertainment"
+                    role="tabpanel"
+                    aria-labelledby="pills-entertainment-tab"
+                  >
+                    <label
+                      className="my-1 mr-2"
+                      htmlFor="inlineFormCustomSelectPref"
+                    >
+                      Type
+                    </label>
+                    <select
+                      className="custom-select my-1 mr-sm-2"
+                      onChange={this.selectSubType}
+                      id="inlineFormCustomSelectPref"
+                    >
+                      {this.state.subTypeList["Entertainment"].map(
+                        subType => {
+                          return (
+                            <option value={subType} key={subType}>
+                              {subType}
+                            </option>
+                          );
+                        }
+                      )}
                     </select>
                   </div>
-                  <div className="tab-pane fade" id="pills-expense" role="tabpanel"
-                       aria-labelledby="pills-expense-tab">Expense
+                  <div
+                    className="tab-pane fade"
+                    id="pills-expense"
+                    role="tabpanel"
+                    aria-labelledby="pills-expense-tab"
+                  >
+                    Expense
                   </div>
-                  <div className="tab-pane fade" id="pills-host" role="tabpanel"
-                       aria-labelledby="pills-host-tab">Host
+                  <div
+                    className="tab-pane fade"
+                    id="pills-host"
+                    role="tabpanel"
+                    aria-labelledby="pills-host-tab"
+                  >
+                    Host
                   </div>
-                  <div className="tab-pane fade" id="pills-noise" role="tabpanel"
-                       aria-labelledby="pills-noise-tab">
-                    <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">Type</label>
-                    <select className="custom-select my-1 mr-sm-2" onChange={this.selectSubType} id="inlineFormCustomSelectPref">
+                  <div
+                    className="tab-pane fade"
+                    id="pills-noise"
+                    role="tabpanel"
+                    aria-labelledby="pills-noise-tab"
+                  >
+                    <label
+                      className="my-1 mr-2"
+                      htmlFor="inlineFormCustomSelectPref"
+                    >
+                      Type
+                    </label>
+                    <select
+                      className="custom-select my-1 mr-sm-2"
+                      onChange={this.selectSubType}
+                      id="inlineFormCustomSelectPref"
+                    >
                       {this.state.subTypeList["Noise"].map(subType => {
-                        return (<option value={subType} key={subType}>{subType}</option>);
+                        return (
+                          <option value={subType} key={subType}>
+                            {subType}
+                          </option>
+                        );
                       })}
                     </select>
                   </div>
-                  <div className="tab-pane fade" id="pills-safety" role="tabpanel"
-                       aria-labelledby="pills-safety-tab">
-                    <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">Type</label>
-                    <select className="custom-select my-1 mr-sm-2" onChange={this.selectSubType} id="inlineFormCustomSelectPref">
+                  <div
+                    className="tab-pane fade"
+                    id="pills-safety"
+                    role="tabpanel"
+                    aria-labelledby="pills-safety-tab"
+                  >
+                    <label
+                      className="my-1 mr-2"
+                      htmlFor="inlineFormCustomSelectPref"
+                    >
+                      Type
+                    </label>
+                    <select
+                      className="custom-select my-1 mr-sm-2"
+                      onChange={this.selectSubType}
+                      id="inlineFormCustomSelectPref"
+                    >
                       {this.state.subTypeList["Safety"].map(subType => {
-                        return (<option value={subType} key={subType}>{subType}</option>);
+                        return (
+                          <option value={subType} key={subType}>
+                            {subType}
+                          </option>
+                        );
                       })}
                     </select>
                   </div>
-                  <div className="tab-pane fade" id="pills-transit" role="tabpanel"
-                       aria-labelledby="pills-transit-tab">Transit
+                  <div
+                    className="tab-pane fade"
+                    id="pills-transit"
+                    role="tabpanel"
+                    aria-labelledby="pills-transit-tab"
+                  >
+                    Transit
                   </div>
                 </div>
               </div>
               <hr />
               <div>
-                <h4>Neighborhood view</h4>
-                <h4 id='location-title'>{this.props.clickedNbh}</h4>
-                <p id='location-description'>{this.props.clickedNbhGrp}</p>
-                <ul className="nav nav-tabs" id="myTab" role="tablist">
-                  <li className="nav-item">
-                    <a className="nav-link active" onClick={this.selectTab} id="overview-tab" data-toggle="tab" href="#overview-panel" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectTab} id="entertainment-tab" data-toggle="tab" href="#entertainment-panel" role="tab" aria-controls="entertainment" aria-selected="false">Entertainment</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectTab} id="expense-tab" data-toggle="tab" href="#expense-panel" role="tab" aria-controls="expense" aria-selected="false">Expense</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectTab} id="host-tab" data-toggle="tab" href="#host-panel" role="tab" aria-controls="host" aria-selected="false">Host</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectTab} id="noise-tab" data-toggle="tab" href="#noise-panel" role="tab" aria-controls="noise" aria-selected="false">Noise</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectTab} id="safety-tab" data-toggle="tab" href="#safety-panel" role="tab" aria-controls="safety" aria-selected="false">Safety</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" onClick={this.selectTab} id="transit-tab" data-toggle="tab" href="#transit-panel" role="tab" aria-controls="transit" aria-selected="false">Transit</a>
-                  </li>
-                </ul>
-                <div className="tab-content" id="tabs-tabContent">
-                  <div className="tab-pane fade show active" id="home-panel" role="tabpanel" aria-labelledby="home-tab">Neighborhood overview.</div>
-                  <div className="tab-pane fade" id="entertainment-panel" role="tabpanel" aria-labelledby="entertainment-tab">Entertainment details.</div>
-                  <div className="tab-pane fade" id="expense-panel" role="tabpanel" aria-labelledby="expense-tab">Expense details.</div>
-                  <div className="tab-pane fade" id="host-panel" role="tabpanel" aria-labelledby="host-tab">Host details.</div>
-                  <div className="tab-pane fade" id="noise-panel" role="tabpanel" aria-labelledby="noise-tab">Noise details.</div>
-                  <div className="tab-pane fade" id="safety-panel" role="tabpanel" aria-labelledby="safety-tab">Safety details.</div>
-                  <div className="tab-pane fade" id="transit-panel" role="tabpanel" aria-labelledby="transit-tab">Transit details.</div>
-                </div>
+                <h4>Neighborhood overview</h4>
+                <h4 id="location-title">{this.props.clickedNbh}</h4>
+                <p id="location-description">{this.props.clickedNbhGrp}</p>
               </div>
             </div>
           </div>
         </div>
-        {
-          this.state.isChoroplethMode ? (
-            <div className='legend'>
-              <h5 className="legend-title">{this.state.legendTitle.split("\n").map((val, key) => { return <div key={key}>{val}</div> })}</h5>
-              {this.state.legendColorList.map((legendColor, i) => {
-                var legendStyle = this.assignLegendColor(legendColor);
-                return (
-                  <div key={i}><span style={legendStyle} />{this.state.legendTextList[i]}</div>
-                );})}
-            </div>
-          ) : (
-            null
-          )
-        }
+        {this.state.isChoroplethMode ? (
+          <div className="legend">
+            <h5 className="legend-title">
+              {this.state.legendTitle.split("\n").map((val, key) => {
+                return <div key={key}>{val}</div>;
+              })}
+            </h5>
+            {this.state.legendColorList.map((legendColor, i) => {
+              var legendStyle = this.assignLegendColor(legendColor);
+              return (
+                <div key={i}>
+                  <span style={legendStyle} />
+                  {this.state.legendTextList[i]}
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
-    )
+    );
   }
 }
 

@@ -1,0 +1,27 @@
+.page-1 {
+    height: 90vh;
+    padding: 10vh 10vw;
+}
+
+.page-2 {
+    height: 100vh;
+    padding: 10vh 10vw;
+}
+
+.page-3 {
+    height: 100vh;
+    padding: 10vh 10vw;
+}
+
+.page-4 {
+    height: 100vh;
+    padding: 10vh 10vw;
+}
+
+.brand {
+    font-size: 72px;
+}
+
+.container-fluid {
+    min-height: 84vh !important;
+}

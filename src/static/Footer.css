@@ -1,0 +1,10 @@
+html,
+body {
+   height:100%;
+}
+
+.foot {
+    background-color: rgb(247, 247, 247);
+    height: 80px;
+    padding-left: 50px;
+}
