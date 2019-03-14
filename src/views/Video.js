@@ -9,19 +9,15 @@ class Video extends Component {
     return (
       <div>
         <Header />
-        <div className="container-fluid">
-          <h1>Demo Video</h1>
-          <div className="row">
-            <div className="col text-center">
-              <iframe
-                width="80%"
-                height="600"
-                src="https://www.youtube.com/embed/m_9ClegdPME"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              />
-            </div>
+        <div class="container-fluid d-flex h-100">
+          <div className="m-5 embed-responsive embed-responsive-16by9">
+            <iframe
+              className="embed-responsive-item"
+              src="https://www.youtube.com/embed/DaxYfL5lbCM"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            />
           </div>
         </div>
         <Footer />

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NameCard = ({name}) => (
-  <div className="card mb-3 " style={{ maxWidth: "540px" }}>
+  <div className="card mb-3 " style={{ maxWidth: "450px" }}>
     <div className="row no-gutters">
       <div className="col-md-4">
         <img

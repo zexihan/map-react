@@ -1,5 +1,5 @@
 .page-1 {
-    height: 90vh;
+    height: calc(100vh - 80px);
     padding: 10vh 10vw;
 }
 
@@ -18,10 +18,19 @@
     padding: 10vh 10vw;
 }
 
+.page-5 {
+    height: calc(100vh - 60px);;
+    padding: 10vh 10vw;
+}
+
 .brand {
     font-size: 72px;
 }
 
 .container-fluid {
-    min-height: 84vh !important;
+    min-height: calc(100vh - 130px) !important;
+}
+
+.intro-card {
+    padding: 10vw;
 }

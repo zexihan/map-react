@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CardDeck from '../components/CardDeck';
 
 import '../static/Landing.css';
 
@@ -30,20 +31,29 @@ class Landing extends Component {
           </div>
           <hr />
           <div className="row page-2">
-            <div className="col">
-              <h1>Page-2</h1>
+            <div className="col align-self-center">
+              <CardDeck />
             </div>
           </div>
           <hr />
+          <section id="feature-1" />
           <div className="row page-3">
             <div className="col">
-              <h1>Page-3</h1>
+              <h1>Feature 1</h1>
             </div>
           </div>
           <hr />
+          <section id="feature-2" />
           <div className="row page-4">
             <div className="col">
-              <h1>Page-4</h1>
+              <h1>Feature 2</h1>
+            </div>
+          </div>
+          <hr />
+          <section id="feature-3" />
+          <div className="row page-5">
+            <div className="col">
+              <h1>Feature 3</h1>
             </div>
           </div>
         </div>
