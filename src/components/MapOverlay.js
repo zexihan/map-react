@@ -68,7 +68,7 @@ class MapOverlay extends Component {
     let _ = this;
     $("#search").autocomplete({
       source: nbhNmList,
-      select: function(e, ui) {
+      select: function (e, ui) {
         _.setState({
           searchInput: ui.item.value
         });
@@ -155,300 +155,295 @@ class MapOverlay extends Component {
   };
 
   onCollapseShowClicked = e => {
-    $("#collapse-btn").hide(200);
-    $("#home-btn").hide(200);
-    $("#collapse").toggle(200);
+    // $("#collapse-btn").hide(200);
+    // $("#home-btn").hide(200);
+    $("#collapse").toggle('slide', { direction: 'left' }, 100);
   };
 
   onCollapseHideClicked = e => {
-    $("#collapse-btn").show(200);
-    $("#home-btn").show(200);
-    $("#collapse").toggle(200);
+    // $("#collapse-btn").show(200);
+    // $("#home-btn").show(200);
+    $("#collapse").toggle("slide", { direction: "left" }, 100);
   };
 
   render() {
     return (
       <div>
         <div className="inline-block absolute left z1 txt-s txt-bold">
-          <div className="map-overlay-container">
-            <button
-              class="btn btn-light mx-1"
-              id="collapse-btn"
-              type="button"
-              onClick={this.onCollapseShowClicked}
-            >
-              <i class="fas fa-bars" />
-            </button>
-            <Link to={`/`}>
+          <div className="control-btns">
               <button
-                class="btn btn-light mx-1"
-                id="home-btn"
+                class="btn btn-light mr-1"
+                id="collapse-btn"
                 type="button"
+                onClick={this.onCollapseShowClicked}
               >
-                <i class="fas fa-home" />
+                <i class="fas fa-bars" />
               </button>
-            </Link>
-            <div className="map-overlay" id="collapse">
-              <div className="row">
-                <div className="col-auto align-self-center">
-                  {/* <Link to={`/`}>
-                    <span style={{ fontSize: "24px", color: "black" }}>
-                      <i class="fas fa-angle-left" />
-                    </span>
-                  </Link> */}
-                  <button
-                    onClick={this.onCollapseHideClicked}
-                    style={{ fontSize: "24px", color: "black" }}
-                  >
-                    <i class="fas fa-angle-left" />
-                  </button>
-                </div>
-                <div className="col">
-                  <h2 className="my-2">New York City</h2>
-                </div>
+              <Link to={`/`}>
+                <button
+                  class="btn btn-light ml-1"
+                  id="home-btn"
+                  type="button"
+                >
+                  <i class="fas fa-home" />
+                </button>
+              </Link>
+          </div>
+          <div className="map-overlay" id="collapse">
+            <div className="row">
+              <div className="col-auto align-self-center">
+                <button
+                  onClick={this.onCollapseHideClicked}
+                  style={{ fontSize: "24px", color: "black" }}
+                >
+                  <i class="fas fa-angle-left" />
+                </button>
               </div>
+              <div className="col">
+                <h2 className="my-2">New York City</h2>
+              </div>
+            </div>
 
-              <div className="input-group my-2">
-                <input
-                  type="text"
-                  id="search"
-                  className="form-control"
-                  placeholder="Search neighborhood..."
-                  onChange={this.searchInputChanged}
-                  onKeyDown={this.keyPress}
-                />
-                <div className="input-group-append">
-                  <button
-                    className="btn btn-outline-secondary"
-                    type="button"
-                    onClick={this.search}
-                  >
-                    <i className="fas fa-search" />
-                  </button>
-                </div>
+            <div className="input-group my-2">
+              <input
+                type="text"
+                id="search"
+                className="form-control"
+                placeholder="Search neighborhood..."
+                onChange={this.searchInputChanged}
+                onKeyDown={this.keyPress}
+              />
+              <div className="input-group-append">
+                <button
+                  className="btn btn-outline-secondary"
+                  type="button"
+                  onClick={this.search}
+                >
+                  <i className="fas fa-search" />
+                </button>
               </div>
-              <hr />
-              <div>
-                <h4>Choropleth map</h4>
-                <ul className="nav nav-pills" id="pills-tab" role="tablist">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link active"
-                      onClick={this.selectPill}
-                      id="pills-home-tab"
-                      data-toggle="pill"
-                      href="#pills-home"
-                      role="tab"
-                      aria-controls="pills-home"
-                      aria-selected="true"
-                    >
-                      Home
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      onClick={this.selectPill}
-                      id="pills-entertainment-tab"
-                      data-toggle="pill"
-                      href="#pills-entertainment"
-                      role="tab"
-                      aria-controls="pills-entertainment"
-                      aria-selected="false"
-                    >
-                      Entertainment
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      onClick={this.selectPill}
-                      id="pills-expense-tab"
-                      data-toggle="pill"
-                      href="#pills-expense"
-                      role="tab"
-                      aria-controls="pills-expense"
-                      aria-selected="false"
-                    >
-                      Expense
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      onClick={this.selectPill}
-                      id="pills-host-tab"
-                      data-toggle="pill"
-                      href="#pills-host"
-                      role="tab"
-                      aria-controls="pills-host"
-                      aria-selected="false"
-                    >
-                      Host
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      onClick={this.selectPill}
-                      id="pills-noise-tab"
-                      data-toggle="pill"
-                      href="#pills-noise"
-                      role="tab"
-                      aria-controls="pills-noise"
-                      aria-selected="false"
-                    >
-                      Noise
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      onClick={this.selectPill}
-                      id="pills-safety-tab"
-                      data-toggle="pill"
-                      href="#pills-safety"
-                      role="tab"
-                      aria-controls="pills-safety"
-                      aria-selected="false"
-                    >
-                      Safety
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      onClick={this.selectPill}
-                      id="pills-transit-tab"
-                      data-toggle="pill"
-                      href="#pills-transit"
-                      role="tab"
-                      aria-controls="pills-transit"
-                      aria-selected="false"
-                    >
-                      Transit
-                    </a>
-                  </li>
-                </ul>
-                <div className="tab-content" id="pills-tabContent">
-                  <div
-                    className="tab-pane fade show active"
-                    id="pills-home"
-                    role="tabpanel"
-                    aria-labelledby="pills-home-tab"
-                  />
-                  <div
-                    className="tab-pane fade"
-                    id="pills-entertainment"
-                    role="tabpanel"
-                    aria-labelledby="pills-entertainment-tab"
+            </div>
+            <hr />
+            <div>
+              <h4>Choropleth map</h4>
+              <ul className="nav nav-pills" id="pills-tab" role="tablist">
+                <li className="nav-item">
+                  <a
+                    className="nav-link active"
+                    onClick={this.selectPill}
+                    id="pills-home-tab"
+                    data-toggle="pill"
+                    href="#pills-home"
+                    role="tab"
+                    aria-controls="pills-home"
+                    aria-selected="true"
                   >
-                    <label
-                      className="my-1 mr-2"
-                      htmlFor="inlineFormCustomSelectPref"
-                    >
-                      Type
-                    </label>
-                    <select
-                      className="custom-select my-1 mr-sm-2"
-                      onChange={this.selectSubType}
-                      id="inlineFormCustomSelectPref"
-                    >
-                      {this.state.subTypeList["Entertainment"].map(
-                        subType => {
-                          return (
-                            <option value={subType} key={subType}>
-                              {subType}
-                            </option>
-                          );
-                        }
-                      )}
-                    </select>
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="pills-expense"
-                    role="tabpanel"
-                    aria-labelledby="pills-expense-tab"
+                    Home
+                    </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    onClick={this.selectPill}
+                    id="pills-entertainment-tab"
+                    data-toggle="pill"
+                    href="#pills-entertainment"
+                    role="tab"
+                    aria-controls="pills-entertainment"
+                    aria-selected="false"
+                  >
+                    Entertainment
+                    </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    onClick={this.selectPill}
+                    id="pills-expense-tab"
+                    data-toggle="pill"
+                    href="#pills-expense"
+                    role="tab"
+                    aria-controls="pills-expense"
+                    aria-selected="false"
                   >
                     Expense
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="pills-host"
-                    role="tabpanel"
-                    aria-labelledby="pills-host-tab"
+                    </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    onClick={this.selectPill}
+                    id="pills-host-tab"
+                    data-toggle="pill"
+                    href="#pills-host"
+                    role="tab"
+                    aria-controls="pills-host"
+                    aria-selected="false"
                   >
                     Host
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="pills-noise"
-                    role="tabpanel"
-                    aria-labelledby="pills-noise-tab"
+                    </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    onClick={this.selectPill}
+                    id="pills-noise-tab"
+                    data-toggle="pill"
+                    href="#pills-noise"
+                    role="tab"
+                    aria-controls="pills-noise"
+                    aria-selected="false"
                   >
-                    <label
-                      className="my-1 mr-2"
-                      htmlFor="inlineFormCustomSelectPref"
-                    >
-                      Type
-                    </label>
-                    <select
-                      className="custom-select my-1 mr-sm-2"
-                      onChange={this.selectSubType}
-                      id="inlineFormCustomSelectPref"
-                    >
-                      {this.state.subTypeList["Noise"].map(subType => {
-                        return (
-                          <option value={subType} key={subType}>
-                            {subType}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="pills-safety"
-                    role="tabpanel"
-                    aria-labelledby="pills-safety-tab"
+                    Noise
+                    </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    onClick={this.selectPill}
+                    id="pills-safety-tab"
+                    data-toggle="pill"
+                    href="#pills-safety"
+                    role="tab"
+                    aria-controls="pills-safety"
+                    aria-selected="false"
                   >
-                    <label
-                      className="my-1 mr-2"
-                      htmlFor="inlineFormCustomSelectPref"
-                    >
-                      Type
-                    </label>
-                    <select
-                      className="custom-select my-1 mr-sm-2"
-                      onChange={this.selectSubType}
-                      id="inlineFormCustomSelectPref"
-                    >
-                      {this.state.subTypeList["Safety"].map(subType => {
-                        return (
-                          <option value={subType} key={subType}>
-                            {subType}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="pills-transit"
-                    role="tabpanel"
-                    aria-labelledby="pills-transit-tab"
+                    Safety
+                    </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    onClick={this.selectPill}
+                    id="pills-transit-tab"
+                    data-toggle="pill"
+                    href="#pills-transit"
+                    role="tab"
+                    aria-controls="pills-transit"
+                    aria-selected="false"
                   >
                     Transit
-                  </div>
+                    </a>
+                </li>
+              </ul>
+              <div className="tab-content" id="pills-tabContent">
+                <div
+                  className="tab-pane fade show active"
+                  id="pills-home"
+                  role="tabpanel"
+                  aria-labelledby="pills-home-tab"
+                />
+                <div
+                  className="tab-pane fade"
+                  id="pills-entertainment"
+                  role="tabpanel"
+                  aria-labelledby="pills-entertainment-tab"
+                >
+                  <label
+                    className="my-1 mr-2"
+                    htmlFor="inlineFormCustomSelectPref"
+                  >
+                    Type
+                    </label>
+                  <select
+                    className="custom-select my-1 mr-sm-2"
+                    onChange={this.selectSubType}
+                    id="inlineFormCustomSelectPref"
+                  >
+                    {this.state.subTypeList["Entertainment"].map(
+                      subType => {
+                        return (
+                          <option value={subType} key={subType}>
+                            {subType}
+                          </option>
+                        );
+                      }
+                    )}
+                  </select>
                 </div>
+                <div
+                  className="tab-pane fade"
+                  id="pills-expense"
+                  role="tabpanel"
+                  aria-labelledby="pills-expense-tab"
+                >
+                  Expense
+                  </div>
+                <div
+                  className="tab-pane fade"
+                  id="pills-host"
+                  role="tabpanel"
+                  aria-labelledby="pills-host-tab"
+                >
+                  Host
+                  </div>
+                <div
+                  className="tab-pane fade"
+                  id="pills-noise"
+                  role="tabpanel"
+                  aria-labelledby="pills-noise-tab"
+                >
+                  <label
+                    className="my-1 mr-2"
+                    htmlFor="inlineFormCustomSelectPref"
+                  >
+                    Type
+                    </label>
+                  <select
+                    className="custom-select my-1 mr-sm-2"
+                    onChange={this.selectSubType}
+                    id="inlineFormCustomSelectPref"
+                  >
+                    {this.state.subTypeList["Noise"].map(subType => {
+                      return (
+                        <option value={subType} key={subType}>
+                          {subType}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                <div
+                  className="tab-pane fade"
+                  id="pills-safety"
+                  role="tabpanel"
+                  aria-labelledby="pills-safety-tab"
+                >
+                  <label
+                    className="my-1 mr-2"
+                    htmlFor="inlineFormCustomSelectPref"
+                  >
+                    Type
+                    </label>
+                  <select
+                    className="custom-select my-1 mr-sm-2"
+                    onChange={this.selectSubType}
+                    id="inlineFormCustomSelectPref"
+                  >
+                    {this.state.subTypeList["Safety"].map(subType => {
+                      return (
+                        <option value={subType} key={subType}>
+                          {subType}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                <div
+                  className="tab-pane fade"
+                  id="pills-transit"
+                  role="tabpanel"
+                  aria-labelledby="pills-transit-tab"
+                >
+                  Transit
+                  </div>
               </div>
-              <hr />
-              <div>
-                <h4>Neighborhood overview</h4>
-                <h4 id="location-title">{this.props.clickedNbh}</h4>
-                <p id="location-description">{this.props.clickedNbhGrp}</p>
-              </div>
+            </div>
+            <hr />
+            <div>
+              <h4>Neighborhood overview</h4>
+              <h4 id="location-title">{this.props.clickedNbh}</h4>
+              <p id="location-description">{this.props.clickedNbhGrp}</p>
             </div>
           </div>
         </div>

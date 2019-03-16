@@ -1,16 +1,4 @@
 @media only screen and (min-width: 900px) {
-  .map-overlay-container {
-    position: absolute;
-    width: 25vw;
-    height: 95vh;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    z-index: 1;
-    overflow-y: auto;
-    overflow-x: auto;
-  }
-
   .map-overlay {
     font: 12px / 20px 'Helvetica Neue', Arial, Helvetica, sansSerif;
     background-color: #fff;
@@ -18,24 +6,17 @@
     padding: 10px;
     width: 25vw;
     height: 95vh;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    z-index: 2;
+    position: absolute;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
     overflow: auto;
   }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 900px) {
-  .map-overlay-container {
-    position: absolute;
-    width: 60vw;
-    height: 95vh;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    z-index: 1;
-    overflow-y: auto;
-    overflow-x: auto;
-  }
-
   .map-overlay {
     font: 12px / 20px 'Helvetica Neue', Arial, Helvetica, sansSerif;
     background-color: #fff;
@@ -43,24 +24,17 @@
     padding: 10px;
     width: 60vw;
     height: 95vh;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    z-index: 2;
+    position: absolute;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
     overflow: auto;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .map-overlay-container {
-    position: absolute;
-    width: 80vw;
-    height: 95vh;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    z-index: 1;
-    overflow-y: auto;
-    overflow-x: auto;
-  }
-
   .map-overlay {
     font: 12px / 20px 'Helvetica Neue', Arial, Helvetica, sansSerif;
     background-color: #fff;
@@ -68,9 +42,21 @@
     padding: 10px;
     width: 80vw;
     height: 95vh;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    z-index: 2;
+    position: absolute;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
     overflow: auto;
   }
+}
+
+.control-btns {
+  top: 10px;
+  left: 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .legend {
