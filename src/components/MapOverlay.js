@@ -75,6 +75,7 @@ class MapOverlay extends Component {
       }
     });
     $("#collapse").hide();
+    $("#collapse").height($(window).height() * 0.95);
   }
 
   searchInputChanged = e => {
@@ -155,14 +156,10 @@ class MapOverlay extends Component {
   };
 
   onCollapseShowClicked = e => {
-    // $("#collapse-btn").hide(200);
-    // $("#home-btn").hide(200);
     $("#collapse").toggle('slide', { direction: 'left' }, 100);
   };
 
   onCollapseHideClicked = e => {
-    // $("#collapse-btn").show(200);
-    // $("#home-btn").show(200);
     $("#collapse").toggle("slide", { direction: "left" }, 100);
   };
 
@@ -171,27 +168,30 @@ class MapOverlay extends Component {
       <div>
         <div className="inline-block absolute left z1 txt-s txt-bold">
           <div className="control-btns">
+            <button
+              class="btn btn-light mr-1"
+              id="collapse-btn"
+              type="button"
+              onClick={this.onCollapseShowClicked}
+            >
+              <i class="fas fa-bars" />
+            </button>
+            <Link to={`/`}>
               <button
-                class="btn btn-light mr-1"
-                id="collapse-btn"
+                class="btn btn-light ml-1"
+                id="home-btn"
                 type="button"
-                onClick={this.onCollapseShowClicked}
               >
-                <i class="fas fa-bars" />
+                <i class="fas fa-home" />
               </button>
-              <Link to={`/`}>
-                <button
-                  class="btn btn-light ml-1"
-                  id="home-btn"
-                  type="button"
-                >
-                  <i class="fas fa-home" />
-                </button>
-              </Link>
+            </Link>
           </div>
           <div className="map-overlay" id="collapse">
-            <div className="row">
-              <div className="col-auto align-self-center">
+            <div className="row mt-2">
+              <div className="col">
+                <h2 className="tripelf-map-title">TripElf Map</h2>
+              </div>
+              <div className="col-auto align-self-center mr-2">
                 <button
                   onClick={this.onCollapseHideClicked}
                   style={{ fontSize: "24px", color: "black" }}
@@ -199,11 +199,9 @@ class MapOverlay extends Component {
                   <i class="fas fa-angle-left" />
                 </button>
               </div>
-              <div className="col">
-                <h2 className="my-2">New York City</h2>
-              </div>
             </div>
-
+            <hr />
+            <p className="new-york-title">New York City</p>
             <div className="input-group my-2">
               <input
                 type="text"
@@ -225,7 +223,7 @@ class MapOverlay extends Component {
             </div>
             <hr />
             <div>
-              <h4>Choropleth map</h4>
+              <h4 className="section-title">Choropleth map</h4>
               <ul className="nav nav-pills" id="pills-tab" role="tablist">
                 <li className="nav-item">
                   <a
@@ -239,7 +237,7 @@ class MapOverlay extends Component {
                     aria-selected="true"
                   >
                     Home
-                    </a>
+                  </a>
                 </li>
                 <li className="nav-item">
                   <a
@@ -253,7 +251,7 @@ class MapOverlay extends Component {
                     aria-selected="false"
                   >
                     Entertainment
-                    </a>
+                  </a>
                 </li>
                 <li className="nav-item">
                   <a
@@ -267,7 +265,7 @@ class MapOverlay extends Component {
                     aria-selected="false"
                   >
                     Expense
-                    </a>
+                  </a>
                 </li>
                 <li className="nav-item">
                   <a
@@ -281,7 +279,7 @@ class MapOverlay extends Component {
                     aria-selected="false"
                   >
                     Host
-                    </a>
+                  </a>
                 </li>
                 <li className="nav-item">
                   <a
@@ -295,7 +293,7 @@ class MapOverlay extends Component {
                     aria-selected="false"
                   >
                     Noise
-                    </a>
+                  </a>
                 </li>
                 <li className="nav-item">
                   <a
@@ -309,7 +307,7 @@ class MapOverlay extends Component {
                     aria-selected="false"
                   >
                     Safety
-                    </a>
+                  </a>
                 </li>
                 <li className="nav-item">
                   <a
@@ -323,7 +321,7 @@ class MapOverlay extends Component {
                     aria-selected="false"
                   >
                     Transit
-                    </a>
+                  </a>
                 </li>
               </ul>
               <div className="tab-content" id="pills-tabContent">
@@ -344,7 +342,7 @@ class MapOverlay extends Component {
                     htmlFor="inlineFormCustomSelectPref"
                   >
                     Type
-                    </label>
+                  </label>
                   <select
                     className="custom-select my-1 mr-sm-2"
                     onChange={this.selectSubType}
@@ -368,7 +366,7 @@ class MapOverlay extends Component {
                   aria-labelledby="pills-expense-tab"
                 >
                   Expense
-                  </div>
+                </div>
                 <div
                   className="tab-pane fade"
                   id="pills-host"
@@ -376,7 +374,7 @@ class MapOverlay extends Component {
                   aria-labelledby="pills-host-tab"
                 >
                   Host
-                  </div>
+                </div>
                 <div
                   className="tab-pane fade"
                   id="pills-noise"
@@ -388,7 +386,7 @@ class MapOverlay extends Component {
                     htmlFor="inlineFormCustomSelectPref"
                   >
                     Type
-                    </label>
+                  </label>
                   <select
                     className="custom-select my-1 mr-sm-2"
                     onChange={this.selectSubType}
@@ -414,7 +412,7 @@ class MapOverlay extends Component {
                     htmlFor="inlineFormCustomSelectPref"
                   >
                     Type
-                    </label>
+                  </label>
                   <select
                     className="custom-select my-1 mr-sm-2"
                     onChange={this.selectSubType}
@@ -436,12 +434,12 @@ class MapOverlay extends Component {
                   aria-labelledby="pills-transit-tab"
                 >
                   Transit
-                  </div>
+                </div>
               </div>
             </div>
             <hr />
             <div>
-              <h4>Neighborhood overview</h4>
+              <h4 className="section-title">Neighborhood overview</h4>
               <h4 id="location-title">{this.props.clickedNbh}</h4>
               <p id="location-description">{this.props.clickedNbhGrp}</p>
             </div>
