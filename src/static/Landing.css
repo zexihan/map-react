@@ -1,6 +1,6 @@
 .page-1 {
-    height: calc(80vh - 80px);
-    padding: 10vh 10vw;
+    /* height: calc(80vh - 80px); */
+    padding: 20vh 10vw;
 }
 
 .page-2 {
