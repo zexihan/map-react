@@ -23,11 +23,38 @@ class MapOverlay extends Component {
         Safety: "Offense Report"
       },
       subTypeList: {
-        Entertainment: ["Restaurant", "--Delis", "--Pizza", "--Chinese", "--Sandwiches", "--Italian",
-                        "Shopping", "--Women's Clothing", "--Jewelry", "--Accessories", "--Drugstores", "--Shoe Stores",
-                        "Nightlife", "--Bars", "--Lounges", "--American (New)", "--American (Traditional)", "--Pubs"],
-        Noise: ["Noise Complaint", "--Collection Truck Noise", "--Noise", "--Noise - Commercial", "--Noise - Helicopter",
-                "--Noise - House of Worship", "--Noise - Park", "--Noise - Residential", "--Noise - Street/Sidewalk", "--Noise - Vehicle"],
+        Entertainment: [
+          "Restaurant",
+          "--Delis",
+          "--Pizza",
+          "--Chinese",
+          "--Sandwiches",
+          "--Italian",
+          "Shopping",
+          "--Women's Clothing",
+          "--Jewelry",
+          "--Accessories",
+          "--Drugstores",
+          "--Shoe Stores",
+          "Nightlife",
+          "--Bars",
+          "--Lounges",
+          "--American (New)",
+          "--American (Traditional)",
+          "--Pubs"
+        ],
+        Noise: [
+          "Noise Complaint",
+          "--Collection Truck Noise",
+          "--Noise",
+          "--Noise - Commercial",
+          "--Noise - Helicopter",
+          "--Noise - House of Worship",
+          "--Noise - Park",
+          "--Noise - Residential",
+          "--Noise - Street/Sidewalk",
+          "--Noise - Vehicle"
+        ],
         Safety: ["Offense Report", "--FELONY", "--MISDEMEANOR", "--VIOLATION"]
       },
       legendColorList: [],
@@ -47,27 +74,30 @@ class MapOverlay extends Component {
         });
       }
     });
+    $("#collapse").hide();
   }
 
-  searchInputChanged = (e) => {
+  searchInputChanged = e => {
     console.log(e.target.value);
     this.setState({
       searchInput: e.target.value
     });
-  }
+  };
 
   search = () => {
     this.props.search(this.state.searchInput);
-  }
+  };
 
-  keyPress = (e) => {
+  keyPress = e => {
     if (e.keyCode == 13) {
       this.search();
     }
-  }
+  };
 
-  selectPill = (e) => {
-    this.props.selectPill(e.target.text + "," + this.state.subTypeDefault[e.target.text]);
+  selectPill = e => {
+    this.props.selectPill(
+      e.target.text + "," + this.state.subTypeDefault[e.target.text]
+    );
     if (e.target.text !== "Home") {
       this.setState({
         isChoroplethMode: true,
@@ -78,17 +108,20 @@ class MapOverlay extends Component {
       this.setState({
         isChoroplethMode: false,
         choroplethType: null
-      })
+      });
     }
-    var legend = mapService.pickLegend(e.target.text, this.state.subTypeDefault[e.target.text]);
+    var legend = mapService.pickLegend(
+      e.target.text,
+      this.state.subTypeDefault[e.target.text]
+    );
     this.setState({
       legendColorList: legend[0],
       legendTextList: legend[1],
       legendTitle: legend[2]
     });
-  }
+  };
 
-  selectSubType = (e) => {
+  selectSubType = e => {
     var subType = e.target.value;
     if (subType.startsWith("--")) {
       subType = subType.slice(2);
@@ -103,13 +136,13 @@ class MapOverlay extends Component {
       legendTextList: legend[1],
       legendTitle: legend[2]
     });
-  }
+  };
 
-  selectTab = (e) => {
+  selectTab = e => {
     this.props.selectTab(e.target.text);
-  }
+  };
 
-  assignLegendColor = (legendColor) => {
+  assignLegendColor = legendColor => {
     var styleLegendDivSpan = {
       borderRadius: "50 %",
       display: "inline-block",
@@ -119,21 +152,56 @@ class MapOverlay extends Component {
       backgroundColor: legendColor
     };
     return styleLegendDivSpan;
-  }
+  };
+
+  onCollapseShowClicked = e => {
+    $("#collapse-btn").hide(200);
+    $("#home-btn").hide(200);
+    $("#collapse").toggle(200);
+  };
+
+  onCollapseHideClicked = e => {
+    $("#collapse-btn").show(200);
+    $("#home-btn").show(200);
+    $("#collapse").toggle(200);
+  };
 
   render() {
     return (
       <div>
         <div className="inline-block absolute left z1 txt-s txt-bold">
           <div className="map-overlay-container">
-            <div className="map-overlay">
+            <button
+              class="btn btn-light mx-1"
+              id="collapse-btn"
+              type="button"
+              onClick={this.onCollapseShowClicked}
+            >
+              <i class="fas fa-bars" />
+            </button>
+            <Link to={`/`}>
+              <button
+                class="btn btn-light mx-1"
+                id="home-btn"
+                type="button"
+              >
+                <i class="fas fa-home" />
+              </button>
+            </Link>
+            <div className="map-overlay" id="collapse">
               <div className="row">
                 <div className="col-auto align-self-center">
-                  <Link to={`/`}>
+                  {/* <Link to={`/`}>
                     <span style={{ fontSize: "24px", color: "black" }}>
                       <i class="fas fa-angle-left" />
                     </span>
-                  </Link>
+                  </Link> */}
+                  <button
+                    onClick={this.onCollapseHideClicked}
+                    style={{ fontSize: "24px", color: "black" }}
+                  >
+                    <i class="fas fa-angle-left" />
+                  </button>
                 </div>
                 <div className="col">
                   <h2 className="my-2">New York City</h2>

@@ -1,25 +1,25 @@
 .page-1 {
-    height: calc(100vh - 80px);
+    height: calc(80vh - 80px);
     padding: 10vh 10vw;
 }
 
 .page-2 {
-    height: 100vh;
+    /* height: 100vh; */
     padding: 10vh 10vw;
 }
 
 .page-3 {
-    height: 100vh;
+    height: 80vh;
     padding: 10vh 10vw;
 }
 
 .page-4 {
-    height: 100vh;
+    height: 80vh;
     padding: 10vh 10vw;
 }
 
 .page-5 {
-    height: calc(100vh - 60px);;
+    height: calc(80vh - 60px);;
     padding: 10vh 10vw;
 }
 
