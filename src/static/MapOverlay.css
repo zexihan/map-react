@@ -2,6 +2,7 @@
   .map-overlay-container {
     position: absolute;
     width: 25vw;
+    height: 95vh;
     margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -26,6 +27,7 @@
   .map-overlay-container {
     position: absolute;
     width: 60vw;
+    height: 95vh;
     margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -50,6 +52,7 @@
   .map-overlay-container {
     position: absolute;
     width: 80vw;
+    height: 95vh;
     margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;

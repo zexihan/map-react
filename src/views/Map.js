@@ -20,7 +20,7 @@ class Map extends Component {
     this.state = {
       mouseLng: -74,
       mouseLat: 40.7,
-      lng: -74.1,
+      lng: -74,
       lat: 40.7,
       zoom: 10,
       nbhPolygons: [],
