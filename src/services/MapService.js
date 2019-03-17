@@ -6,31 +6,36 @@ class MapService {
   neighbourhoods = [];
   legendColorList = [];
   entertainmentColorScheme = d3.schemeOrRd[9].reverse();
+  expenseColorScheme = d3.schemePuRd[9].reverse();
+  hostColorScheme = d3.schemeBuGn[9].reverse();
   noiseColorScheme = d3.schemeRdPu[9].reverse();
   safetyColorScheme = d3.schemeRdYlGn[9];
+  transitColorScheme = d3.schemeGnBu[9].reverse();
 
   static getInstance() {
-
     if (MapService.myInstance == null) {
-        MapService.myInstance = new MapService();
+      MapService.myInstance = new MapService();
     }
     return this.myInstance;
   }
 
-  loadNeighbourhoods (neighbourhoods) {
+  loadNeighbourhoods(neighbourhoods) {
     this.neighbourhoods = neighbourhoods;
-
   }
 
-  rgb2hex (rgb) {
-    rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-    return (rgb && rgb.length === 4) ? "#" +
-      ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
-      ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
-      ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2) : '';
-}
+  rgb2hex(rgb) {
+    rgb = rgb.match(
+      /^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i
+    );
+    return rgb && rgb.length === 4
+      ? "#" +
+          ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+          ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+          ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2)
+      : "";
+  }
 
-  async plotChoropleth (choroplethType, subType) {
+  async plotChoropleth(choroplethType, subType) {
     switch (true) {
       case choroplethType === "Entertainment": {
         var filename = "";
@@ -75,6 +80,40 @@ class MapService {
         }
         return { list };
       }
+      case choroplethType === "Expense": {
+        let list = await d3.csv("data/expense.csv");
+        const min = d3.min(list, function(d) {
+          return Number(d[subType]);
+        });
+        const max = d3.max(list, function(d) {
+          return Number(d[subType]);
+        });
+        console.log(min, max);
+        for (var i = 0; i < list.length; i++) {
+          var interpolateColor = await d3.interpolatePuRd(
+            (Number(list[i][subType]) - min) / (max - min)
+          );
+          list[i].color = this.rgb2hex(interpolateColor);
+        }
+        return { list };
+      }
+      case choroplethType === "Host": {
+        let list = await d3.csv("data/host.csv");
+        const min = d3.min(list, function(d) {
+          return Number(d[subType]);
+        });
+        const max = d3.max(list, function(d) {
+          return Number(d[subType]);
+        });
+        console.log(min, max);
+        for (var i = 0; i < list.length; i++) {
+          var interpolateColor = await d3.interpolateBuGn(
+            (Number(list[i][subType]) - min) / (max - min)
+          );
+          list[i].color = this.rgb2hex(interpolateColor);
+        }
+        return { list };
+      }
       case choroplethType === "Noise": {
         let list = await d3.csv("data/noise_complaint_type_count.csv");
         const min = d3.min(list, function(d) {
@@ -109,26 +148,6 @@ class MapService {
         }
         return { list };
       }
-      case choroplethType === "Expense": {
-        let list = await d3.csv("data/expense.csv");
-        const min = d3.min(list, function (d) {
-          return Number(d[subType]);
-        });
-        const max = d3.max(list, function (d) {
-          return Number(d[subType]);
-        });
-        console.log(min, max);
-      }
-      case choroplethType === "Host": {
-        let list = await d3.csv("data/host.csv");
-        const min = d3.min(list, function(d) {
-          return Number(d[subType]);
-        });
-        const max = d3.max(list, function(d) {
-          return Number(d[subType]);
-        });
-        console.log(min, max);
-      }
       case choroplethType === "Transit": {
         let list = await d3.csv("data/transit_count.csv");
         const min = d3.min(list, function(d) {
@@ -138,12 +157,17 @@ class MapService {
           return Number(d[subType]);
         });
         console.log(min, max);
+        for (var i = 0; i < list.length; i++) {
+          var interpolateColor = await d3.interpolateGnBu(
+            (Number(list[i][subType]) - min) / (max - min)
+          );
+          list[i].color = this.rgb2hex(interpolateColor);
+        }
+        return { list };
       }
       default:
         return;
     }
-
-
   }
 
   pickLegend(choroplethType, subType) {
@@ -152,37 +176,75 @@ class MapService {
     var legendTextList = [];
     var legendTitle = "";
     switch (true) {
-      case ((choroplethType === "Entertainment") && (subType === "Restaurant")) : {
+      case choroplethType === "Entertainment" && subType === "Restaurant": {
         legendColorList = this.entertainmentColorScheme;
-        legendTextList = [1300,1150,975,825,650,500,325,175,0];
+        legendTextList = [1300, 1150, 975, 825, 650, 500, 325, 175, 0];
         legendTitle = "Restaurant\ncount";
         break;
       }
-      case ((choroplethType === "Entertainment") && (subType === "Shopping")) : {
+      case choroplethType === "Entertainment" && subType === "Shopping": {
         legendColorList = this.entertainmentColorScheme;
-        legendTextList = [1000,875,750,625,500,375,250,125,0];
+        legendTextList = [1000, 875, 750, 625, 500, 375, 250, 125, 0];
         legendTitle = "Shopping\ncount";
         break;
       }
-      case ((choroplethType === "Entertainment") && (subType === "Nightlife")) : {
+      case choroplethType === "Entertainment" && subType === "Nightlife": {
         legendColorList = this.entertainmentColorScheme;
-        legendTextList = [435,395,340,285,230,165,110,55,0];
+        legendTextList = [435, 395, 340, 285, 230, 165, 110, 55, 0];
         legendTitle = "Nightlife\ncount";
         break;
       }
-      case((choroplethType === "Noise") && (subType === "Noise Complaint")) : {
+      case choroplethType === "Expense" && subType === "Price": {
+        legendColorList = this.expenseColorScheme;
+        legendTextList = [750, 470, 340, 375, 280, 165, 190, 95, 0];
+        legendTitle = "Average\nprice";
+        break;
+      }
+      case choroplethType === "Host" && subType === "Superhost": {
+        legendColorList = this.hostColorScheme;
+        legendTextList = [675, 595, 510, 425, 340, 255, 170, 85, 0];
+        legendTitle = "Superhost\ncount";
+        break;
+      }
+      case choroplethType === "Noise" && subType === "Noise Complaint": {
         legendColorList = this.noiseColorScheme;
-        legendTextList = [20800,18200,15600,13000,10400,7800,5200,2600,0];
+        legendTextList = [
+          20800,
+          18200,
+          15600,
+          13000,
+          10400,
+          7800,
+          5200,
+          2600,
+          0
+        ];
         legendTitle = "Noise\ncomplaint\ncount";
         break;
       }
-      case((choroplethType === "Safety") && (subType === "Offense Report")) : {
+      case choroplethType === "Safety" && subType === "Offense Report": {
         legendColorList = this.safetyColorScheme;
-        legendTextList = [35325,30900,26475,22075,17650,13250,8825,4425,0];
+        legendTextList = [
+          35325,
+          30900,
+          26475,
+          22075,
+          17650,
+          13250,
+          8825,
+          4425,
+          0
+        ];
         legendTitle = "Offense\nreport\ncount";
         break;
       }
-      default : {
+      case choroplethType === "Transit" && subType === "Bus Stop": {
+        legendColorList = this.transitColorScheme;
+        legendTextList = [122, 105, 90, 75, 60, 45, 30, 15, 0];
+        legendTitle = "Bus\nstop\ncount";
+        break;
+      }
+      default: {
         legendTitle = subType;
       }
     }

@@ -33,8 +33,11 @@ class Map extends Component {
       map: null,
       lineColor: {
         Entertainment: "#900000",
+        Expense: "#4d0017",
+        Host: "#023115",
         Noise: "#4A225D",
-        Safety: "#f4f8c7"
+        Safety: "#f4f8c7",
+        Transit: "#072146"
       }
     };
   }

@@ -20,7 +20,10 @@ class MapOverlay extends Component {
       subTypeDefault: {
         Entertainment: "Restaurant",
         Noise: "Noise Complaint",
-        Safety: "Offense Report"
+        Safety: "Offense Report",
+        Expense: "Price",
+        Host: "Superhost",
+        Transit: "Bus Stop"
       },
       subTypeList: {
         Entertainment: [
@@ -55,7 +58,15 @@ class MapOverlay extends Component {
           "--Noise - Street/Sidewalk",
           "--Noise - Vehicle"
         ],
-        Safety: ["Offense Report", "--FELONY", "--MISDEMEANOR", "--VIOLATION"]
+        Safety: [
+          "Offense Report",
+          "--FELONY",
+          "--MISDEMEANOR",
+          "--VIOLATION"
+        ],
+        Expense: ["Price", "Cleaning Fee", "Extra People Fee"],
+        Host: ["Superhost", "Response Hour", "Response Rate"],
+        Transit: ["Bus Stop", "Subway Entrance"]
       },
       legendColorList: [],
       legendTextList: [],
@@ -169,20 +180,20 @@ class MapOverlay extends Component {
         <div className="inline-block absolute left z1 txt-s txt-bold">
           <div className="control-btns">
             <button
-              class="btn btn-light mr-1"
+              className="btn btn-light mr-1"
               id="collapse-btn"
               type="button"
               onClick={this.onCollapseShowClicked}
             >
-              <i class="fas fa-bars" />
+              <i className="fas fa-bars" />
             </button>
             <Link to={`/`}>
               <button
-                class="btn btn-light ml-1"
+                className="btn btn-light ml-1"
                 id="home-btn"
                 type="button"
               >
-                <i class="fas fa-home" />
+                <i className="fas fa-home" />
               </button>
             </Link>
           </div>
@@ -196,7 +207,7 @@ class MapOverlay extends Component {
                   onClick={this.onCollapseHideClicked}
                   style={{ fontSize: "24px", color: "black" }}
                 >
-                  <i class="fas fa-angle-left" />
+                  <i className="fas fa-angle-left" />
                 </button>
               </div>
             </div>
@@ -339,14 +350,14 @@ class MapOverlay extends Component {
                 >
                   <label
                     className="my-1 mr-2"
-                    htmlFor="inlineFormCustomSelectPref"
+                    htmlFor="entertainment-select"
                   >
                     Type
                   </label>
                   <select
                     className="custom-select my-1 mr-sm-2"
                     onChange={this.selectSubType}
-                    id="inlineFormCustomSelectPref"
+                    id="entertainment-select"
                   >
                     {this.state.subTypeList["Entertainment"].map(
                       subType => {
@@ -365,7 +376,22 @@ class MapOverlay extends Component {
                   role="tabpanel"
                   aria-labelledby="pills-expense-tab"
                 >
-                  Expense
+                  <label className="my-1 mr-2" htmlFor="expense-select">
+                    Type
+                  </label>
+                  <select
+                    className="custom-select my-1 mr-sm-2"
+                    onChange={this.selectSubType}
+                    id="expense-select"
+                  >
+                    {this.state.subTypeList["Expense"].map(subType => {
+                      return (
+                        <option value={subType} key={subType}>
+                          {subType}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <div
                   className="tab-pane fade"
@@ -373,7 +399,22 @@ class MapOverlay extends Component {
                   role="tabpanel"
                   aria-labelledby="pills-host-tab"
                 >
-                  Host
+                  <label className="my-1 mr-2" htmlFor="host-select">
+                    Type
+                  </label>
+                  <select
+                    className="custom-select my-1 mr-sm-2"
+                    onChange={this.selectSubType}
+                    id="host-select"
+                  >
+                    {this.state.subTypeList["Host"].map(subType => {
+                      return (
+                        <option value={subType} key={subType}>
+                          {subType}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <div
                   className="tab-pane fade"
@@ -381,16 +422,13 @@ class MapOverlay extends Component {
                   role="tabpanel"
                   aria-labelledby="pills-noise-tab"
                 >
-                  <label
-                    className="my-1 mr-2"
-                    htmlFor="inlineFormCustomSelectPref"
-                  >
+                  <label className="my-1 mr-2" htmlFor="noise-select">
                     Type
                   </label>
                   <select
                     className="custom-select my-1 mr-sm-2"
                     onChange={this.selectSubType}
-                    id="inlineFormCustomSelectPref"
+                    id="noise-select"
                   >
                     {this.state.subTypeList["Noise"].map(subType => {
                       return (
@@ -407,16 +445,13 @@ class MapOverlay extends Component {
                   role="tabpanel"
                   aria-labelledby="pills-safety-tab"
                 >
-                  <label
-                    className="my-1 mr-2"
-                    htmlFor="inlineFormCustomSelectPref"
-                  >
+                  <label className="my-1 mr-2" htmlFor="safety-select">
                     Type
                   </label>
                   <select
                     className="custom-select my-1 mr-sm-2"
                     onChange={this.selectSubType}
-                    id="inlineFormCustomSelectPref"
+                    id="safety-select"
                   >
                     {this.state.subTypeList["Safety"].map(subType => {
                       return (
@@ -433,7 +468,22 @@ class MapOverlay extends Component {
                   role="tabpanel"
                   aria-labelledby="pills-transit-tab"
                 >
-                  Transit
+                  <label className="my-1 mr-2" htmlFor="transit-select">
+                    Type
+                  </label>
+                  <select
+                    className="custom-select my-1 mr-sm-2"
+                    onChange={this.selectSubType}
+                    id="transit-select"
+                  >
+                    {this.state.subTypeList["Transit"].map(subType => {
+                      return (
+                        <option value={subType} key={subType}>
+                          {subType}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
               </div>
             </div>
