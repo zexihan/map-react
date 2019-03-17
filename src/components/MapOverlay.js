@@ -200,19 +200,22 @@ class MapOverlay extends Component {
           <div className="map-overlay" id="collapse">
             <div className="row mt-2">
               <div className="col">
-                <h2 className="tripelf-map-title">TripElf Map</h2>
+                <div className="tripelf-map-title">
+                  trip<span style={{ color: "#cc0041" }}>elf</span>{" "}
+                  <span style={{ color: "#767676" }}>Map</span>
+                </div>
               </div>
               <div className="col-auto align-self-center mr-2">
                 <button
                   onClick={this.onCollapseHideClicked}
-                  style={{ fontSize: "24px", color: "black" }}
+                  style={{ fontSize: "24px", color: "#767676" }}
                 >
                   <i className="fas fa-angle-left" />
                 </button>
               </div>
             </div>
             <hr />
-            <p className="new-york-title">New York City</p>
+            <div className="new-york-title">New York City</div>
             <div className="input-group my-2">
               <input
                 type="text"
@@ -234,7 +237,7 @@ class MapOverlay extends Component {
             </div>
             <hr />
             <div>
-              <h4 className="section-title">Choropleth map</h4>
+              <div className="section-title mb-3">🗺️Choropleth map</div>
               <ul className="nav nav-pills" id="pills-tab" role="tablist">
                 <li className="nav-item">
                   <a
@@ -489,7 +492,9 @@ class MapOverlay extends Component {
             </div>
             <hr />
             <div>
-              <h4 className="section-title">Neighborhood overview</h4>
+              <div className="section-title mb-3">
+                📍Neighborhood overview
+              </div>
               <h4 id="location-title">{this.props.clickedNbh}</h4>
               <p id="location-description">{this.props.clickedNbhGrp}</p>
             </div>

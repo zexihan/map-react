@@ -8,8 +8,8 @@ class Footer extends Component {
     return (
       <div className="foot navbar-fixed-bottom row">
         <div className="col align-self-center">
-          Designed and built with all the love in the world by the TripElf
-          team.
+          Designed and built with all the love in the world by the trip
+          <span style={{ color: "#cc0041" }}>elf</span> team.
         </div>
       </div>
     );

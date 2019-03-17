@@ -15,7 +15,9 @@ class Landing extends Component {
         <div className="container-fluid fill-height">
           <div className="row page-1">
             <div className="col align-self-center">
-              <h1 className="brand">TripElf</h1>
+              <div className="brand">
+                trip<span style={{ color: "#cc0041" }}>elf</span>
+              </div>
               <p>Find your favourite neighborhood for your next trip.</p>
               <Link to={`/map`}>
                 <button type="button" className="btn btn-outline-dark">

@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="/">
-          TripElf
+          trip<span style={{ color: "#cc0041" }}>elf</span>
         </a>
         <button
           className="navbar-toggler"
