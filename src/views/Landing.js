@@ -27,7 +27,7 @@ class Landing extends Component {
             </div>
             <div className="col align-self-center text-center">
               <span style={{ fontSize: "192px" }}>
-                <i class="fas fa-map-marked-alt" />
+                <i className="fas fa-map-marked-alt" />
               </span>
             </div>
           </div>

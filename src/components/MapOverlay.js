@@ -179,23 +179,27 @@ class MapOverlay extends Component {
       <div>
         <div className="inline-block absolute left z1 txt-s txt-bold">
           <div className="control-btns">
-            <button
-              className="btn btn-light mr-1"
-              id="collapse-btn"
-              type="button"
-              onClick={this.onCollapseShowClicked}
-            >
-              <i className="fas fa-bars" />
-            </button>
             <Link to={`/`}>
               <button
-                className="btn btn-light ml-1"
+                className="btn btn-light mr-1"
                 id="home-btn"
                 type="button"
               >
                 <i className="fas fa-home" />
               </button>
             </Link>
+            <button
+              className="btn btn-light ml-1"
+              id="collapse-btn"
+              type="button"
+              onClick={this.onCollapseShowClicked}
+            >
+              <i className="fas fa-bars" />
+              {this.props.clickedNbh !== "" ? "\xa0\xa0" : ""}
+              {this.props.clickedNbh}
+              {this.props.clickedNbh !== "" ? ", " : ""}
+              {this.props.clickedNbhGrp}
+            </button>
           </div>
           <div className="map-overlay" id="collapse">
             <div className="row mt-2">
@@ -495,18 +499,21 @@ class MapOverlay extends Component {
               <div className="section-title mb-3">
                 📍Neighborhood overview
               </div>
-              <h4 id="location-title">{this.props.clickedNbh}</h4>
-              <p id="location-description">{this.props.clickedNbhGrp}</p>
+              <div className="nbh-title">
+                {this.props.clickedNbh}
+                {this.props.clickedNbh !== "" ? ", " : ""}
+                {this.props.clickedNbhGrp}
+              </div>
             </div>
           </div>
         </div>
         {this.state.isChoroplethMode ? (
           <div className="legend">
-            <h5 className="legend-title">
+            <div className="legend-title">
               {this.state.legendTitle.split("\n").map((val, key) => {
                 return <div key={key}>{val}</div>;
               })}
-            </h5>
+            </div>
             {this.state.legendColorList.map((legendColor, i) => {
               var legendStyle = this.assignLegendColor(legendColor);
               return (

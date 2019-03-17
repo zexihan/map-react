@@ -74,6 +74,14 @@
   font-size: 16px;
 }
 
+.nbh-title {
+  font-size: 18px;
+}
+
+.nbhgrp-title {
+  font-size: 16px;
+}
+
 .legend {
   background-color: #fff;
   border-radius: 3px;
@@ -88,6 +96,7 @@
 
 .legend-title {
     margin: 0 0 10px;
+    font-size: 14px;
 }
 
 .nav-pills > li > a.active {

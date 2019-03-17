@@ -9,7 +9,7 @@ class Video extends Component {
     return (
       <div>
         <Header />
-        <div class="container-fluid d-flex h-100">
+        <div className="container-fluid d-flex h-100">
           <div className="m-5 embed-responsive embed-responsive-16by9">
             <iframe
               className="embed-responsive-item"

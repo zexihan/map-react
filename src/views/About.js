@@ -12,59 +12,59 @@ class About extends Component {
     return (
       <div>
         <Header />
-        <div class="container-fluid d-flex h-100">
-          <div class="row m-5 justify-content-center align-self-center">
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-0 shadow">
+        <div className="container-fluid d-flex h-100">
+          <div className="row m-5 justify-content-center align-self-center">
+            <div className="col-xl-3 col-md-6 mb-4">
+              <div className="card border-0 shadow">
                 <img
                   src={`/images/man.png`}
-                  class="card-img-top"
+                  className="card-img-top"
                   alt="..."
                 />
-                <div class="card-body text-center">
-                  <h5 class="card-title mb-0">Zexi Han</h5>
-                  <div class="card-text text-black-50">Web Developer</div>
-                  <div class="card-text text-black-50">Data Scientist</div>
+                <div className="card-body text-center">
+                  <h5 className="card-title mb-0">Zexi Han</h5>
+                  <div className="card-text text-black-50">Web Developer</div>
+                  <div className="card-text text-black-50">Data Scientist</div>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-0 shadow">
+            <div className="col-xl-3 col-md-6 mb-4">
+              <div className="card border-0 shadow">
                 <img
                   src={`/images/boy.png`}
-                  class="card-img-top"
+                  className="card-img-top"
                   alt="..."
                 />
-                <div class="card-body text-center">
-                  <h5 class="card-title mb-0">Rui Wang</h5>
-                  <div class="card-text text-black-50">Data Scientist</div>
+                <div className="card-body text-center">
+                  <h5 className="card-title mb-0">Rui Wang</h5>
+                  <div className="card-text text-black-50">Data Scientist</div>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-0 shadow">
+            <div className="col-xl-3 col-md-6 mb-4">
+              <div className="card border-0 shadow">
                 <img
                   src={`/images/woman.png`}
-                  class="card-img-top"
+                  className="card-img-top"
                   alt="..."
                 />
-                <div class="card-body text-center">
-                  <h5 class="card-title mb-0">Wenyi Jin</h5>
-                  <div class="card-text text-black-50">Data Scientist</div>
+                <div className="card-body text-center">
+                  <h5 className="card-title mb-0">Wenyi Jin</h5>
+                  <div className="card-text text-black-50">Data Scientist</div>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-0 shadow">
+            <div className="col-xl-3 col-md-6 mb-4">
+              <div className="card border-0 shadow">
                 <img
                   src={`/images/girl.png`}
-                  class="card-img-top"
+                  className="card-img-top"
                   alt="..."
                 />
-                <div class="card-body text-center">
-                  <h5 class="card-title mb-0">Qinyu Chen</h5>
-                  <div class="card-text text-black-50">UX/UI Designer</div>
-                  <div class="card-text text-black-50">Data Scientist</div>
+                <div className="card-body text-center">
+                  <h5 className="card-title mb-0">Qinyu Chen</h5>
+                  <div className="card-text text-black-50">UX/UI Designer</div>
+                  <div className="card-text text-black-50">Data Scientist</div>
                 </div>
               </div>
             </div>
