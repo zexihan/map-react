@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+import "../static/Tutorial.css";
+
 class Video extends Component {
   render() {
     return (

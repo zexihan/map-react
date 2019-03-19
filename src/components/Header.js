@@ -5,9 +5,9 @@ class Header extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/">
+        <Link to={`/`} className="navbar-brand">
           trip<span style={{ color: "#cc0041" }}>elf</span>
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -19,26 +19,19 @@ class Header extends Component {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNavDropdown"
+        >
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to={`/`} className="nav-link">
-                Home <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={`/map`} className="nav-link">
+              <Link to={`/map`} target="_blank" className="nav-link">
                 Map
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={`/design`} className="nav-link">
-                Design
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={`/video`} className="nav-link">
-                Video
+              <Link to={`/tutorial`} className="nav-link">
+                Tutorial
               </Link>
             </li>
             <li className="nav-item">

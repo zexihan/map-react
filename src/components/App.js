@@ -4,8 +4,7 @@ import $ from "jquery";
 
 import Landing from '../views/Landing';
 import Map from '../views/Map';
-import Design from "../views/Design";
-import Video from "../views/Video";
+import Tutorial from "../views/Tutorial";
 import About from '../views/About';
 
 class App extends Component {
@@ -16,8 +15,7 @@ class App extends Component {
           <div>
             <Route exact path="/" component={Landing} />
             <Route exact path="/map" component={Map} />
-            <Route exact path="/design" component={Design} />
-            <Route exact path="/video" component={Video} />
+            <Route exact path="/tutorial" component={Tutorial} />
             <Route exact path="/about" component={About} />
           </div>
         </BrowserRouter>
