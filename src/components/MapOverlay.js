@@ -179,17 +179,8 @@ class MapOverlay extends Component {
       <div>
         <div className="inline-block absolute left z1 txt-s txt-bold">
           <div className="control-btns">
-            <Link to={`/`}>
-              <button
-                className="btn btn-light mr-1"
-                id="home-btn"
-                type="button"
-              >
-                <i className="fas fa-home" />
-              </button>
-            </Link>
             <button
-              className="btn btn-light ml-1"
+              className="btn btn-light"
               id="collapse-btn"
               type="button"
               onClick={this.onCollapseShowClicked}
