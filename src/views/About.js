@@ -12,7 +12,12 @@ class About extends Component {
     return (
       <div>
         <Header />
-        <div className="container-fluid d-flex h-100">
+        <div className="container-fluid">
+          <div className="row m-5 justify-content-center align-self-center">
+            <div className="col text-center about-title">
+              Nice to meet you
+            </div>
+          </div>
           <div className="row m-5 justify-content-center align-self-center">
             <div className="col-xl-3 col-md-6 mb-4">
               <div className="card border-0 shadow">
@@ -23,8 +28,12 @@ class About extends Component {
                 />
                 <div className="card-body text-center">
                   <h5 className="card-title mb-0">Zexi Han</h5>
-                  <div className="card-text text-black-50">Web Developer</div>
-                  <div className="card-text text-black-50">Data Scientist</div>
+                  <div className="card-text text-black-50">
+                    Web Developer
+                  </div>
+                  <div className="card-text text-black-50">
+                    Data Scientist
+                  </div>
                 </div>
               </div>
             </div>
@@ -37,7 +46,9 @@ class About extends Component {
                 />
                 <div className="card-body text-center">
                   <h5 className="card-title mb-0">Rui Wang</h5>
-                  <div className="card-text text-black-50">Data Scientist</div>
+                  <div className="card-text text-black-50">
+                    Data Scientist
+                  </div>
                 </div>
               </div>
             </div>
@@ -50,7 +61,9 @@ class About extends Component {
                 />
                 <div className="card-body text-center">
                   <h5 className="card-title mb-0">Wenyi Jin</h5>
-                  <div className="card-text text-black-50">Data Scientist</div>
+                  <div className="card-text text-black-50">
+                    Data Scientist
+                  </div>
                 </div>
               </div>
             </div>
@@ -63,10 +76,24 @@ class About extends Component {
                 />
                 <div className="card-body text-center">
                   <h5 className="card-title mb-0">Qinyu Chen</h5>
-                  <div className="card-text text-black-50">UX/UI Designer</div>
-                  <div className="card-text text-black-50">Data Scientist</div>
+                  <div className="card-text text-black-50">
+                    UX/UI Designer
+                  </div>
+                  <div className="card-text text-black-50">
+                    Data Scientist
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="row m-5 justify-content-center align-self-center">
+            <div className="col text-center about-title">
+              Design process of tripelf
+            </div>
+          </div>
+          <div className="row m-5 justify-content-center align-self-center">
+            <div className="col text-center">
+              Here is how we designed and created the tripelf.
             </div>
           </div>
         </div>

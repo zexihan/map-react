@@ -126,7 +126,7 @@ class Map extends Component {
         bearing: 0,
         pitch: 0
       });
-
+      
       var nbh = e.features[0].properties.neighbourhood;
       var nbhGrp = e.features[0].properties.neighbourhood_group;
       for (var i = 0; i < this.state.nbhList.length; i++) {
@@ -152,6 +152,7 @@ class Map extends Component {
           pitch: 0
         });
         $("#search").val("");
+        
         return;
       }
       map.setLayoutProperty(nbh + "-click", 'visibility', 'visible');

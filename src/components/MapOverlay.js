@@ -167,11 +167,11 @@ class MapOverlay extends Component {
   };
 
   onCollapseShowClicked = e => {
-    $("#collapse").toggle('slide', { direction: 'left' }, 100);
+    $("#collapse").show('slide', { direction: 'left' }, 100);
   };
 
   onCollapseHideClicked = e => {
-    $("#collapse").toggle("slide", { direction: "left" }, 100);
+    $("#collapse").hide("slide", { direction: "left" }, 100);
   };
 
   render() {
