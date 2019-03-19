@@ -13,12 +13,12 @@ class About extends Component {
       <div>
         <Header />
         <div className="container-fluid">
-          <div className="row m-5 justify-content-center align-self-center">
+          <div className="row m-5 align-self-center">
             <div className="col text-center about-title">
               Nice to meet you
             </div>
           </div>
-          <div className="row m-5 justify-content-center align-self-center">
+          <div className="row m-5 align-self-center">
             <div className="col-xl-3 col-md-6 mb-4">
               <div className="card border-0 shadow">
                 <img

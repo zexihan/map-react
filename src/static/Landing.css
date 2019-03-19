@@ -1,11 +1,15 @@
 .page-1 {
     /* height: calc(80vh - 80px); */
-    padding: 15vh 10vw;
+    padding: 20vh 10vw;
 }
 
 .page-2 {
     /* height: 100vh; */
     padding: 10vh 10vw;
+}
+
+.page-title {
+    font-size: 36px;
 }
 
 .page-3 {
@@ -19,7 +23,12 @@
 }
 
 .page-5 {
-    height: calc(80vh - 60px);;
+    height: 80vh;
+    padding: 10vh 10vw;
+}
+
+.page-6 {
+    height: calc(80vh - 60px);
     padding: 10vh 10vw;
 }
 

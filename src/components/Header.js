@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 class Header extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link to={`/`} className="navbar-brand">
+      <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <Link to={`/`} className="navbar-brand" style={{fontSize: "24px"}}>
           trip<span style={{ color: "#cc0041" }}>elf</span>
         </Link>
         <button

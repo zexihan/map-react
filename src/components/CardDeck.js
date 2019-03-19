@@ -1,6 +1,8 @@
 import React from 'react';
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
+import "../static/CardDeck.css";
+
 const CardDeck = () => (
   <div class="card-deck">
     <div class="card">
@@ -10,13 +12,14 @@ const CardDeck = () => (
         alt="..."
       />
       <div class="card-body">
+        <div class="card-title text-center">Feature 1</div>
+        <p class="card-text text-center">
+          Create a centralized hub for strategy and planning and ship more,
+          faster.
+        </p>
         <AnchorLink href="#feature-1">
-          <h5 class="card-title">Feature 1</h5>
+          <div class="card-text text-center">Learn more</div>
         </AnchorLink>
-        <p class="card-text">
-          This is a longer card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
-        </p>
       </div>
     </div>
     <div class="card">
@@ -26,13 +29,14 @@ const CardDeck = () => (
         alt="..."
       />
       <div class="card-body">
+        <div class="card-title text-center">Feature 2</div>
+        <p class="card-text text-center">
+          Ideate, organize insights, design flows, and collect feedback in real
+          time.
+        </p>
         <AnchorLink href="#feature-2">
-          <h5 class="card-title">Feature 2</h5>
+          <div class="card-text text-center">Learn more</div>
         </AnchorLink>
-        <p class="card-text">
-          This card has supporting text below as a natural lead-in to additional
-          content.
-        </p>
       </div>
     </div>
     <div class="card">
@@ -42,14 +46,14 @@ const CardDeck = () => (
         alt="..."
       />
       <div class="card-body">
-        <AnchorLink href="#feature-3">
-          <h5 class="card-title">Feature 3</h5>
-        </AnchorLink>
-        <p class="card-text">
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This card has even longer content than the
-          first to show that equal height action.
+        <div class="card-title text-center">Feature 3</div>
+        <p class="card-text text-center">
+          Keep everyone aligned, increase team throughput, and deliver better
+          results.
         </p>
+        <AnchorLink href="#feature-3">
+          <div class="card-text text-center">Learn more</div>
+        </AnchorLink>
       </div>
     </div>
   </div>
