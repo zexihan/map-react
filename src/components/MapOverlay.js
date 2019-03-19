@@ -231,7 +231,7 @@ class MapOverlay extends Component {
               </div>
             </div>
             <hr />
-            <div>
+            {!this.props.clickedNbh && <div>
               <div className="section-title mb-3">🗺️Choropleth map</div>
               <ul className="nav nav-pills" id="pills-tab" role="tablist">
                 <li className="nav-item">
@@ -484,18 +484,15 @@ class MapOverlay extends Component {
                   </select>
                 </div>
               </div>
-            </div>
-            <hr />
-            <div>
+            </div>}
+            {this.props.clickedNbh && <div>
               <div className="section-title mb-3">
-                📍Neighborhood overview
-              </div>
-              <div className="nbh-title">
-                {this.props.clickedNbh}
+                📍{this.props.clickedNbh}
                 {this.props.clickedNbh !== "" ? ", " : ""}
                 {this.props.clickedNbhGrp}
               </div>
-            </div>
+              
+            </div>}
           </div>
         </div>
         {this.state.isChoroplethMode ? (
