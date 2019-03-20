@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import NameCard from '../components/NameCard';
 
 import '../static/About.css';
 
@@ -13,8 +12,8 @@ class About extends Component {
       <div>
         <Header />
         <div className="container-fluid">
-          <div className="row m-5 align-self-center">
-            <div className="col text-center about-title">
+          <div className="row mt-5 align-self-center">
+            <div className="col mt-5 text-center about-title">
               Nice to meet you
             </div>
           </div>
@@ -88,12 +87,14 @@ class About extends Component {
           </div>
           <div className="row m-5 justify-content-center align-self-center">
             <div className="col text-center about-title">
-              Design process of tripelf
+              Design process of trip
+              <span style={{ color: "#cc0041" }}>elf</span>
             </div>
           </div>
           <div className="row m-5 justify-content-center align-self-center">
             <div className="col text-center">
-              Here is how we designed and created the tripelf.
+              Here is how we designed and created the trip
+              <span style={{ color: "#cc0041" }}>elf</span>.
             </div>
           </div>
         </div>

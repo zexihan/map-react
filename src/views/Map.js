@@ -5,7 +5,6 @@ import axios from 'axios';
 import * as turf from '@turf/turf';
 import $ from 'jquery';
 
-import Header from '../components/Header';
 import MapOverlay from '../components/MapOverlay';
 
 import MapService from "../services/MapService";

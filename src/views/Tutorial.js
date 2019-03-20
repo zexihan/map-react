@@ -12,10 +12,8 @@ class Video extends Component {
       <div>
         <Header />
         <div className="container-fluid">
-          <div className="row m-5 justify-content-center align-self-center">
-            <div className="col text-center about-title">
-              Tutorial
-            </div>
+          <div className="row mt-5 justify-content-center align-self-center">
+            <div className="col mt-5 text-center about-title">Tutorial</div>
           </div>
           <div className="row m-5 justify-content-center align-self-center">
             <div className="col text-center">
@@ -30,7 +28,6 @@ class Video extends Component {
               </div>
             </div>
           </div>
-          
         </div>
         <Footer />
       </div>

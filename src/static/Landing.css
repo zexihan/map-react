@@ -1,45 +1,86 @@
-.page-1 {
+/* Starting
+------------------------- */
+
+.starting-page {
     /* height: calc(80vh - 80px); */
     padding: 20vh 10vw;
-}
-
-.page-2 {
-    /* height: 100vh; */
-    padding: 10vh 10vw;
-}
-
-.page-title {
-    font-size: 36px;
-}
-
-.page-3 {
-    height: 80vh;
-    padding: 10vh 10vw;
-}
-
-.page-4 {
-    height: 80vh;
-    padding: 10vh 10vw;
-}
-
-.page-5 {
-    height: 80vh;
-    padding: 10vh 10vw;
-}
-
-.page-6 {
-    height: calc(80vh - 60px);
-    padding: 10vh 10vw;
 }
 
 .brand {
     font-size: 72px;
 }
 
+.logo {
+    font-size: 192px;
+}
+
+.get-started {
+    font-size: 20px;
+    color: #cc0041;
+    border-color: #cc0041;
+}
+
+.get-started:hover {
+    background-color: #cc0041;
+    border-color: #cc0041;
+}
+
+/* Marketing
+------------------------- */
+
+.marketing-title, .marketing-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+}
+
 .container-fluid {
     min-height: calc(100vh - 130px) !important;
 }
 
-.intro-card {
-    padding: 10vw;
+/* Featurettes
+------------------------- */
+
+.featurette {
+    padding: 10vh 10vw;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+/* Ending
+------------------------- */
+
+.ending-page {
+    height: calc(80vh - 60px);
+    padding: 10vh 10vw;
+}
+
+.ending-title {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  .marketing-title {
+    font-size: 36px;
+  }
+
+  .featurette-heading, .ending-title {
+    font-size: 50px;
+  }
+
+  .marketing-heading {
+    font-size: 30px;
+  }
+
 }
