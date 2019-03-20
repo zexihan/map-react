@@ -55,7 +55,15 @@
   }
 }
 
-ul {
+.browse-button {
+    color: #088;
+}
+
+.browse-button:hover {
+    color: #006666;
+}
+
+ul .nav {
     list-style-type: disc;
     -webkit-columns: 2;
     -moz-columns: 2;

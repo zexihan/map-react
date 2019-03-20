@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Select from "react-select";
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import 'jquery-ui-bundle';
@@ -29,46 +30,57 @@ class MapOverlay extends Component {
       },
       subTypeList: {
         Entertainment: [
-          "Restaurant",
-          "--Delis",
-          "--Pizza",
-          "--Chinese",
-          "--Sandwiches",
-          "--Italian",
-          "Shopping",
-          "--Women's Clothing",
-          "--Jewelry",
-          "--Accessories",
-          "--Drugstores",
-          "--Shoe Stores",
-          "Nightlife",
-          "--Bars",
-          "--Lounges",
-          "--American (New)",
-          "--American (Traditional)",
-          "--Pubs"
+          { value: "Restaurant", label: "Restaurant" },
+          { value: "--Delis", label: "--Delis" },
+          { value: "--Pizza", label: "--Pizza" },
+          { value: "--Chinese", label: "--Chinese" },
+          { value: "--Sandwiches", label: "--Sandwiches" },
+          { value: "--Italian", label: "--Italian" },
+          { value: "Shopping", label: "Shopping" },
+          { value: "--Women's Clothing", label: "--Women's Clothing" },
+          { value: "--Jewelry", label: "--Jewelry" },
+          { value: "--Accessories", label: "--Accessories" },
+          { value: "--Drugstores", label: "--Drugstores" },
+          { value: "--Shoe Stores", label: "--Shoe Stores" },
+          { value: "Nightlife", label: "Nightlife" },
+          { value: "--Bars", label: "--Bars" },
+          { value: "--Lounges", label: "--Lounges" },
+          { value: "--American (New)", label: "--American (New)" },
+          { value: "--American (Traditional)", label: "--American (Traditional)" },
+          { value: "--Pubs", label: "--Pubs" }
         ],
         Noise: [
-          "Noise Complaint",
-          "--Collection Truck Noise",
-          "--Noise",
-          "--Noise - Commercial",
-          "--Noise - Helicopter",
-          "--Noise - House of Worship",
-          "--Noise - Park",
-          "--Noise - Residential",
-          "--Noise - Street/Sidewalk",
-          "--Noise - Vehicle"
+          { value: "Noise Complaint", label: "Noise Complaint" },
+          { value: "--Collection Truck Noise", label: "--Collection Truck Noise" },
+          { value: "--Noise", label: "--Noise" },
+          { value: "--Noise - Commercial", label: "--Noise - Commercial" },
+          { value: "--Noise - Helicopter", label: "--Noise - Helicopter" },
+          { value: "--Noise - House of Worship", label: "--Noise - House of Worship" },
+          { value: "--Noise - Park", label: "--Noise - Park" },
+          { value: "--Noise - Residential", label: "--Noise - Residential" },
+          { value: "--Noise - Street/Sidewalk", label: "--Noise - Street/Sidewalk" },
+          { value: "--Noise - Vehicle", label: "--Noise - Vehicle" }
         ],
         Safety: [
-          "Offense Report",
-          "--FELONY",
-          "--MISDEMEANOR",
-          "--VIOLATION"
+          { value: "Offense Report", label: "Offense Report" },
+          { value: "--FELONY", label: "--FELONY" },
+          { value: "--MISDEMEANOR", label: "--MISDEMEANOR" },
+          { value: "--VIOLATION", label: "--VIOLATION" }
         ],
-        Expense: ["Price", "Cleaning Fee", "Extra People Fee"],
-        Host: ["Superhost", "Response Hour", "Response Rate"],
-        Transit: ["Bus Stop", "Subway Entrance"]
+        Expense: [
+          { value: "Price", label: "Price" },
+          { value: "Cleaning Fee", label: "Cleaning Fee" },
+          { value: "Extra People Fee", label: "Extra People Fee" }
+        ],
+        Host: [
+          { value: "Superhost", label: "Superhost" },
+          { value: "Response Hour", label: "Response Hour" },
+          { value: "Response Rate", label: "Response Rate" }
+        ],
+        Transit: [
+          { value: "Bus Stop", label: "Bus Stop" },
+          { value: "Subway Entrance", label: "Subway Entrance" }
+        ]
       },
       legendColorList: [],
       legendTextList: [],
@@ -78,10 +90,11 @@ class MapOverlay extends Component {
 
   componentDidMount() {
     let nbhNmList = this.props.nbhNmList;
+    console.log(nbhNmList);
     let _ = this;
     $("#search").autocomplete({
       source: nbhNmList,
-      select: function (e, ui) {
+      select: function(e, ui) {
         _.setState({
           searchInput: ui.item.value
         });
@@ -109,13 +122,15 @@ class MapOverlay extends Component {
   };
 
   selectPill = e => {
+    console.log(e.currentTarget.getAttribute("value"));
+    let type = e.currentTarget.getAttribute("value");
     this.props.selectPill(
-      e.target.text + "," + this.state.subTypeDefault[e.target.text]
+      type + "," + this.state.subTypeDefault[type]
     );
-    if (e.target.text !== "Home") {
+    if (type !== "Home") {
       this.setState({
         isChoroplethMode: true,
-        choroplethType: e.target.text
+        choroplethType: type
       });
       console.log(this.state.choroplethType);
     } else {
@@ -125,8 +140,8 @@ class MapOverlay extends Component {
       });
     }
     var legend = mapService.pickLegend(
-      e.target.text,
-      this.state.subTypeDefault[e.target.text]
+      type,
+      this.state.subTypeDefault[type]
     );
     this.setState({
       legendColorList: legend[0],
@@ -135,8 +150,8 @@ class MapOverlay extends Component {
     });
   };
 
-  selectSubType = e => {
-    var subType = e.target.value;
+  selectSubType = selectedOption => {
+    var subType = selectedOption.value;
     if (subType.startsWith("--")) {
       subType = subType.slice(2);
     }
@@ -169,7 +184,7 @@ class MapOverlay extends Component {
   };
 
   onCollapseShowClicked = e => {
-    $("#collapse").show('slide', { direction: 'left' }, 100);
+    $("#collapse").show("slide", { direction: "left" }, 100);
   };
 
   onCollapseHideClicked = e => {
@@ -213,69 +228,61 @@ class MapOverlay extends Component {
             </div>
             <hr />
             <div className="new-york-title">New York City</div>
-            <div className="input-group my-2">
-              <input
-                type="text"
-                id="search"
-                className="form-control"
-                placeholder="Search neighborhood..."
-                onChange={this.searchInputChanged}
-                onKeyDown={this.keyPress}
-                
-              />
-              <div className="input-group-append">
-                <button
-                  className="btn btn-outline-secondary"
-                  type="button"
-                  onClick={this.search}
-                >
-                  <i className="fas fa-search" />
-                </button>
+            
+            {this.state.choroplethType === null ? 
+            <div className="row my-2">
+              <div className="col-12">
+                <input
+                  type="text"
+                  id="search"
+                  className="form-control"
+                  placeholder="Search neighborhood..."
+                  onChange={this.searchInputChanged}
+                  onKeyDown={this.keyPress}
+                />
               </div>
             </div>
-            
+             : null }
+
             <hr />
             {!this.props.clickedNbh && (
               <div>
                 <div className="section-title mb-3">
                   <span role="img">🗺️</span>Choropleth map
                 </div>
+                <a
+                  className="nav-link active browse-button"
+                  onClick={this.selectPill}
+                  id="pills-home-tab"
+                  data-toggle="pill"
+                  href="#pills-home"
+                  role="tab"
+                  aria-controls="pills-home"
+                  aria-selected="true"
+                  value="Home"
+                >
+                  <div className="row text-center">
+                    <div className="col">
+                      <span style={{ fontSize: "36px" }}>
+                        <i class="fas fa-map-marked-alt" />
+                      </span>
+                    </div>
+                  </div>
+                  <div className="row text-center">
+                    <div className="col">
+                      Browse
+                    </div>
+                  </div>
+                </a>
                 <ul
                   className="nav nav-pills row"
                   id="pills-tab"
                   role="tablist"
                 >
-                  <li className="nav-item text-center py-2 col-6">
-                    <span className="m-2" style={{ fontSize: "36px" }}>
-                      <i class="fas fa-redo" />
-                    </span>
-                    <a
-                      className="nav-link active"
-                      onClick={this.selectPill}
-                      id="pills-home-tab"
-                      data-toggle="pill"
-                      href="#pills-home"
-                      role="tab"
-                      aria-controls="pills-home"
-                      aria-selected="true"
-                    >
-                      Home
-                    </a>
-                  </li>
                   <ChoroplethButton
                     selectPill={this.selectPill}
                     type="Entertainment"
                     icon="fas fa-utensils"
-                  />
-                  <ChoroplethButton
-                    selectPill={this.selectPill}
-                    type="Expense"
-                    icon="fas fa-dollar-sign"
-                  />
-                  <ChoroplethButton
-                    selectPill={this.selectPill}
-                    type="Host"
-                    icon="fas fa-user"
                   />
                   <ChoroplethButton
                     selectPill={this.selectPill}
@@ -292,6 +299,16 @@ class MapOverlay extends Component {
                     type="Transit"
                     icon="fas fa-subway"
                   />
+                  <ChoroplethButton
+                    selectPill={this.selectPill}
+                    type="Expense"
+                    icon="fas fa-dollar-sign"
+                  />
+                  <ChoroplethButton
+                    selectPill={this.selectPill}
+                    type="Host"
+                    icon="fas fa-user"
+                  />
                 </ul>
                 <div className="tab-content" id="pills-tabContent">
                   <div
@@ -306,27 +323,13 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-entertainment-tab"
                   >
-                    <label
-                      className="my-1 mr-2"
-                      htmlFor="entertainment-select"
-                    >
-                      Type
-                    </label>
-                    <select
-                      className="custom-select my-1 mr-sm-2"
+                    <Select
+                      value={this.state.selectedOption}
                       onChange={this.selectSubType}
-                      id="entertainment-select"
-                    >
-                      {this.state.subTypeList["Entertainment"].map(
-                        subType => {
-                          return (
-                            <option value={subType} key={subType}>
-                              {subType}
-                            </option>
-                          );
-                        }
-                      )}
-                    </select>
+                      options={this.state.subTypeList["Entertainment"]}
+                      isSearchable={false}
+                      defaultValue={{value: "Restaurant", label: "Restaurant" }}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
@@ -334,22 +337,13 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-expense-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="expense-select">
-                      Type
-                    </label>
-                    <select
-                      className="custom-select my-1 mr-sm-2"
+                    <Select
+                      value={this.state.selectedOption}
                       onChange={this.selectSubType}
-                      id="expense-select"
-                    >
-                      {this.state.subTypeList["Expense"].map(subType => {
-                        return (
-                          <option value={subType} key={subType}>
-                            {subType}
-                          </option>
-                        );
-                      })}
-                    </select>
+                      options={this.state.subTypeList["Expense"]}
+                      isSearchable={false}
+                      defaultValue={{ value: "Price", label: "Price" }}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
@@ -357,22 +351,13 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-host-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="host-select">
-                      Type
-                    </label>
-                    <select
-                      className="custom-select my-1 mr-sm-2"
+                    <Select
+                      value={this.state.selectedOption}
                       onChange={this.selectSubType}
-                      id="host-select"
-                    >
-                      {this.state.subTypeList["Host"].map(subType => {
-                        return (
-                          <option value={subType} key={subType}>
-                            {subType}
-                          </option>
-                        );
-                      })}
-                    </select>
+                      options={this.state.subTypeList["Host"]}
+                      isSearchable={false}
+                      defaultValue={{ value: "Restaurant", label: "Restaurant" }}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
@@ -380,22 +365,13 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-noise-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="noise-select">
-                      Type
-                    </label>
-                    <select
-                      className="custom-select my-1 mr-sm-2"
+                    <Select
+                      value={this.state.selectedOption}
                       onChange={this.selectSubType}
-                      id="noise-select"
-                    >
-                      {this.state.subTypeList["Noise"].map(subType => {
-                        return (
-                          <option value={subType} key={subType}>
-                            {subType}
-                          </option>
-                        );
-                      })}
-                    </select>
+                      options={this.state.subTypeList["Noise"]}
+                      isSearchable={false}
+                      defaultValue={{ value: "Noise Complaint", label: "Noise Complaint" }}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
@@ -403,22 +379,13 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-safety-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="safety-select">
-                      Type
-                    </label>
-                    <select
-                      className="custom-select my-1 mr-sm-2"
+                    <Select
+                      value={this.state.selectedOption}
                       onChange={this.selectSubType}
-                      id="safety-select"
-                    >
-                      {this.state.subTypeList["Safety"].map(subType => {
-                        return (
-                          <option value={subType} key={subType}>
-                            {subType}
-                          </option>
-                        );
-                      })}
-                    </select>
+                      options={this.state.subTypeList["Safety"]}
+                      isSearchable={false}
+                      defaultValue={{ value: "Offense Report", label: "Offense Report" }}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
@@ -426,22 +393,13 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-transit-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="transit-select">
-                      Type
-                    </label>
-                    <select
-                      className="custom-select my-1 mr-sm-2"
+                    <Select
+                      value={this.state.selectedOption}
                       onChange={this.selectSubType}
-                      id="transit-select"
-                    >
-                      {this.state.subTypeList["Transit"].map(subType => {
-                        return (
-                          <option value={subType} key={subType}>
-                            {subType}
-                          </option>
-                        );
-                      })}
-                    </select>
+                      options={this.state.subTypeList["Transit"]}
+                      isSearchable={false}
+                      defaultValue={{ value: "Bus Stop", label: "Bus Stop" }}
+                    />
                   </div>
                 </div>
               </div>

@@ -3,6 +3,7 @@ import * as d3 from "d3";
 
 class MapService {
   static myInstance = null;
+  API_URL = "https://tripelf-server.herokuapp.com/api";
   neighbourhoods = [];
   legendColorList = [];
   entertainmentColorScheme = d3.schemeOrRd[9].reverse();
@@ -39,6 +40,7 @@ class MapService {
     switch (true) {
       case choroplethType === "Entertainment": {
         var filename = "";
+        var type = "";
         if (
           [
             "Restaurant",
@@ -50,6 +52,7 @@ class MapService {
           ].includes(subType)
         ) {
           filename = "restaurant_top5_count.csv";
+          type = "restaurants";
         } else if (
           [
             "Shopping",
@@ -61,34 +64,41 @@ class MapService {
           ].includes(subType)
         ) {
           filename = "shopping_top5_count.csv";
+          type = "shopping";
         } else {
           filename = "nightlife_top5_count.csv";
+          type = "nightlife";
         }
-        let list = await d3.csv("data/" + filename);
-        const min = d3.min(list, function(d) {
-          return Number(d[subType]);
-        });
-        const max = d3.max(list, function(d) {
-          return Number(d[subType]);
-        });
-        console.log(min, max);
+
+        console.log(this.API_URL + "/" + type + "/" + subType);
+        let listRes = await fetch(this.API_URL + "/" + type + "/" + subType);
+        let list = await listRes.json();
+        console.log(list);
+
+        const min = d3.min(list, function (d) { return d[subType]; });
+        const max = d3.max(list, function (d) { return d[subType]; });
+        console.log("Min: " + min + " Max: " + max)
+
         for (var i = 0; i < list.length; i++) {
           var interpolateColor = await d3.interpolateOrRd(
-            (Number(list[i][subType]) - min) / (max - min)
+            (list[i][subType] - min) / (max - min)
           );
           list[i].color = this.rgb2hex(interpolateColor);
         }
         return { list };
       }
       case choroplethType === "Expense": {
-        let list = await d3.csv("data/expense.csv");
-        const min = d3.min(list, function(d) {
-          return Number(d[subType]);
-        });
-        const max = d3.max(list, function(d) {
-          return Number(d[subType]);
-        });
-        console.log(min, max);
+
+        console.log(this.API_URL + "/" + choroplethType.toLowerCase() + "/" + subType);
+
+        let listRes = await fetch(this.API_URL + "/expense/" + subType);
+        let list = await listRes.json();
+        console.log(list);
+
+        const min = d3.min(list, function (d) { return d[subType]; });
+        const max = d3.max(list, function (d) { return d[subType]; });
+        console.log("Min: " + min + " Max: " + max)
+
         for (var i = 0; i < list.length; i++) {
           var interpolateColor = await d3.interpolatePuRd(
             (Number(list[i][subType]) - min) / (max - min)
@@ -98,31 +108,39 @@ class MapService {
         return { list };
       }
       case choroplethType === "Host": {
-        let list = await d3.csv("data/host.csv");
-        const min = d3.min(list, function(d) {
-          return Number(d[subType]);
-        });
-        const max = d3.max(list, function(d) {
-          return Number(d[subType]);
-        });
-        console.log(min, max);
+
+        console.log(this.API_URL + "/" + choroplethType.toLowerCase() + "/" + subType);
+
+
+        let listRes = await fetch(this.API_URL + "/host/" + subType);
+        let list = await listRes.json();
+        console.log(list);
+
+        const min = d3.min(list, function (d) { return d[subType]; });
+        const max = d3.max(list, function (d) { return d[subType]; });
+        console.log("Min: " + min + " Max: " + max)
+
         for (var i = 0; i < list.length; i++) {
           var interpolateColor = await d3.interpolateBuGn(
             (Number(list[i][subType]) - min) / (max - min)
           );
           list[i].color = this.rgb2hex(interpolateColor);
         }
+        console.log(list)
         return { list };
       }
       case choroplethType === "Noise": {
-        let list = await d3.csv("data/noise_complaint_type_count.csv");
-        const min = d3.min(list, function(d) {
-          return Number(d[subType]);
-        });
-        const max = d3.max(list, function(d) {
-          return Number(d[subType]);
-        });
-        console.log(min, max);
+
+        console.log(this.API_URL + "/" + choroplethType.toLowerCase() + "/" + subType);
+
+        let listRes = await fetch(this.API_URL + "/noise/" + subType);
+        let list = await listRes.json();
+        console.log(list);
+
+        const min = d3.min(list, function (d) { return d[subType]; });
+        const max = d3.max(list, function (d) { return d[subType]; });
+        console.log("Min: " + min + " Max: " + max)
+        
         for (var i = 0; i < list.length; i++) {
           var interpolateColor = await d3.interpolateRdPu(
             (Number(list[i][subType]) - min) / (max - min)
@@ -132,14 +150,17 @@ class MapService {
         return { list };
       }
       case choroplethType === "Safety": {
-        let list = await d3.csv("data/safety_level_of_offense_count.csv");
-        const min = d3.min(list, function(d) {
-          return Number(d[subType]);
-        });
-        const max = d3.max(list, function(d) {
-          return Number(d[subType]);
-        });
-        console.log(min, max);
+
+        console.log(this.API_URL + "/" + choroplethType.toLowerCase() + "/" + subType);
+
+        let listRes = await fetch(this.API_URL + "/safety/" + subType);
+        let list = await listRes.json();
+        console.log(list);
+
+        const min = d3.min(list, function (d) { return d[subType]; });
+        const max = d3.max(list, function (d) { return d[subType]; });
+        console.log("Min: " + min + " Max: " + max)
+
         for (var i = 0; i < list.length; i++) {
           var interpolateColor = await d3.interpolateRdYlGn(
             1 - (Number(list[i][subType]) - min) / (max - min)
@@ -149,14 +170,17 @@ class MapService {
         return { list };
       }
       case choroplethType === "Transit": {
-        let list = await d3.csv("data/transit_count.csv");
-        const min = d3.min(list, function(d) {
-          return Number(d[subType]);
-        });
-        const max = d3.max(list, function(d) {
-          return Number(d[subType]);
-        });
-        console.log(min, max);
+
+        console.log(this.API_URL + "/" + choroplethType.toLowerCase() + "/" + subType);
+
+        let listRes = await fetch(this.API_URL + "/transit/" + subType);
+        let list = await listRes.json();
+        console.log(list);
+
+        const min = d3.min(list, function (d) { return d[subType]; });
+        const max = d3.max(list, function (d) { return d[subType]; });
+        console.log("Min: " + min + " Max: " + max)
+
         for (var i = 0; i < list.length; i++) {
           var interpolateColor = await d3.interpolateGnBu(
             (Number(list[i][subType]) - min) / (max - min)
