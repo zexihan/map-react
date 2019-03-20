@@ -356,7 +356,7 @@ class MapOverlay extends Component {
                       onChange={this.selectSubType}
                       options={this.state.subTypeList["Host"]}
                       isSearchable={false}
-                      defaultValue={{ value: "Restaurant", label: "Restaurant" }}
+                      defaultValue={{ value: "Superhost", label: "Superhost" }}
                     />
                   </div>
                   <div

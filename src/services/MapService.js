@@ -111,7 +111,6 @@ class MapService {
 
         console.log(this.API_URL + "/" + choroplethType.toLowerCase() + "/" + subType);
 
-
         let listRes = await fetch(this.API_URL + "/host/" + subType);
         let list = await listRes.json();
         console.log(list);
