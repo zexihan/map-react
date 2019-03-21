@@ -328,6 +328,7 @@ class MapOverlay extends Component {
                       onChange={this.selectSubType}
                       options={this.state.subTypeList["Entertainment"]}
                       isSearchable={false}
+                      autoFocus={false}
                       defaultValue={{value: "Restaurant", label: "Restaurant" }}
                     />
                   </div>
@@ -342,6 +343,7 @@ class MapOverlay extends Component {
                       onChange={this.selectSubType}
                       options={this.state.subTypeList["Expense"]}
                       isSearchable={false}
+                      autoFocus={false}
                       defaultValue={{ value: "Price", label: "Price" }}
                     />
                   </div>
@@ -356,6 +358,7 @@ class MapOverlay extends Component {
                       onChange={this.selectSubType}
                       options={this.state.subTypeList["Host"]}
                       isSearchable={false}
+                      autoFocus={false}
                       defaultValue={{ value: "Superhost", label: "Superhost" }}
                     />
                   </div>
@@ -370,6 +373,7 @@ class MapOverlay extends Component {
                       onChange={this.selectSubType}
                       options={this.state.subTypeList["Noise"]}
                       isSearchable={false}
+                      autoFocus={false}
                       defaultValue={{ value: "Noise Complaint", label: "Noise Complaint" }}
                     />
                   </div>
@@ -384,6 +388,7 @@ class MapOverlay extends Component {
                       onChange={this.selectSubType}
                       options={this.state.subTypeList["Safety"]}
                       isSearchable={false}
+                      autoFocus={false}
                       defaultValue={{ value: "Offense Report", label: "Offense Report" }}
                     />
                   </div>
@@ -398,6 +403,7 @@ class MapOverlay extends Component {
                       onChange={this.selectSubType}
                       options={this.state.subTypeList["Transit"]}
                       isSearchable={false}
+                      autoFocus={false}
                       defaultValue={{ value: "Bus Stop", label: "Bus Stop" }}
                     />
                   </div>
