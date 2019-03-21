@@ -63,6 +63,10 @@
     color: #006666;
 }
 
+span #custom-select {
+  display: none;
+}
+
 ul .nav {
     list-style-type: disc;
     -webkit-columns: 2;

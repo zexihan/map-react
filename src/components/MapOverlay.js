@@ -30,57 +30,46 @@ class MapOverlay extends Component {
       },
       subTypeList: {
         Entertainment: [
-          { value: "Restaurant", label: "Restaurant" },
-          { value: "--Delis", label: "--Delis" },
-          { value: "--Pizza", label: "--Pizza" },
-          { value: "--Chinese", label: "--Chinese" },
-          { value: "--Sandwiches", label: "--Sandwiches" },
-          { value: "--Italian", label: "--Italian" },
-          { value: "Shopping", label: "Shopping" },
-          { value: "--Women's Clothing", label: "--Women's Clothing" },
-          { value: "--Jewelry", label: "--Jewelry" },
-          { value: "--Accessories", label: "--Accessories" },
-          { value: "--Drugstores", label: "--Drugstores" },
-          { value: "--Shoe Stores", label: "--Shoe Stores" },
-          { value: "Nightlife", label: "Nightlife" },
-          { value: "--Bars", label: "--Bars" },
-          { value: "--Lounges", label: "--Lounges" },
-          { value: "--American (New)", label: "--American (New)" },
-          { value: "--American (Traditional)", label: "--American (Traditional)" },
-          { value: "--Pubs", label: "--Pubs" }
+          "Restaurant",
+          "--Delis",
+          "--Pizza",
+          "--Chinese",
+          "--Sandwiches",
+          "--Italian",
+          "Shopping",
+          "--Women's Clothing",
+          "--Jewelry",
+          "--Accessories",
+          "--Drugstores",
+          "--Shoe Stores",
+          "Nightlife",
+          "--Bars",
+          "--Lounges",
+          "--American (New)",
+          "--American (Traditional)",
+          "--Pubs"
         ],
         Noise: [
-          { value: "Noise Complaint", label: "Noise Complaint" },
-          { value: "--Collection Truck Noise", label: "--Collection Truck Noise" },
-          { value: "--Noise", label: "--Noise" },
-          { value: "--Noise - Commercial", label: "--Noise - Commercial" },
-          { value: "--Noise - Helicopter", label: "--Noise - Helicopter" },
-          { value: "--Noise - House of Worship", label: "--Noise - House of Worship" },
-          { value: "--Noise - Park", label: "--Noise - Park" },
-          { value: "--Noise - Residential", label: "--Noise - Residential" },
-          { value: "--Noise - Street/Sidewalk", label: "--Noise - Street/Sidewalk" },
-          { value: "--Noise - Vehicle", label: "--Noise - Vehicle" }
+          "Noise Complaint",
+          "--Collection Truck Noise",
+          "--Noise",
+          "--Noise - Commercial",
+          "--Noise - Helicopter",
+          "--Noise - House of Worship",
+          "--Noise - Park",
+          "--Noise - Residential",
+          "--Noise - Street/Sidewalk",
+          "--Noise - Vehicle"
         ],
         Safety: [
-          { value: "Offense Report", label: "Offense Report" },
-          { value: "--FELONY", label: "--FELONY" },
-          { value: "--MISDEMEANOR", label: "--MISDEMEANOR" },
-          { value: "--VIOLATION", label: "--VIOLATION" }
+          "Offense Report",
+          "--FELONY",
+          "--MISDEMEANOR",
+          "--VIOLATION"
         ],
-        Expense: [
-          { value: "Price", label: "Price" },
-          { value: "Cleaning Fee", label: "Cleaning Fee" },
-          { value: "Extra People Fee", label: "Extra People Fee" }
-        ],
-        Host: [
-          { value: "Superhost", label: "Superhost" },
-          { value: "Response Hour", label: "Response Hour" },
-          { value: "Response Rate", label: "Response Rate" }
-        ],
-        Transit: [
-          { value: "Bus Stop", label: "Bus Stop" },
-          { value: "Subway Entrance", label: "Subway Entrance" }
-        ]
+        Expense: ["Price", "Cleaning Fee", "Extra People Fee"],
+        Host: ["Superhost", "Response Hour", "Response Rate"],
+        Transit: ["Bus Stop", "Subway Entrance"]
       },
       legendColorList: [],
       legendTextList: [],
@@ -150,8 +139,8 @@ class MapOverlay extends Component {
     });
   };
 
-  selectSubType = selectedOption => {
-    var subType = selectedOption.value;
+  selectSubType = e => {
+    var subType = e.target.value;
     if (subType.startsWith("--")) {
       subType = subType.slice(2);
     }
@@ -323,14 +312,27 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-entertainment-tab"
                   >
-                    <Select
-                      value={this.state.selectedOption}
+                    <label
+                      className="my-1 mr-2"
+                      htmlFor="entertainment-select"
+                    >
+                      Type
+                    </label>
+                    <select
+                      className="custom-select my-1 mr-sm-2"
                       onChange={this.selectSubType}
-                      options={this.state.subTypeList["Entertainment"]}
-                      isSearchable={false}
-                      autoFocus={false}
-                      defaultValue={{value: "Restaurant", label: "Restaurant" }}
-                    />
+                      id="entertainment-select"
+                    >
+                      {this.state.subTypeList["Entertainment"].map(
+                        subType => {
+                          return (
+                            <option value={subType} key={subType}>
+                              {subType}
+                            </option>
+                          );
+                        }
+                      )}
+                    </select>
                   </div>
                   <div
                     className="tab-pane fade"
@@ -338,14 +340,22 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-expense-tab"
                   >
-                    <Select
-                      value={this.state.selectedOption}
+                    <label className="my-1 mr-2" htmlFor="expense-select">
+                      Type
+                    </label>
+                    <select
+                      className="custom-select my-1 mr-sm-2"
                       onChange={this.selectSubType}
-                      options={this.state.subTypeList["Expense"]}
-                      isSearchable={false}
-                      autoFocus={false}
-                      defaultValue={{ value: "Price", label: "Price" }}
-                    />
+                      id="expense-select"
+                    >
+                      {this.state.subTypeList["Expense"].map(subType => {
+                        return (
+                          <option value={subType} key={subType}>
+                            {subType}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                   <div
                     className="tab-pane fade"
@@ -353,14 +363,22 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-host-tab"
                   >
-                    <Select
-                      value={this.state.selectedOption}
+                    <label className="my-1 mr-2" htmlFor="host-select">
+                      Type
+                    </label>
+                    <select
+                      className="custom-select my-1 mr-sm-2"
                       onChange={this.selectSubType}
-                      options={this.state.subTypeList["Host"]}
-                      isSearchable={false}
-                      autoFocus={false}
-                      defaultValue={{ value: "Superhost", label: "Superhost" }}
-                    />
+                      id="host-select"
+                    >
+                      {this.state.subTypeList["Host"].map(subType => {
+                        return (
+                          <option value={subType} key={subType}>
+                            {subType}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                   <div
                     className="tab-pane fade"
@@ -368,14 +386,22 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-noise-tab"
                   >
-                    <Select
-                      value={this.state.selectedOption}
+                    <label className="my-1 mr-2" htmlFor="noise-select">
+                      Type
+                    </label>
+                    <select
+                      className="custom-select my-1 mr-sm-2"
                       onChange={this.selectSubType}
-                      options={this.state.subTypeList["Noise"]}
-                      isSearchable={false}
-                      autoFocus={false}
-                      defaultValue={{ value: "Noise Complaint", label: "Noise Complaint" }}
-                    />
+                      id="noise-select"
+                    >
+                      {this.state.subTypeList["Noise"].map(subType => {
+                        return (
+                          <option value={subType} key={subType}>
+                            {subType}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                   <div
                     className="tab-pane fade"
@@ -383,14 +409,22 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-safety-tab"
                   >
-                    <Select
-                      value={this.state.selectedOption}
+                    <label className="my-1 mr-2" htmlFor="safety-select">
+                      Type
+                    </label>
+                    <select
+                      className="custom-select my-1 mr-sm-2"
                       onChange={this.selectSubType}
-                      options={this.state.subTypeList["Safety"]}
-                      isSearchable={false}
-                      autoFocus={false}
-                      defaultValue={{ value: "Offense Report", label: "Offense Report" }}
-                    />
+                      id="safety-select"
+                    >
+                      {this.state.subTypeList["Safety"].map(subType => {
+                        return (
+                          <option value={subType} key={subType}>
+                            {subType}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                   <div
                     className="tab-pane fade"
@@ -398,14 +432,22 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-transit-tab"
                   >
-                    <Select
-                      value={this.state.selectedOption}
+                    <label className="my-1 mr-2" htmlFor="transit-select">
+                      Type
+                    </label>
+                    <select
+                      className="custom-select my-1 mr-sm-2"
                       onChange={this.selectSubType}
-                      options={this.state.subTypeList["Transit"]}
-                      isSearchable={false}
-                      autoFocus={false}
-                      defaultValue={{ value: "Bus Stop", label: "Bus Stop" }}
-                    />
+                      id="transit-select"
+                    >
+                      {this.state.subTypeList["Transit"].map(subType => {
+                        return (
+                          <option value={subType} key={subType}>
+                            {subType}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                 </div>
               </div>
