@@ -59,14 +59,16 @@ class Landing extends Component {
           <div className="row featurette">
             <div className="col-md-7 align-self-center">
               <h2 className="featurette-heading">
-                First featurette heading.{" "}
-                <span className="text-muted">It'll blow your mind.</span>
+                Neighborhood overview.{" "}
+                <span className="text-muted">Summarized from Airbnb reviews.</span>
               </h2>
               <p className="lead">
-                Donec ullamcorper nulla non metus auctor fringilla.
-                Vestibulum id ligula porta felis euismod semper. Praesent
-                commodo cursus magna, vel scelerisque nisl consectetur.
-                Fusce dapibus, tellus ac cursus commodo.
+                Word-of-mouth-marketing has been one of the oldest and most reliable 
+                forms of marketing. It has been brought to the next level by the 
+                Internet along with a byproduct of information overload. TripElf 
+                provides you a nuanced neighborhood overview summarized from the Airbnb 
+                reviews with the state-of-the-art deep learning techniques which yield the 
+                most insightful information.
               </p>
             </div>
             <div className="col-md-5">
@@ -83,14 +85,13 @@ class Landing extends Component {
           <div className="row featurette">
             <div className="col-md-7 order-md-2 align-self-center">
               <h2 className="featurette-heading">
-                Oh yeah, it's that good.{" "}
-                <span className="text-muted">See for yourself.</span>
+                Topic summary.{" "}
+                <span className="text-muted">Hot topics selected by us.</span>
               </h2>
               <p className="lead">
-                Donec ullamcorper nulla non metus auctor fringilla.
-                Vestibulum id ligula porta felis euismod semper. Praesent
-                commodo cursus magna, vel scelerisque nisl consectetur.
-                Fusce dapibus, tellus ac cursus commodo.
+                Want to gain more detailed information about a neighborhood in NYC? TripElf 
+                provides overviews from selected hot topics using advanced query-based 
+                summarization and presents you the specific information you want.
               </p>
             </div>
             <div className="col-md-5 order-md-1">
@@ -107,14 +108,13 @@ class Landing extends Component {
           <div className="row featurette">
             <div className="col-md-7 align-self-center">
               <h2 className="featurette-heading">
-                And lastly, this one.{" "}
-                <span className="text-muted">Checkmate.</span>
+                Choropleth map.{" "}
+                <span className="text-muted">Discover the best neighborhood from various aspects.</span>
               </h2>
               <p className="lead">
-                Donec ullamcorper nulla non metus auctor fringilla.
-                Vestibulum id ligula porta felis euismod semper. Praesent
-                commodo cursus magna, vel scelerisque nisl consectetur.
-                Fusce dapibus, tellus ac cursus commodo.
+                Noise, Safety, Entertainment & Recreation (Shopping, Restaurant, Nightlife) 
+                and Transit are the six hottest topics about which travelers cared most. By 
+                browsing through the choropleth map of the fine-grained topics.
               </p>
             </div>
             <div className="col-md-5">

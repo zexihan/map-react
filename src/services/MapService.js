@@ -4,6 +4,7 @@ import * as d3 from "d3";
 class MapService {
   static myInstance = null;
   API_URL = "https://tripelf-server.herokuapp.com/api";
+  // API_URL = "http://127.0.0.1:5000/api";
   neighbourhoods = [];
   legendColorList = [];
   entertainmentColorScheme = d3.schemeOrRd[9].reverse();
