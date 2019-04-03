@@ -217,21 +217,21 @@ class MapOverlay extends Component {
             </div>
             <hr />
             <div className="new-york-title">New York City</div>
-            
-            {this.state.choroplethType === null ? 
-            <div className="row my-2">
-              <div className="col-12">
-                <input
-                  type="text"
-                  id="search"
-                  className="form-control"
-                  placeholder="Search neighborhood..."
-                  onChange={this.searchInputChanged}
-                  onKeyDown={this.keyPress}
-                />
+
+            {this.state.choroplethType === null ? (
+              <div className="row my-2">
+                <div className="col-12">
+                  <input
+                    type="text"
+                    id="search"
+                    className="form-control"
+                    placeholder="Search neighborhood..."
+                    onChange={this.searchInputChanged}
+                    onKeyDown={this.keyPress}
+                  />
+                </div>
               </div>
-            </div>
-             : null }
+            ) : null}
 
             <hr />
             {!this.props.clickedNbh && (
@@ -258,9 +258,7 @@ class MapOverlay extends Component {
                     </div>
                   </div>
                   <div className="row text-center">
-                    <div className="col">
-                      Browse
-                    </div>
+                    <div className="col">Browse</div>
                   </div>
                 </a>
                 <ul
@@ -454,11 +452,66 @@ class MapOverlay extends Component {
             )}
             {this.props.clickedNbh && (
               <div>
-                <div className="section-title mb-3">
-                  <span role="img">📍</span>
-                  {this.props.clickedNbh}
-                  {this.props.clickedNbh !== "" ? ", " : ""}
-                  {this.props.clickedNbhGrp}
+                <div className="row section-title mb-2">
+                  <div className="col">
+                    <span role="img">📍</span>
+                    {this.props.clickedNbh}
+                    {this.props.clickedNbh !== "" ? ", " : ""}
+                    {this.props.clickedNbhGrp}
+                  </div>
+                </div>
+                <div className="row my-2">
+                  <div className="col">{this.props.scoreData.map(score => <div>{score}</div>)}</div>
+                </div>
+                <div className="row section-title-2 my-2">
+                  <div className="col">Overview</div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    {this.props.nlpData.cluster_sum}
+                  </div>
+                </div>
+                <div className="row section-title-2 my-2">
+                  <div className="col">Restaurants</div>
+                </div>
+                <div className="row">
+                  <div className="col">{this.props.nlpData.restaurant}</div>
+                </div>
+                <div className="row section-title-2 my-2">
+                  <div className="col">Shopping</div>
+                </div>
+                <div className="row">
+                  <div className="col">{this.props.nlpData.shopping}</div>
+                </div>
+                <div className="row section-title-2 my-2">
+                  <div className="col">Nightlife</div>
+                </div>
+                <div className="row">
+                  <div className="col">{this.props.nlpData.nightlife}</div>
+                </div>
+                <div className="row section-title-2 my-2">
+                  <div className="col">Noise</div>
+                </div>
+                <div className="row">
+                  <div className="col">{this.props.nlpData.noise}</div>
+                </div>
+                <div className="row section-title-2 my-2">
+                  <div className="col">Safety</div>
+                </div>
+                <div className="row">
+                  <div className="col">{this.props.nlpData.safety}</div>
+                </div>
+                <div className="row section-title-2 my-2">
+                  <div className="col">Transit</div>
+                </div>
+                <div className="row">
+                  <div className="col">{this.props.nlpData.transit}</div>
+                </div>
+                <div className="row section-title-2 my-2">
+                  <div className="col">Host</div>
+                </div>
+                <div className="row">
+                  <div className="col">{this.props.nlpData.host}</div>
                 </div>
               </div>
             )}

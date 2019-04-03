@@ -37,7 +37,9 @@ class Map extends Component {
         Noise: "#4A225D",
         Safety: "#f4f8c7",
         Transit: "#072146"
-      }
+      },
+      scoreData: [],
+      nlpData: {}
     };
   }
 
@@ -134,6 +136,16 @@ class Map extends Component {
           break;
         }
       }
+
+      mapService.findScoreByNbh(nbh.split("-")[1])
+        .then(scoreData => 
+          this.setState({ scoreData })
+        );
+
+      mapService.findNlpByNbh(nbh.split("-")[1])
+        .then(nlpData => 
+          this.setState({ nlpData })
+        );
 
       console.log(nbh.split("-")[0] + ", " + nbh[1]);
       if (this.state.lastClickedNbh !== "") {
@@ -310,6 +322,8 @@ class Map extends Component {
           selectPill={this.selectPill}
           selectTab={this.selectTab}
           nbhNmList={this.state.nbhNmList}
+          scoreData={this.state.scoreData}
+          nlpData={this.state.nlpData}
         />
         <div
           ref={el => (this.mapContainer = el)}
