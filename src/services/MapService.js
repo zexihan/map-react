@@ -49,6 +49,15 @@ class MapService {
     return nlpData;
   }
 
+  async findWfByNbh(nbh_idx) {
+    const wfRes = await fetch(
+      "https://tripelf-server.herokuapp.com/api/wf/" + nbh_idx
+    );
+    const wfData = await wfRes.json();
+    console.log(wfData);
+    return wfData;
+  }
+
   loadNeighbourhoods(neighbourhoods) {
     this.neighbourhoods = neighbourhoods;
   }
@@ -68,7 +77,6 @@ class MapService {
   async plotChoropleth(choroplethType, subType) {
     switch (true) {
       case choroplethType === "Entertainment": {
-        var filename = "";
         var type = "";
         if (
           [
@@ -80,7 +88,6 @@ class MapService {
             "Italian"
           ].includes(subType)
         ) {
-          filename = "restaurant_top5_count.csv";
           type = "restaurants";
         } else if (
           [
@@ -92,10 +99,8 @@ class MapService {
             "Shoe Stores"
           ].includes(subType)
         ) {
-          filename = "shopping_top5_count.csv";
           type = "shopping";
         } else {
-          filename = "nightlife_top5_count.csv";
           type = "nightlife";
         }
 

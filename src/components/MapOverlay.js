@@ -7,7 +7,9 @@ import 'jquery-ui-bundle/jquery-ui.css';
 
 import '../static/MapOverlay.css';
 
-import ChoroplethButton from '../components/ChoroplethButton';
+import ChoroplethButton from './ChoroplethButton';
+import RadialChart from './RadialChart';
+import NavCircles from "./NavCircles";
 
 import MapService from "../services/MapService";
 let mapService = MapService.getInstance();
@@ -73,7 +75,10 @@ class MapOverlay extends Component {
       },
       legendColorList: [],
       legendTextList: [],
-      legendTitle: ""
+      legendTitle: "",
+      nlpData: null,
+      scoreData: null,
+      wfData: null
     };
   }
 
@@ -89,8 +94,27 @@ class MapOverlay extends Component {
         });
       }
     });
-    $("#collapse").hide();
+    $("#collapse").show();
     $("#collapse").height($(window).height() * 0.95);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.nlpData !== this.props.nlpData) {
+      this.setState({
+        nlpData: nextProps.nlpData
+      })
+    }
+    if (nextProps.scoreData !== this.props.scoreData) {
+      this.setState({
+        scoreData: nextProps.scoreData
+      });
+    }
+    if (nextProps.wfData !== this.props.wfData) {
+      this.setState({
+        wfData: nextProps.wfData
+      });
+      console.log(nextProps.wfData);
+    }
   }
 
   searchInputChanged = e => {
@@ -258,7 +282,14 @@ class MapOverlay extends Component {
                     </div>
                   </div>
                   <div className="row text-center">
-                    <div className="col">Browse</div>
+                    <div className="col" style={{ fontSize: "14px" }}>
+                      Browse
+                    </div>
+                  </div>
+                  <div className="row text-center">
+                    <div className="col">
+                      Click a neighborhood on the map to see details
+                    </div>
                   </div>
                 </a>
                 <ul
@@ -450,7 +481,7 @@ class MapOverlay extends Component {
                 </div>
               </div>
             )}
-            {this.props.clickedNbh && (
+            {this.props.clickedNbh && this.state.nlpData && (
               <div>
                 <div className="row section-title mb-2">
                   <div className="col">
@@ -460,58 +491,104 @@ class MapOverlay extends Component {
                     {this.props.clickedNbhGrp}
                   </div>
                 </div>
-                <div className="row my-2">
-                  <div className="col">{this.props.scoreData.map(score => <div>{score}</div>)}</div>
-                </div>
                 <div className="row section-title-2 my-2">
                   <div className="col">Overview</div>
                 </div>
                 <div className="row">
                   <div className="col">
-                    {this.props.nlpData.cluster_sum}
+                    <RadialChart scoreData={this.state.scoreData} />
                   </div>
                 </div>
+
+                <div className="row section-title-3 mt-2 mb-1">
+                  <div className="col">What Airbnb guests say:</div>
+                </div>
+                <div className="row">
+                  <div className="col">{this.state.nlpData.reviews}</div>
+                </div>
+
+                <div className="row section-title-3 mt-2 mb-1">
+                  <div className="col">What Airbnb hosts say:</div>
+                </div>
+                <div className="row">
+                  <div className="col">{this.state.nlpData.overviews}</div>
+                </div>
+
+                <div className="row">
+                  <div className="col">
+                    <NavCircles wfData={this.state.wfData} />
+                  </div>
+                </div>
+
                 <div className="row section-title-2 my-2">
                   <div className="col">Restaurants</div>
                 </div>
                 <div className="row">
-                  <div className="col">{this.props.nlpData.restaurant}</div>
+                  <div className="col">
+                    {this.state.nlpData.restaurant.map(sentence => (
+                      <div>&#8226; {sentence}</div>
+                    ))}
+                  </div>
                 </div>
                 <div className="row section-title-2 my-2">
                   <div className="col">Shopping</div>
                 </div>
                 <div className="row">
-                  <div className="col">{this.props.nlpData.shopping}</div>
+                  <div className="col">
+                    {this.state.nlpData.shopping.map(sentence => (
+                      <div>&#8226; {sentence}</div>
+                    ))}
+                  </div>
                 </div>
                 <div className="row section-title-2 my-2">
                   <div className="col">Nightlife</div>
                 </div>
                 <div className="row">
-                  <div className="col">{this.props.nlpData.nightlife}</div>
+                  <div className="col">
+                    {this.state.nlpData.nightlife.map(sentence => (
+                      <div>&#8226; {sentence}</div>
+                    ))}
+                  </div>
                 </div>
                 <div className="row section-title-2 my-2">
                   <div className="col">Noise</div>
                 </div>
                 <div className="row">
-                  <div className="col">{this.props.nlpData.noise}</div>
+                  <div className="col">
+                    {this.state.nlpData.noise.map(sentence => (
+                      <div>&#8226; {sentence}</div>
+                    ))}
+                  </div>
                 </div>
                 <div className="row section-title-2 my-2">
                   <div className="col">Safety</div>
                 </div>
                 <div className="row">
-                  <div className="col">{this.props.nlpData.safety}</div>
+                  <div className="col">
+                    {this.state.nlpData.safety.map(sentence => (
+                      <div>&#8226; {sentence}</div>
+                    ))}
+                  </div>
                 </div>
                 <div className="row section-title-2 my-2">
                   <div className="col">Transit</div>
                 </div>
                 <div className="row">
-                  <div className="col">{this.props.nlpData.transit}</div>
+                  <div className="col">
+                    {this.state.nlpData.transit.map(sentence => (
+                      <div>&#8226; {sentence}</div>
+                    ))}
+                  </div>
                 </div>
                 <div className="row section-title-2 my-2">
                   <div className="col">Host</div>
                 </div>
                 <div className="row">
-                  <div className="col">{this.props.nlpData.host}</div>
+                  <div className="col">
+                    {this.state.nlpData.host.map(sentence => (
+                      <div>&#8226; {sentence}</div>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}

@@ -6,7 +6,7 @@
     "@turf/turf": "^5.1.6",
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
-    "d3": "^5.9.1",
+    "d3": "^5.9.2",
     "jquery": "^3.3.1",
     "jquery-ui-bundle": "^1.12.1-migrate",
     "point-in-polygon": "^1.0.1",

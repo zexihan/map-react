@@ -87,15 +87,19 @@ ul .nav {
 }
 
 .section-title {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .section-title-2 {
+  font-size: 20px;
+}
+
+.section-title-3 {
   font-size: 16px;
 }
 
 .new-york-title {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .nbh-title {

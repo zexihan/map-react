@@ -38,8 +38,9 @@ class Map extends Component {
         Safety: "#f4f8c7",
         Transit: "#072146"
       },
-      scoreData: [],
-      nlpData: {}
+      scoreData: {},
+      nlpData: {},
+      wfData: {}
     };
   }
 
@@ -146,6 +147,11 @@ class Map extends Component {
         .then(nlpData => 
           this.setState({ nlpData })
         );
+      
+      mapService.findWfByNbh(nbh.split("-")[1])
+        .then(wfData =>
+          this.setState({ wfData })
+        );
 
       console.log(nbh.split("-")[0] + ", " + nbh[1]);
       if (this.state.lastClickedNbh !== "") {
@@ -250,7 +256,7 @@ class Map extends Component {
     })
   }
 
-  search = (searchInput) => {
+  search = searchInput => {
     if (this.state.lastClickedNbh) {
       this.state.map.setLayoutProperty(this.state.lastClickedNbh + "-click", 'visibility', 'none');
     }
@@ -277,7 +283,7 @@ class Map extends Component {
     }
   }
 
-  selectPill = async (pillName) => {
+  selectPill = async pillName => {
     console.log(pillName);
     var choroplethType = pillName.split(",")[0];
     var subType = pillName.split(",")[1];
@@ -304,7 +310,7 @@ class Map extends Component {
     }
   }
 
-  selectTab = (tabName) => {
+  selectTab = tabName => {
     console.log(tabName);
   }
 
@@ -324,6 +330,7 @@ class Map extends Component {
           nbhNmList={this.state.nbhNmList}
           scoreData={this.state.scoreData}
           nlpData={this.state.nlpData}
+          wfData={this.state.wfData}
         />
         <div
           ref={el => (this.mapContainer = el)}
