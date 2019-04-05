@@ -486,7 +486,7 @@ class MapOverlay extends Component {
                 </div>
               </div>
             )}
-            {this.props.clickedNbh && this.state.nlpData && (
+            {this.props.clickedNbh && this.state.nlpData && this.state.scoreData && this.state.wfData && (
               <div>
                 <div className="row section-title mb-2">
                   <div className="col">
