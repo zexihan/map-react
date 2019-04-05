@@ -27,17 +27,7 @@ class MapService {
     );
     const scoreData = await scoreRes.json();
     console.log(scoreData);
-    const scoreList = [
-      scoreData["noise"],
-      scoreData["safety"],
-      scoreData["shopping"],
-      scoreData["restaurant"],
-      scoreData["nightlife"],
-      scoreData["expense"],
-      scoreData["transit"]
-    ];
-    console.log(scoreList);
-    return scoreList;
+    return scoreData;
   }
 
   async findNlpByNbh(nbh_idx) {

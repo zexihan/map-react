@@ -10,6 +10,7 @@ import '../static/MapOverlay.css';
 import ChoroplethButton from './ChoroplethButton';
 import RadialChart from './RadialChart';
 import NavCircles from "./NavCircles";
+import Topic from "./Topic";
 
 import MapService from "../services/MapService";
 let mapService = MapService.getInstance();
@@ -78,7 +79,8 @@ class MapOverlay extends Component {
       legendTitle: "",
       nlpData: null,
       scoreData: null,
-      wfData: null
+      wfData: null,
+      selectedTopic: "Restaurants"
     };
   }
 
@@ -88,7 +90,7 @@ class MapOverlay extends Component {
     let _ = this;
     $("#search").autocomplete({
       source: nbhNmList,
-      select: function(e, ui) {
+      select: function (e, ui) {
         _.setState({
           searchInput: ui.item.value
         });
@@ -180,8 +182,11 @@ class MapOverlay extends Component {
     });
   };
 
-  selectTab = e => {
-    this.props.selectTab(e.target.text);
+  toggleTopic = topic => {
+    console.log(topic);
+    this.setState({
+      selectedTopic: topic
+    });
   };
 
   assignLegendColor = legendColor => {
@@ -500,96 +505,56 @@ class MapOverlay extends Component {
                   </div>
                 </div>
 
-                <div className="row section-title-3 mt-2 mb-1">
-                  <div className="col">What Airbnb guests say:</div>
-                </div>
-                <div className="row">
-                  <div className="col">{this.state.nlpData.reviews}</div>
-                </div>
+                {this.state.nlpData.reviews !== null ? <div>
+                  <div className="row section-title-3 mt-2 mb-1">
+                    <div className="col">What Airbnb guests say:</div>
+                  </div>
+                  <div className="row">
+                    <div className="col">{this.state.nlpData.reviews}</div>
+                  </div>
 
-                <div className="row section-title-3 mt-2 mb-1">
-                  <div className="col">What Airbnb hosts say:</div>
-                </div>
-                <div className="row">
-                  <div className="col">{this.state.nlpData.overviews}</div>
-                </div>
+                  <div className="row section-title-3 mt-2 mb-1">
+                    <div className="col">What Airbnb hosts say:</div>
+                  </div>
+                  <div className="row">
+                    <div className="col">{this.state.nlpData.overviews}</div>
+                  </div>
 
-                <div className="row">
-                  <div className="col">
-                    <NavCircles wfData={this.state.wfData} />
-                  </div>
-                </div>
+                  <hr />
 
-                <div className="row section-title-2 my-2">
-                  <div className="col">Restaurants</div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    {this.state.nlpData.restaurant.map(sentence => (
-                      <div>&#8226; {sentence}</div>
-                    ))}
+                  <div className="row section-title-2 my-2">
+                    <div className="col">Hot Topics</div>
                   </div>
-                </div>
-                <div className="row section-title-2 my-2">
-                  <div className="col">Shopping</div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    {this.state.nlpData.shopping.map(sentence => (
-                      <div>&#8226; {sentence}</div>
-                    ))}
+
+                  <div className="row">
+                    <div className="col">
+                      <NavCircles wfData={this.state.wfData} toggleTopic={this.toggleTopic} selectedTopic={this.state.selectedTopic} />
+                    </div>
                   </div>
-                </div>
-                <div className="row section-title-2 my-2">
-                  <div className="col">Nightlife</div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    {this.state.nlpData.nightlife.map(sentence => (
-                      <div>&#8226; {sentence}</div>
-                    ))}
-                  </div>
-                </div>
-                <div className="row section-title-2 my-2">
-                  <div className="col">Noise</div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    {this.state.nlpData.noise.map(sentence => (
-                      <div>&#8226; {sentence}</div>
-                    ))}
-                  </div>
-                </div>
-                <div className="row section-title-2 my-2">
-                  <div className="col">Safety</div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    {this.state.nlpData.safety.map(sentence => (
-                      <div>&#8226; {sentence}</div>
-                    ))}
-                  </div>
-                </div>
-                <div className="row section-title-2 my-2">
-                  <div className="col">Transit</div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    {this.state.nlpData.transit.map(sentence => (
-                      <div>&#8226; {sentence}</div>
-                    ))}
-                  </div>
-                </div>
-                <div className="row section-title-2 my-2">
-                  <div className="col">Host</div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    {this.state.nlpData.host.map(sentence => (
-                      <div>&#8226; {sentence}</div>
-                    ))}
-                  </div>
-                </div>
+ 
+                  {(() => {
+                    switch(this.state.selectedTopic) {
+                      case "Restaurants":
+                        return <Topic topic={"Restaurants"} sentences={this.state.nlpData.restaurant} />;
+                      case "Shopping":
+                        return <Topic topic={"Shopping"} sentences={this.state.nlpData.shopping} />;
+                      case "Nightlife":
+                        return <Topic topic={"Nightlife"} sentences={this.state.nlpData.nightlife} />;
+                      case "Noise":
+                        return <Topic topic={"Noise"} sentences={this.state.nlpData.noise} />;
+                      case "Safety":
+                        return <Topic topic={"Safety"} sentences={this.state.nlpData.safety} />;
+                      case "Transit":
+                        return <Topic topic={"Transit"} sentences={this.state.nlpData.transit} />;
+                      case "Expense":
+                        return <Topic topic={"Expense"} sentences={this.state.nlpData.expense} />;
+                      case "Host":
+                        return <Topic topic={"Host"} sentences={this.state.nlpData.host} />;
+                      default:
+                        return null;
+                    }
+                  })()}
+                </div> : <p>lack of data</p>}
               </div>
             )}
           </div>

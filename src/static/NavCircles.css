@@ -1,0 +1,27 @@
+circle {
+  text-transform: uppercase;
+  opacity: 0.3;
+  cursor: pointer;
+  fill: #3d81b4;
+  -moz-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+circle:hover {
+  fill: #3D81B4;
+  opacity: 1;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  transform: translateY(-3px);
+}
+
+.cate {
+  float: right;
+  color: #27aae1;
+  
+}
+
+text{
+    font-size: 12px;
+}

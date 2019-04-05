@@ -138,17 +138,17 @@ class Map extends Component {
         }
       }
 
-      mapService.findScoreByNbh(nbh.split("-")[1])
+      mapService.findScoreByNbh(nbh.split("-").pop())
         .then(scoreData => 
           this.setState({ scoreData })
         );
 
-      mapService.findNlpByNbh(nbh.split("-")[1])
+      mapService.findNlpByNbh(nbh.split("-").pop())
         .then(nlpData => 
           this.setState({ nlpData })
         );
       
-      mapService.findWfByNbh(nbh.split("-")[1])
+      mapService.findWfByNbh(nbh.split("-").pop())
         .then(wfData =>
           this.setState({ wfData })
         );
