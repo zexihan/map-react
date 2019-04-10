@@ -21,7 +21,7 @@ class Landing extends Component {
               <p className="lead">
                 Find your favourite neighborhood for your next trip.
                 <br />
-                Powered by{" "}
+                Inspired by{" "}
                 <a
                   id="ia"
                   href="http://insideairbnb.com/about.html"
