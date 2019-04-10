@@ -20,6 +20,16 @@ class Landing extends Component {
               </div>
               <p className="lead">
                 Find your favourite neighborhood for your next trip.
+                <br />
+                Powered by{" "}
+                <a
+                  id="ia"
+                  href="http://insideairbnb.com/about.html"
+                  target="_blank"
+                >
+                  Inside Airbnb
+                </a>
+                .
               </p>
               <Link to={`/map`} target="_blank">
                 <button
@@ -60,15 +70,18 @@ class Landing extends Component {
             <div className="col-md-7 align-self-center">
               <h2 className="featurette-heading">
                 Neighborhood overview.{" "}
-                <span className="text-muted">Summarized from Airbnb reviews.</span>
+                <span className="text-muted">
+                  Summarized from Airbnb reviews.
+                </span>
               </h2>
               <p className="lead">
-                Word-of-mouth-marketing has been one of the oldest and most reliable 
-                forms of marketing. It has been brought to the next level by the 
-                Internet along with a byproduct of information overload. TripElf 
-                provides you a nuanced neighborhood overview summarized from the Airbnb 
-                reviews with the state-of-the-art deep learning techniques which yield the 
-                most insightful information.
+                Word-of-mouth-marketing has been one of the oldest and most
+                reliable forms of marketing. It has been brought to the next
+                level by the Internet along with a byproduct of information
+                overload. trip<span style={{ color: "#cc0041" }}>elf</span>{" "}
+                provides you a nuanced neighborhood overview summarized from
+                the Airbnb reviews with the state-of-the-art deep learning
+                techniques which yield the most insightful information.
               </p>
             </div>
             <div className="col-md-5">
@@ -86,12 +99,16 @@ class Landing extends Component {
             <div className="col-md-7 order-md-2 align-self-center">
               <h2 className="featurette-heading">
                 Topic summary.{" "}
-                <span className="text-muted">Hot topics selected by us.</span>
+                <span className="text-muted">
+                  Hot topics selected by us.
+                </span>
               </h2>
               <p className="lead">
-                Want to gain more detailed information about a neighborhood in NYC? TripElf 
-                provides overviews from selected hot topics using advanced query-based 
-                summarization and presents you the specific information you want.
+                Want to gain more detailed information about a neighborhood
+                in NYC? trip<span style={{ color: "#cc0041" }}>elf</span>{" "}
+                provides overviews from selected hot topics using advanced
+                query-based summarization and presents you the specific
+                information you want.
               </p>
             </div>
             <div className="col-md-5 order-md-1">
@@ -109,12 +126,15 @@ class Landing extends Component {
             <div className="col-md-7 align-self-center">
               <h2 className="featurette-heading">
                 Choropleth map.{" "}
-                <span className="text-muted">Discover the best neighborhood from various aspects.</span>
+                <span className="text-muted">
+                  Discover the best neighborhood from various aspects.
+                </span>
               </h2>
               <p className="lead">
-                Noise, Safety, Entertainment & Recreation (Shopping, Restaurant, Nightlife) 
-                and Transit are the six hottest topics about which travelers cared most. By 
-                browsing through the choropleth map of the fine-grained topics.
+                Noise, Safety, Entertainment & Recreation (Shopping,
+                Restaurant, Nightlife) and Transit are the six hottest
+                topics about which travelers cared most. By browsing through
+                the choropleth map of the fine-grained topics.
               </p>
             </div>
             <div className="col-md-5">

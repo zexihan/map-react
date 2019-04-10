@@ -486,77 +486,135 @@ class MapOverlay extends Component {
                 </div>
               </div>
             )}
-            {this.props.clickedNbh && this.state.nlpData && this.state.scoreData && this.state.wfData && (
-              <div>
-                <div className="row section-title mb-2">
-                  <div className="col">
-                    <span role="img">📍</span>
-                    {this.props.clickedNbh}
-                    {this.props.clickedNbh !== "" ? ", " : ""}
-                    {this.props.clickedNbhGrp}
-                  </div>
-                </div>
-                <div className="row section-title-2 my-2">
-                  <div className="col">Overview</div>
-                </div>
-                <div className="row">
-                  <div className="col">
-                    <RadialChart scoreData={this.state.scoreData} />
-                  </div>
-                </div>
-
-                {this.state.nlpData.reviews !== null ? <div>
-                  <div className="row section-title-3 mt-2 mb-1">
-                    <div className="col">What Airbnb guests say:</div>
-                  </div>
-                  <div className="row">
-                    <div className="col">{this.state.nlpData.reviews}</div>
-                  </div>
-
-                  <div className="row section-title-3 mt-2 mb-1">
-                    <div className="col">What Airbnb hosts say:</div>
-                  </div>
-                  <div className="row">
-                    <div className="col">{this.state.nlpData.overviews}</div>
-                  </div>
-
-                  <hr />
-
-                  <div className="row section-title-2 my-2">
-                    <div className="col">Hot Topics</div>
-                  </div>
-
-                  <div className="row">
+            {this.props.clickedNbh &&
+              this.state.nlpData &&
+              this.state.scoreData &&
+              this.state.wfData && (
+                <div>
+                  <div className="row section-title mb-2">
                     <div className="col">
-                      <NavCircles wfData={this.state.wfData} toggleTopic={this.toggleTopic} selectedTopic={this.state.selectedTopic} />
+                      <span role="img">📍</span>
+                      {this.props.clickedNbh}
+                      {this.props.clickedNbh !== "" ? ", " : ""}
+                      {this.props.clickedNbhGrp}
                     </div>
                   </div>
- 
-                  {(() => {
-                    switch(this.state.selectedTopic) {
-                      case "Restaurants":
-                        return <Topic topic={"Restaurants"} sentences={this.state.nlpData.restaurant} />;
-                      case "Shopping":
-                        return <Topic topic={"Shopping"} sentences={this.state.nlpData.shopping} />;
-                      case "Nightlife":
-                        return <Topic topic={"Nightlife"} sentences={this.state.nlpData.nightlife} />;
-                      case "Noise":
-                        return <Topic topic={"Noise"} sentences={this.state.nlpData.noise} />;
-                      case "Safety":
-                        return <Topic topic={"Safety"} sentences={this.state.nlpData.safety} />;
-                      case "Transit":
-                        return <Topic topic={"Transit"} sentences={this.state.nlpData.transit} />;
-                      case "Expense":
-                        return <Topic topic={"Expense"} sentences={this.state.nlpData.expense} />;
-                      case "Host":
-                        return <Topic topic={"Host"} sentences={this.state.nlpData.host} />;
-                      default:
-                        return null;
-                    }
-                  })()}
-                </div> : <p>lack of data</p>}
-              </div>
-            )}
+                  <div className="row instruction my-2">
+                    <div className="col">Click the neighborhood on the map again to go back</div>
+                  </div>
+                  <div className="row section-title-2 my-2">
+                    <div className="col">Overview</div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <RadialChart scoreData={this.state.scoreData} />
+                    </div>
+                  </div>
+
+                  {this.state.nlpData.reviews !== null ? (
+                    <div>
+                      <div className="row section-title-3 mt-2 mb-1">
+                        <div className="col">What Airbnb guests say:</div>
+                      </div>
+                      <div className="row">
+                        <div className="col">
+                          {this.state.nlpData.reviews}
+                        </div>
+                      </div>
+
+                      <div className="row section-title-3 mt-2 mb-1">
+                        <div className="col">What Airbnb hosts say:</div>
+                      </div>
+                      <div className="row">
+                        <div className="col">
+                          {this.state.nlpData.overviews}
+                        </div>
+                      </div>
+
+                      <hr />
+
+                      <div className="row section-title-2 my-2">
+                        <div className="col">Hot Topics</div>
+                      </div>
+
+                      <div className="row mb-3">
+                        <div className="col">
+                          <NavCircles
+                            wfData={this.state.wfData}
+                            toggleTopic={this.toggleTopic}
+                            selectedTopic={this.state.selectedTopic}
+                          />
+                        </div>
+                      </div>
+
+                      {(() => {
+                        switch (this.state.selectedTopic) {
+                          case "Restaurants":
+                            return (
+                              <Topic
+                                topic={"Restaurants"}
+                                sentences={this.state.nlpData.restaurant}
+                              />
+                            );
+                          case "Shopping":
+                            return (
+                              <Topic
+                                topic={"Shopping"}
+                                sentences={this.state.nlpData.shopping}
+                              />
+                            );
+                          case "Nightlife":
+                            return (
+                              <Topic
+                                topic={"Nightlife"}
+                                sentences={this.state.nlpData.nightlife}
+                              />
+                            );
+                          case "Noise":
+                            return (
+                              <Topic
+                                topic={"Noise"}
+                                sentences={this.state.nlpData.noise}
+                              />
+                            );
+                          case "Safety":
+                            return (
+                              <Topic
+                                topic={"Safety"}
+                                sentences={this.state.nlpData.safety}
+                              />
+                            );
+                          case "Transit":
+                            return (
+                              <Topic
+                                topic={"Transit"}
+                                sentences={this.state.nlpData.transit}
+                              />
+                            );
+                          case "Expense":
+                            return (
+                              <Topic
+                                topic={"Expense"}
+                                sentences={this.state.nlpData.expense}
+                              />
+                            );
+                          case "Host":
+                            return (
+                              <Topic
+                                topic={"Host"}
+                                sentences={this.state.nlpData.host}
+                              />
+                            );
+                          default:
+                            return null;
+                        }
+                      })()}
+                    </div>
+                  ) : (
+                    <p>lack of data</p>
+                  )}
+                </div>
+              )}
           </div>
         </div>
         {this.state.isChoroplethMode ? (

@@ -13,14 +13,14 @@ class Video extends Component {
         <Header />
         <div className="container-fluid">
           <div className="row mt-5 justify-content-center align-self-center">
-            <div className="col mt-5 text-center about-title">Tutorial</div>
+            <div className="col mt-5 text-center about-title">Video Tutorial</div>
           </div>
           <div className="row m-5 justify-content-center align-self-center">
             <div className="col text-center">
               <div className="embed-responsive embed-responsive-16by9">
                 <iframe
                   className="embed-responsive-item"
-                  src="https://www.youtube.com/embed/DaxYfL5lbCM"
+                  src="https://www.youtube.com/embed/-XSAqfK_UwY"
                   frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen

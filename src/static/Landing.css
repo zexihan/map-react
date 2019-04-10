@@ -89,3 +89,20 @@ body {
   }
 
 }
+
+#ia {
+  color: #0E2A40;
+  font-weight: bold;
+}
+
+#ia:hover {
+  color: rgb(21, 64, 97);
+}
+
+a {
+  color: #cc0041;
+}
+
+a:hover {
+  color: #ff0051;
+}

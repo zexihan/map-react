@@ -70,18 +70,18 @@ class NavCircles extends Component {
 
 
     var word_frequency = [{
-      pos1: 1,
+      pos1: 1.2,
       pos2: 40,
       num: this.state.wfData.safety * 500 + 50,
       cate: "Safety"
     }, {
       pos1: 3,
-      pos2: 60,
+      pos2: 70,
       num: this.state.wfData.expense * 500 + 50,
       cate: "Expense"
     }, {
-      pos1: 5,
-      pos2: 12,
+      pos1: 6,
+      pos2: 15,
       num: this.state.wfData.transit * 500 + 50,
       cate: "Transit"
     }, {
@@ -90,8 +90,8 @@ class NavCircles extends Component {
       num: this.state.wfData.noise * 500 + 50,
       cate: "Noise"
     }, {
-      pos1: 2,
-      pos2: 0,
+      pos1: 2.5,
+      pos2: -5,
       num: this.state.wfData.host * 500 + 50,
       cate: "Host"
     }, {
@@ -100,7 +100,7 @@ class NavCircles extends Component {
       num: this.state.wfData.shopping * 500 + 50,
       cate: "Shopping"
     }, {
-      pos1: 3,
+      pos1: 4,
       pos2: -40,
       num: this.state.wfData.nightlife * 500 + 50,
       cate: "Nightlife"
@@ -137,7 +137,7 @@ class NavCircles extends Component {
         return x(d.pos1);
       })
       .attr("dy", function (d) {
-        return y(d.pos2);
+        return y(d.pos2 - 40);
       })
       .text(function (d) {
         return d.cate;
