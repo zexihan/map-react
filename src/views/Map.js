@@ -268,6 +268,19 @@ class Map extends Component {
         var center = turf.centroid(this.state.nbhPolygons[i]).geometry.coordinates;
         console.log(center);
         center[0] = center[0] - 0.015;
+
+        mapService
+          .findScoreByNbh(nbh.split("-").pop())
+          .then(scoreData => this.setState({ scoreData }));
+
+        mapService
+          .findNlpByNbh(nbh.split("-").pop())
+          .then(nlpData => this.setState({ nlpData }));
+
+        mapService
+          .findWfByNbh(nbh.split("-").pop())
+          .then(wfData => this.setState({ wfData }));
+
         this.state.map.flyTo({
           center: center,
           zoom: 12.5,

@@ -64,12 +64,7 @@ class MapOverlay extends Component {
           "--Noise - Street/Sidewalk",
           "--Noise - Vehicle"
         ],
-        Safety: [
-          "Offense Report",
-          "--FELONY",
-          "--MISDEMEANOR",
-          "--VIOLATION"
-        ],
+        Safety: ["Offense Report", "--FELONY", "--MISDEMEANOR", "--VIOLATION"],
         Expense: ["Price", "Cleaning Fee", "Extra People Fee"],
         Host: ["Superhost", "Response Hour", "Response Rate"],
         Transit: ["Bus Stop", "Subway Entrance"]
@@ -90,7 +85,7 @@ class MapOverlay extends Component {
     let _ = this;
     $("#search").autocomplete({
       source: nbhNmList,
-      select: function (e, ui) {
+      select: function(e, ui) {
         _.setState({
           searchInput: ui.item.value
         });
@@ -104,7 +99,7 @@ class MapOverlay extends Component {
     if (nextProps.nlpData !== this.props.nlpData) {
       this.setState({
         nlpData: nextProps.nlpData
-      })
+      });
     }
     if (nextProps.scoreData !== this.props.scoreData) {
       this.setState({
@@ -139,9 +134,7 @@ class MapOverlay extends Component {
   selectPill = e => {
     console.log(e.currentTarget.getAttribute("value"));
     let type = e.currentTarget.getAttribute("value");
-    this.props.selectPill(
-      type + "," + this.state.subTypeDefault[type]
-    );
+    this.props.selectPill(type + "," + this.state.subTypeDefault[type]);
     if (type !== "Home") {
       this.setState({
         isChoroplethMode: true,
@@ -154,10 +147,7 @@ class MapOverlay extends Component {
         choroplethType: null
       });
     }
-    var legend = mapService.pickLegend(
-      type,
-      this.state.subTypeDefault[type]
-    );
+    var legend = mapService.pickLegend(type, this.state.subTypeDefault[type]);
     this.setState({
       legendColorList: legend[0],
       legendTextList: legend[1],
@@ -297,11 +287,7 @@ class MapOverlay extends Component {
                     </div>
                   </div>
                 </a>
-                <ul
-                  className="nav nav-pills row"
-                  id="pills-tab"
-                  role="tablist"
-                >
+                <ul className="nav nav-pills row" id="pills-tab" role="tablist">
                   <ChoroplethButton
                     selectPill={this.selectPill}
                     type="Entertainment"
@@ -346,10 +332,7 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-entertainment-tab"
                   >
-                    <label
-                      className="my-1 mr-2"
-                      htmlFor="entertainment-select"
-                    >
+                    <label className="my-1 mr-2" htmlFor="entertainment-select">
                       Type
                     </label>
                     <select
@@ -357,15 +340,13 @@ class MapOverlay extends Component {
                       onChange={this.selectSubType}
                       id="entertainment-select"
                     >
-                      {this.state.subTypeList["Entertainment"].map(
-                        subType => {
-                          return (
-                            <option value={subType} key={subType}>
-                              {subType}
-                            </option>
-                          );
-                        }
-                      )}
+                      {this.state.subTypeList["Entertainment"].map(subType => {
+                        return (
+                          <option value={subType} key={subType}>
+                            {subType}
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                   <div
@@ -500,7 +481,9 @@ class MapOverlay extends Component {
                     </div>
                   </div>
                   <div className="row instruction my-2">
-                    <div className="col">Click the neighborhood on the map again to go back</div>
+                    <div className="col">
+                      Click the neighborhood on the map again to go back
+                    </div>
                   </div>
                   <div className="row section-title-2 my-2">
                     <div className="col">Overview</div>
@@ -517,9 +500,7 @@ class MapOverlay extends Component {
                         <div className="col">What Airbnb guests say:</div>
                       </div>
                       <div className="row">
-                        <div className="col">
-                          {this.state.nlpData.reviews}
-                        </div>
+                        <div className="col">{this.state.nlpData.reviews}</div>
                       </div>
 
                       <div className="row section-title-3 mt-2 mb-1">
