@@ -332,7 +332,7 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-entertainment-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="entertainment-select">
+                    <label className="my-1 mr-2 type" htmlFor="entertainment-select">
                       Type
                     </label>
                     <select
@@ -355,7 +355,7 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-expense-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="expense-select">
+                    <label className="my-1 mr-2 type" htmlFor="expense-select">
                       Type
                     </label>
                     <select
@@ -378,7 +378,7 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-host-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="host-select">
+                    <label className="my-1 mr-2 type" htmlFor="host-select">
                       Type
                     </label>
                     <select
@@ -401,7 +401,7 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-noise-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="noise-select">
+                    <label className="my-1 mr-2 type" htmlFor="noise-select">
                       Type
                     </label>
                     <select
@@ -424,7 +424,7 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-safety-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="safety-select">
+                    <label className="my-1 mr-2 type" htmlFor="safety-select">
                       Type
                     </label>
                     <select
@@ -447,7 +447,7 @@ class MapOverlay extends Component {
                     role="tabpanel"
                     aria-labelledby="pills-transit-tab"
                   >
-                    <label className="my-1 mr-2" htmlFor="transit-select">
+                    <label className="my-1 mr-2 type" htmlFor="transit-select">
                       Type
                     </label>
                     <select
@@ -497,19 +497,19 @@ class MapOverlay extends Component {
                   {this.state.nlpData.reviews !== null ? (
                     <div>
                       <div className="row section-title-3 mt-2 mb-1">
-                        <div className="col">What Airbnb guests say:</div>
-                      </div>
-                      <div className="row">
-                        <div className="col">{this.state.nlpData.reviews}</div>
-                      </div>
-
-                      <div className="row section-title-3 mt-2 mb-1">
                         <div className="col">What Airbnb hosts say:</div>
                       </div>
                       <div className="row">
                         <div className="col">
                           {this.state.nlpData.overviews}
                         </div>
+                      </div>
+
+                      <div className="row section-title-3 mt-2 mb-1">
+                        <div className="col">What Airbnb guests say:</div>
+                      </div>
+                      <div className="row">
+                        <div className="col">{this.state.nlpData.reviews}</div>
                       </div>
 
                       <hr />

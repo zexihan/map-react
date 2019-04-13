@@ -40,10 +40,8 @@ class Landing extends Component {
                 </button>
               </Link>
             </div>
-            <div className="col align-self-center text-center">
-              <span className="logo">
-                <i className="fas fa-map-marked-alt" />
-              </span>
+            <div className="col align-self-center text-center m-3">
+              <img className="img-fluid brand-img" src="/images/brand.jpg" />
             </div>
           </div>
 
@@ -87,7 +85,7 @@ class Landing extends Component {
             <div className="col-md-5">
               <img
                 className="featurette-image img-fluid mx-auto"
-                src="https://msaf.com.fj/wp-content/uploads/2017/06/500x500.png"
+                src="/images/feature-1.jpg"
               />
             </div>
           </div>
@@ -114,7 +112,7 @@ class Landing extends Component {
             <div className="col-md-5 order-md-1">
               <img
                 className="featurette-image img-fluid mx-auto"
-                src="https://msaf.com.fj/wp-content/uploads/2017/06/500x500.png"
+                src="/images/feature-2.jpg"
               />
             </div>
           </div>
@@ -140,7 +138,7 @@ class Landing extends Component {
             <div className="col-md-5">
               <img
                 className="featurette-image img-fluid mx-auto"
-                src="https://msaf.com.fj/wp-content/uploads/2017/06/500x500.png"
+                src="/images/feature-3.jpg"
               />
             </div>
           </div>

@@ -7,7 +7,7 @@ const CardDeck = () => (
   <div className="card-deck">
     <div className="card">
       <img
-        src="http://s1.1zoom.me/b4851/935/USA_Evening_Houses_Skyscrapers_Manhattan_New_York_520779_1920x1080.jpg"
+        src="/images/feature-1.jpg"
         className="card-img-top rounded"
         alt="..."
       />
@@ -25,7 +25,7 @@ const CardDeck = () => (
     </div>
     <div className="card">
       <img
-        src="https://wallpapersmug.com/download/1600x900/86cfdb/new-york-city-night-buildigs.jpg"
+        src="/images/feature-2.jpg"
         className="card-img-top rounded"
         alt="..."
       />
@@ -41,7 +41,7 @@ const CardDeck = () => (
     </div>
     <div className="card">
       <img
-        src="https://images.wallpaperscraft.com/image/new_york_times_square_night_city_metropolis_58676_1600x900.jpg"
+        src="/images/feature-3.jpg"
         className="card-img-top rounded"
         alt="..."
       />

@@ -36,6 +36,10 @@ class About extends Component {
                   <div className="card-text text-black-50">
                     Data Scientist
                   </div>
+                  <hr className="about-hr" />
+                  <div className="card-text email">
+                    zexihan@outlook.com
+                  </div>
                 </div>
               </div>
             </div>
@@ -54,6 +58,10 @@ class About extends Component {
                   <div className="card-text text-black-50">
                     Data Scientist
                   </div>
+                  <hr className="about-hr" />
+                  <div className="card-text email">
+                    raywcoke@gmail.com
+                  </div>
                 </div>
               </div>
             </div>
@@ -71,6 +79,10 @@ class About extends Component {
                   <h5 className="card-title mb-0">Wenyi Jin</h5>
                   <div className="card-text text-black-50">
                     Data Scientist
+                  </div>
+                  <hr className="about-hr" />
+                  <div className="card-text email">
+                    admail1121@gmail.com
                   </div>
                 </div>
               </div>
@@ -93,50 +105,151 @@ class About extends Component {
                   <div className="card-text text-black-50">
                     Data Scientist
                   </div>
+                  <hr className="about-hr" />
+                  <div className="card-text email">
+                    chenqinyuu@gmail.com
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="row mt-5 mb-3 justify-content-center align-self-center">
             <div className="col text-center about-title">
-              Design process of trip
+              About trip
               <span style={{ color: "#cc0041" }}>elf</span>
             </div>
           </div>
           <div className="row mt-3 mb-5 justify-content-center align-self-center">
-            <div className="col">
-              <h3>Introduction</h3>
-              <p>
-                When planning a trip to an unfamiliar city, it is always
-                difficult to pick a short-term rental neighborhood that
-                could give us the best experience. We present an
-                interactive-map web application named TripElf to help
-                travelers make decisions on this with ease. Most travelers
-                appreciate hearing or reading others’ opinions before making
-                a decision. And it is time-consuming to gather information
-                about these neighborhoods. TripElf can satisfy both of the
-                needs for travelers. It provides users with intuitive
-                knowledge about the neighborhoods by demonstrating the
-                machine-generated overviews of the neighborhoods, based on
-                Airbnb listing reviews written by guests who truly
-                experienced living in certain neighborhoods.
-              </p>
-              <p>
-                We summarize text overview of the neighborhoods with various
-                unsupervised text modeling approaches, including KL-SUM,
-                LDA-SUM, Summarization by Clustering Sentences Embedding,
-                and Query-based Summarization with Word Embedding. We
-                provide comprehensive empirical evidence showing that our
-                machine-generated overviews are representative of the
-                average living experience of the neighborhood. In addition,
-                descriptive statistics of the neighborhoods from six aspects
-                that the travelers may concern, including entertainment,
-                transit, noise, expense, safety, and host, are also conveyed
-                to the users. We build a React web app written with modern
-                JavaScript for data visualization. Both high-level
-                choropleth map and fine-grained details of the neighborhoods
-                are demonstrated through our interactive-map web app.
-              </p>
+            <div className="col mx-sm-5">
+              <div className="accordion" id="accordionExample">
+                {/* section 1 */}
+                <div className="card">
+                  <div className="card-header" id="headingOne">
+                    <h5 className="mb-0">
+                      <button className="btn btn-block btn-link about-section-title" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        1 Motivation
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div className="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+
+                {/* section 2 */}
+                <div className="card">
+                  <div className="card-header" id="headingTwo">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link btn-block collapsed about-section-title" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        2 Data
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div className="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+
+                {/* section 3 */}
+                <div className="card">
+                  <div className="card-header" id="headingThree">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link btn-block collapsed about-section-title" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        3 Data Analysis
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div className="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+
+                {/* section 4 */}
+                <div className="card">
+                  <div className="card-header" id="headingThree">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link btn-block collapsed about-section-title" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                        4 Task Analysis
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseFour" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div className="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+
+                {/* section 5 */}
+                <div className="card">
+                  <div className="card-header" id="headingThree">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link btn-block collapsed about-section-title" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                        5 Model Description
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseFive" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div className="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+
+                {/* section 6 */}
+                <div className="card">
+                  <div className="card-header" id="headingThree">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link btn-block collapsed about-section-title" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                        6 Design Process
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseSix" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div className="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+
+                {/* section 7 */}
+                <div className="card">
+                  <div className="card-header" id="headingThree">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link btn-block collapsed about-section-title" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseThree">
+                        7 Final Visualization
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseSeven" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div className="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+
+                {/* section 8 */}
+                <div className="card">
+                  <div className="card-header" id="headingThree">
+                    <h5 className="mb-0">
+                      <button className="btn btn-link btn-block collapsed about-section-title" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseThree">
+                        8 Conclusion
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseEight" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div className="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

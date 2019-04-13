@@ -1,3 +1,27 @@
 .about-title {
     font-size: 36px;
 }
+
+.about-hr {
+    margin-top: 5px; 
+    margin-bottom: 5px 
+}
+
+.email {
+    color: #cc0041;
+}
+
+.about-section-title {
+    font-size: 24px;
+    color: black;
+}
+
+.about-section-title:hover {
+    background-color: rgb(247, 247, 247);
+    text-decoration: none;
+}
+
+.about-section-title:focus {
+    background-color: rgb(247, 247, 247);
+    text-decoration: none;
+}

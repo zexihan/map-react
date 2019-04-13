@@ -8,15 +8,15 @@ body {
 
 .starting-page {
     /* height: calc(80vh - 80px); */
-    padding: 20vh 10vw;
+    padding: 15vh 10vw;
 }
 
 .brand {
     font-size: 72px;
 }
 
-.logo {
-    font-size: 192px;
+.brand-img {
+    min-width: 70px;
 }
 
 .get-started {
