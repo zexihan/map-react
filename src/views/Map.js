@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 import * as turf from '@turf/turf';

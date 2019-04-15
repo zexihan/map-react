@@ -26,12 +26,13 @@ class Landing extends Component {
                   id="ia"
                   href="http://insideairbnb.com/about.html"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Inside Airbnb
                 </a>
                 .
               </p>
-              <Link to={`/map`} target="_blank">
+              <Link to={`/map`}>
                 <button
                   type="button"
                   className="btn btn-outline-dark get-started"
@@ -41,7 +42,10 @@ class Landing extends Component {
               </Link>
             </div>
             <div className="col align-self-center text-center m-3">
-              <img className="img-fluid brand-img" src="/images/brand.jpg" />
+              <img
+                className="img-fluid brand-img"
+                src="/images/brand.jpg"
+              />
             </div>
           </div>
 
@@ -152,7 +156,7 @@ class Landing extends Component {
               <h2 className="ending-title mb-5">
                 Find your favourite neighborhood
               </h2>
-              <Link to={`/map`} target="_blank">
+              <Link to={`/map`}>
                 <button
                   type="button"
                   className="btn btn-outline-dark get-started"

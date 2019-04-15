@@ -155,10 +155,6 @@ class NavCircles extends Component {
       });
     }
 
-    function type(d) {
-      d.count = +d.count;
-      return d;
-    }
   }
 
   onCircleClick = topic => {

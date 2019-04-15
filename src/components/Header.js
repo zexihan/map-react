@@ -25,7 +25,7 @@ class Header extends Component {
         >
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to={`/map`} target="_blank" className="nav-link">
+              <Link to={`/map`} className="nav-link">
                 Map
               </Link>
             </li>

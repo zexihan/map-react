@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Select from "react-select";
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import 'jquery-ui-bundle';
@@ -221,7 +220,10 @@ class MapOverlay extends Component {
             <div className="row mt-2">
               <div className="col">
                 <div className="tripelf-map-title">
-                  trip<span style={{ color: "#cc0041" }}>elf</span>{" "}
+                  <Link to={`/`} className="navbar-brand" style={{ fontSize: "24px", marginRight: 0 }}>
+                    <span style={{ color: "#000" }}>trip</span><span style={{ color: "#cc0041" }}>elf</span>
+                  </Link>
+                  {" "}
                   <span style={{ color: "#767676" }}>Map</span>
                 </div>
               </div>

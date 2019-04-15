@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -13,12 +12,15 @@ class Video extends Component {
         <Header />
         <div className="container-fluid">
           <div className="row mt-5 justify-content-center align-self-center">
-            <div className="col mt-5 text-center about-title">Video Tutorial</div>
+            <div className="col mt-5 text-center about-title">
+              Video Tutorial
+            </div>
           </div>
           <div className="row m-5 justify-content-center align-self-center">
             <div className="col text-center">
               <div className="embed-responsive embed-responsive-16by9">
                 <iframe
+                  title="Tutorial for TripElf"
                   className="embed-responsive-item"
                   src="https://www.youtube.com/embed/-XSAqfK_UwY"
                   frameborder="0"
