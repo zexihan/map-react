@@ -344,20 +344,20 @@ class About extends Component {
                       </p>
                       <h4>Transit</h4>
                       <p>
-                        For analyzing the New York City transit
-                        condition, we used the Bus Stop Shelters dataset and
-                        Subway Entrance dataset downloaded from NYC Open
-                        Data. The Bus Stop Shelters dataset is in CSV format
-                        which contains the locations of bus stop shelters in
-                        NYC. The Subway Entrance dataset is in CSV format
-                        which contains the locations of subway entrances in
-                        NYC. Aside from these two main datasets, we also
-                        used the NYC Neighborhoods dataset downloaded from
-                        Inside Airbnb. It is in GEOJSON format and will be
-                        used for conducting spatial analysis to calculate
-                        the number of bus stop shelters and subway entrances
-                        in each neighborhood in New York City. The cleaning
-                        steps include extracting longitude and latitude from
+                        For analyzing the New York City transit condition,
+                        we used the Bus Stop Shelters dataset and Subway
+                        Entrance dataset downloaded from NYC Open Data. The
+                        Bus Stop Shelters dataset is in CSV format which
+                        contains the locations of bus stop shelters in NYC.
+                        The Subway Entrance dataset is in CSV format which
+                        contains the locations of subway entrances in NYC.
+                        Aside from these two main datasets, we also used the
+                        NYC Neighborhoods dataset downloaded from Inside
+                        Airbnb. It is in GEOJSON format and will be used for
+                        conducting spatial analysis to calculate the number
+                        of bus stop shelters and subway entrances in each
+                        neighborhood in New York City. The cleaning steps
+                        include extracting longitude and latitude from
                         strings, building functions to assign points to
                         corresponding neighborhoods based on their
                         geolocation information.
@@ -379,7 +379,7 @@ class About extends Component {
                         Ordinal: OBJECTID <br />
                         Example: 1734, Birchall Ave & Sagamore St at NW
                         corner, POINT (-73.86835600032798
-                        40.84916900104506), 2-5 
+                        40.84916900104506), 2-5
                         <br />
                         <br />
                         NYC Neighborhood Dataset: <br />
@@ -659,7 +659,7 @@ class About extends Component {
                     data-parent="#accordionExample"
                   >
                     <div className="card-body">
-                      <table className="table table-hover">
+                      <table className="table table-hover table-responsive">
                         <caption className="text-center">
                           Table 4.1 - Task Analysis
                         </caption>
