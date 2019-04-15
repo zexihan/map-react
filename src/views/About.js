@@ -658,8 +658,8 @@ class About extends Component {
                     aria-labelledby="headingThree"
                     data-parent="#accordionExample"
                   >
-                    <div className="card-body">
-                      <table className="table table-hover table-responsive">
+                    <div className="card-body table-responsive">
+                      <table className="table table-hover">
                         <caption className="text-center">
                           Table 4.1 - Task Analysis
                         </caption>
