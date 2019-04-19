@@ -22,7 +22,7 @@ class Video extends Component {
                 <iframe
                   title="Tutorial for TripElf"
                   className="embed-responsive-item"
-                  src="https://www.youtube.com/embed/-XSAqfK_UwY"
+                  src="https://www.youtube.com/embed/hIAoPW4ZpH8"
                   frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
